@@ -1,0 +1,9 @@
+.break{
+	height: 50px;
+}
+#middle{
+	line-height:30px;
+	border-radius: 0px;	
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+}
