@@ -10,13 +10,13 @@ class Manage extends CI_Controller
 		$this->load->database();
 		if($this->session->userdata('user_login_key')=="")
 			redirect(base_url()."login");
+		$this->nav['active'] = "manage";
 	}
 	
 	function index()
 	{		
 		$this->load->view('admin/header');
-		$this->load->view('admin/navbar');
-		$this->load->view('admin/login');
+		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/footer');
 
 	}
@@ -24,7 +24,7 @@ class Manage extends CI_Controller
 	function stocks()
 	{		
 		$this->load->view('admin/header');
-		$this->load->view('admin/navbar');
+		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/stocks');
 		$this->load->view('admin/footer');
 	}
@@ -32,7 +32,7 @@ class Manage extends CI_Controller
 	function users()
 	{		
 		$this->load->view('admin/header');
-		$this->load->view('admin/navbar');
+		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/users');
 		$this->load->view('admin/footer');
 	}
@@ -40,7 +40,7 @@ class Manage extends CI_Controller
 	function customers()
 	{		
 		$this->load->view('admin/header');
-		$this->load->view('admin/navbar');
+		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/customers');
 		$this->load->view('admin/footer');
 	}
@@ -48,7 +48,7 @@ class Manage extends CI_Controller
 	function suppliers()
 	{		
 		$this->load->view('admin/header');
-		$this->load->view('admin/navbar');
+		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/suppliers');
 		$this->load->view('admin/footer');
 	}
