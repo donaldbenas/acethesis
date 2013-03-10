@@ -1,4 +1,4 @@
-php "productmodel.php"
+php "product.php"
 
 pause
 del "%0"

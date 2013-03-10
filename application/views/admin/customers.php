@@ -1,16 +1,20 @@
 </fieldset>
   <br>
-  <legend>Users</legend>
+  <legend>Customers</legend>
   <table class="table table-hover table-striped table-bordered">
   <thead>
 	<tr>
 		<th>First Name</th>
 		<th>Last Name</th>
-		<th>Username</th>
+		<th>Address</th>
+		<th>Mobile #</th>
+		<th>Telephone #</th>
 		<th>Email</th>
 		<th width="200px"><a class="btn" href="#"><i class="icon-plus"></i> Add New</a></th>
     </tr>
     <tr>
+		<td></td>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>

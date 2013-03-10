@@ -1,294 +1,206 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Mar 10, 2013 at 06:22 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.3.13
 
-Source Server         : localhost
-Source Server Version : 50524
-Source Host           : localhost:3306
-Source Database       : rgs
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-Target Server Type    : MYSQL
-Target Server Version : 50524
-File Encoding         : 65001
 
-Date: 2013-02-09 00:30:55
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `tbl_credit`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_credit`;
-CREATE TABLE `tbl_credit` (
-  `fld_creditID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_debtorID` int(11) DEFAULT NULL,
-  `fld_userID` int(11) DEFAULT NULL,
-  `fld_personEnvolve` varchar(50) DEFAULT NULL,
+--
+-- Database: `rgs`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_customers`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_status` varchar(10) DEFAULT NULL,
+  `fld_firstname` varchar(50) DEFAULT NULL,
+  `fld_middlename` varchar(50) DEFAULT NULL,
+  `fld_lastname` varchar(50) DEFAULT NULL,
+  `fld_address` varchar(50) DEFAULT NULL,
+  `fld_mobile` varchar(20) DEFAULT NULL,
+  `fld_telephone` varchar(20) DEFAULT NULL,
+  `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
-  PRIMARY KEY (`fld_creditID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- ----------------------------
--- Records of tbl_credit
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `tbl_credititems`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_credititems`;
-CREATE TABLE `tbl_credititems` (
-  `fld_creditID` int(11) NOT NULL DEFAULT '0',
-  `fld_stockID` int(11) DEFAULT NULL,
-  `fld_quantity` int(11) DEFAULT NULL,
-  `fld_sellingPrice` int(11) DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_creditID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
+-- Table structure for table `tbl_invoiceattachments`
+--
 
--- ----------------------------
--- Records of tbl_credititems
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_customerpayment`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_customerpayment`;
-CREATE TABLE `tbl_customerpayment` (
-  `fld_debtorID` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE IF NOT EXISTS `tbl_invoiceattachments` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `fld_invoiceID` int(11) DEFAULT NULL,
+  `fld_name` varchar(50) DEFAULT NULL,
+  `fld_size` varchar(10) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
-  `fld_ORN` int(16) DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_debtorID`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of tbl_customerpayment
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `tbl_debtor`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_debtor`;
-CREATE TABLE `tbl_debtor` (
-  `fld_debtorID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_debtorName` varchar(50) DEFAULT NULL,
+--
+-- Table structure for table `tbl_invoiceitems`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_invoiceitems` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `fld_invoiceItemsID` int(11) NOT NULL DEFAULT '0',
+  `fld_productID` int(16) DEFAULT NULL,
+  `fld_productQuantity` int(12) DEFAULT NULL,
+  `fld_productName` varchar(50) DEFAULT NULL,
+  `fld_productDescription` varchar(50) DEFAULT NULL,
+  `fld_productCode` int(11) NOT NULL DEFAULT '0',
+  `fld_productPrice` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_invoicereceipts`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_invoicereceipts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_invoiceID` int(11) DEFAULT NULL,
+  `fld_orNumber` varchar(20) DEFAULT NULL,
+  `fld_paid` double DEFAULT NULL,
+  `fld_price` double DEFAULT NULL,
+  `fld_dateCreated` date DEFAULT NULL,
+  `fld_dateCanceled` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_invoices`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_invoices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_customerID` int(11) DEFAULT NULL,
+  `fld_status` varchar(10) DEFAULT NULL,
+  `fld_code` int(11) NOT NULL DEFAULT '0',
+  `fld_dateCreated` date DEFAULT NULL,
+  `fld_dueDate` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_products`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_products` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `fld_supplierID` int(11) NOT NULL DEFAULT '0',
+  `fld_name` varchar(50) DEFAULT NULL,
+  `fld_description` varchar(50) DEFAULT NULL,
+  `fld_code` int(11) NOT NULL DEFAULT '0',
+  `fld_dateCreated` date DEFAULT NULL,
+  `fld_price` int(16) DEFAULT NULL,
+  `fld_amount` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_stocks`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_stocks` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `fld_productID` int(11) DEFAULT NULL,
+  `fld_remainingAmount` float DEFAULT NULL,
+  `fld_dateCreated` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_suppliers`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_suppliers` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `fld_representativeName` varchar(50) DEFAULT NULL,
+  `fld_representativeID` int(11) DEFAULT NULL,
   `fld_address` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`fld_debtorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_debtor
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_delivery`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_delivery`;
-CREATE TABLE `tbl_delivery` (
-  `fld_deliveryID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_supplierID` int(11) DEFAULT NULL,
-  `fld_userID` int(11) DEFAULT NULL,
-  `fld_deliveryNumber` int(16) DEFAULT NULL,
+  `fld_mobile` varchar(20) DEFAULT NULL,
+  `fld_telephone` varchar(20) DEFAULT NULL,
+  `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
-  `fld_totalAmount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_deliveryID`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of tbl_delivery
--- ----------------------------
+-- --------------------------------------------------------
 
--- ----------------------------
--- Table structure for `tbl_deliverypayment`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_deliverypayment`;
-CREATE TABLE `tbl_deliverypayment` (
-  `fld_deliveryID` int(11) NOT NULL DEFAULT '0',
-  `fld_ORN` int(16) DEFAULT NULL,
-  `fld_dateCreated` date DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_deliveryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
+-- Table structure for table `tbl_users`
+--
 
--- ----------------------------
--- Records of tbl_deliverypayment
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_drawings`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_drawings`;
-CREATE TABLE `tbl_drawings` (
-  `fld_drawingID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_userID` int(11) DEFAULT NULL,
-  `fld_debtorID` int(11) DEFAULT NULL,
-  `fld_dateCreated` date DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  `fld_description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`fld_drawingID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_drawings
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_expenses`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_expenses`;
-CREATE TABLE `tbl_expenses` (
-  `fld_expenseID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_userID` int(11) DEFAULT NULL,
-  `fld_type` varchar(30) DEFAULT NULL,
-  `fld_description` varchar(255) DEFAULT NULL,
-  `fld_dateCreated` date DEFAULT NULL,
-  PRIMARY KEY (`fld_expenseID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_expenses
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_invoice`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_invoice`;
-CREATE TABLE `tbl_invoice` (
-  `fld_userID` int(11) NOT NULL DEFAULT '0',
-  `fld_salesID` int(11) DEFAULT NULL,
-  `fld_invoiceNumber` int(16) DEFAULT NULL,
-  `fld_dateCreated` date DEFAULT NULL,
-  PRIMARY KEY (`fld_userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_invoice
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_purchaseitems`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_purchaseitems`;
-CREATE TABLE `tbl_purchaseitems` (
-  `fld_stockID` int(11) NOT NULL DEFAULT '0',
-  `fld_deliveryID` int(11) DEFAULT NULL,
-  `fld_supplierID` int(11) DEFAULT NULL,
-  `fld_unitPrice` int(11) DEFAULT NULL,
-  `fld_quantity` int(11) DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_stockID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_purchaseitems
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_sales`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_sales`;
-CREATE TABLE `tbl_sales` (
-  `fld_saleID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_stockID` int(11) DEFAULT NULL,
-  `fld_quantity` int(11) DEFAULT NULL,
-  `fld_sellingPrice` int(11) DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_saleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_sales
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_salesreturn`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_salesreturn`;
-CREATE TABLE `tbl_salesreturn` (
-  `fld_stockID` int(11) NOT NULL DEFAULT '0',
-  `fld_returnDate` date DEFAULT NULL,
-  `fld_quantity` int(11) DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  `fld_customerName` varchar(50) DEFAULT NULL,
-  `fld_buyingDate` date DEFAULT NULL,
-  `fld_sellingPrice` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_stockID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_salesreturn
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_stock`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_stock`;
-CREATE TABLE `tbl_stock` (
-  `fld_stockID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_description` varchar(255) DEFAULT NULL,
-  `fld_size` int(11) DEFAULT NULL,
-  `fld_unit` int(11) DEFAULT NULL,
-  `fld_sellingPrice` int(11) DEFAULT NULL,
-  `fld_unitPrice` int(11) DEFAULT NULL,
-  `fld_quantity` int(11) DEFAULT NULL,
-  `fld_begginingInventory` int(11) DEFAULT NULL,
-  `fld_totalAmount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`fld_stockID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_stock
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_supplier`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_supplier`;
-CREATE TABLE `tbl_supplier` (
-  `fld_supplierID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_supplierName` varchar(50) DEFAULT NULL,
-  `fld_type` varchar(30) DEFAULT NULL,
-  `fld_contactNumber` int(11) DEFAULT NULL,
-  `fld_dateCreated` date DEFAULT NULL,
-  `fld_active` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`fld_supplierID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tbl_supplier
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tbl_user`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_user`;
-CREATE TABLE `tbl_user` (
+CREATE TABLE IF NOT EXISTS `tbl_users` (
   `fld_userID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_type` varchar(30) DEFAULT NULL,
-  `fld_password` varchar(30) DEFAULT '',
+  `fld_type` enum('manager','client') DEFAULT NULL,
   `fld_username` varchar(30) DEFAULT NULL,
+  `fld_password` varchar(30) DEFAULT NULL,
+  `fld_firstname` varchar(50) DEFAULT NULL,
+  `fld_middlename` varchar(50) DEFAULT NULL,
+  `fld_lastname` varchar(50) DEFAULT NULL,
+  `fld_address` varchar(255) DEFAULT NULL,
+  `fld_mobile` varchar(20) DEFAULT NULL,
+  `fld_telephone` varchar(20) DEFAULT NULL,
+  `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   `fld_active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`fld_userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
--- ----------------------------
--- Records of tbl_user
--- ----------------------------
+--
+-- Dumping data for table `tbl_users`
+--
 
--- ----------------------------
--- Table structure for `tbl_waste`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_waste`;
-CREATE TABLE `tbl_waste` (
-  `fld_stockID` int(11) NOT NULL DEFAULT '0',
-  `fld_quantity` int(11) DEFAULT NULL,
-  `fld_unitPrice` int(11) DEFAULT NULL,
-  `fld_amount` int(11) DEFAULT NULL,
-  `fld_remarks` varchar(50) DEFAULT NULL,
-  `fld_dateCreated` date DEFAULT NULL,
-  PRIMARY KEY (`fld_stockID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tbl_users` (`fld_userID`, `fld_type`, `fld_username`, `fld_password`, `fld_firstname`, `fld_middlename`, `fld_lastname`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`, `fld_active`) VALUES
+(1, 'manager', 'admin', 'd033e22ae348aeb5660fc2140aec35', '', NULL, NULL, NULL, NULL, NULL, NULL, '2013-03-09', 1);
 
--- ----------------------------
--- Records of tbl_waste
--- ----------------------------
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_usertimesheet`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_usertimesheet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_userID` int(11) DEFAULT NULL,
+  `fld_status` varchar(50) DEFAULT NULL,
+  `fld_timeIn` time DEFAULT NULL,
+  `fld_timeOut` time DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

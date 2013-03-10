@@ -1,16 +1,21 @@
+
 </fieldset>
   <br>
-  <legend>Users</legend>
+  <legend>Suppliers</legend>
   <table class="table table-hover table-striped table-bordered">
   <thead>
 	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Username</th>
+		<th>Company Name</th>
+		<th>Representative Name</th>
+		<th>Mobile #</th>
+		<th>Telephone #</th>
+		<th>Address</th>
 		<th>Email</th>
 		<th width="200px"><a class="btn" href="#"><i class="icon-plus"></i> Add New</a></th>
     </tr>
     <tr>
+		<td></td>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -23,3 +28,4 @@
   </thead>
 </table>
 </form>
+ 

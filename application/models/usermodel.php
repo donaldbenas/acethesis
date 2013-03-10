@@ -17,14 +17,14 @@ class userModel extends CI_Model
 	function verify($username, $password)
 	{
 		$this->db->select('fld_userID,fld_username,fld_password');
-		$this->db->from('tbl_user');
+		$this->db->from('tbl_users');
 		$this->db->where('fld_username', $username);
 		$this->db->where('fld_password', substr($this->encrypt->sha1($password),0,-10));
 		$this->db->where('fld_active','1');
 		$this->db->limit(1);
 		
 		$sql = " SELECT fld_userID, fld_username, fld_password ";
-		$sql.= "	FROM tbl_user ";
+		$sql.= "	FROM tbl_users ";
 		$sql.= "	WHERE fld_username = '".$username."' ";
 		$sql.= "	AND fld_password = '".substr($this->encrypt->sha1($password),0,-10)."' ";
 		$sql.= "	AND fld_active = '1'";
@@ -43,7 +43,7 @@ class userModel extends CI_Model
 	function signup($key)
 	{
 		$this->db->select('fld_userID');
-		$this->db->from('tbl_user');
+		$this->db->from('tbl_users');
 		$this->db->where('fld_type', "manager");
 		$this->db->where('fld_password', substr($this->encrypt->sha1($key),0,-10));
 		$this->db->limit(1);
@@ -53,7 +53,7 @@ class userModel extends CI_Model
 		{
 			
 			$this->db->select('fld_userID');
-			$this->db->from('tbl_user');
+			$this->db->from('tbl_users');
 			$this->db->where('fld_username',str_replace("'","",stripslashes($this->input->post('username'))));
 			$this->db->limit(1);
 			$query = $this->db->get();
@@ -82,7 +82,7 @@ class userModel extends CI_Model
 	function save()
 	{
 		if($this->id==""){
-			$sql = "INSERT INTO tbl_user( ";
+			$sql = "INSERT INTO tbl_users( ";
 			$sql.= "       fld_type, ";
 			$sql.= "       fld_password, ";
 			$sql.= "       fld_username, ";
