@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 10, 2013 at 06:22 AM
+-- Generation Time: Mar 10, 2013 at 10:02 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `tbl_customers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_status` varchar(10) DEFAULT NULL,
+  `fld_status` enum('ordinary','regular') DEFAULT NULL,
   `fld_firstname` varchar(50) DEFAULT NULL,
   `fld_middlename` varchar(50) DEFAULT NULL,
   `fld_lastname` varchar(50) DEFAULT NULL,
@@ -38,7 +38,15 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
   `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_customers`
+--
+
+INSERT INTO `tbl_customers` (`id`, `fld_status`, `fld_firstname`, `fld_middlename`, `fld_lastname`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
+(1, 'regular', 'Donald', 'Platino', 'Benas', 'Dasmarinas, Cavite', '0923646597', '4524978', 'donaldbenas@gmail.com', '0000-00-00'),
+(2, 'regular', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -47,13 +55,13 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_invoiceattachments` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_invoiceID` int(11) DEFAULT NULL,
   `fld_name` varchar(50) DEFAULT NULL,
   `fld_size` varchar(10) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -62,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `tbl_invoiceattachments` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_invoiceitems` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_invoiceItemsID` int(11) NOT NULL DEFAULT '0',
   `fld_productID` int(16) DEFAULT NULL,
   `fld_productQuantity` int(12) DEFAULT NULL,
@@ -71,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `tbl_invoiceitems` (
   `fld_productCode` int(11) NOT NULL DEFAULT '0',
   `fld_productPrice` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -113,16 +121,24 @@ CREATE TABLE IF NOT EXISTS `tbl_invoices` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_products` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_supplierID` int(11) NOT NULL DEFAULT '0',
   `fld_name` varchar(50) DEFAULT NULL,
   `fld_description` varchar(50) DEFAULT NULL,
   `fld_code` int(11) NOT NULL DEFAULT '0',
   `fld_dateCreated` date DEFAULT NULL,
-  `fld_price` int(16) DEFAULT NULL,
+  `fld_price` float(7,2) DEFAULT NULL,
   `fld_amount` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_products`
+--
+
+INSERT INTO `tbl_products` (`id`, `fld_supplierID`, `fld_name`, `fld_description`, `fld_code`, `fld_dateCreated`, `fld_price`, `fld_amount`) VALUES
+(1, 2, 'Fish Ball', 'Balls in a Balls', 89465, '0000-00-00', 45.00, 5),
+(2, 2, 'Hotdog', 'Hot in a dog', 56876, '0000-00-00', 102.00, 100);
 
 -- --------------------------------------------------------
 
@@ -131,12 +147,12 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_stocks` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_productID` int(11) DEFAULT NULL,
   `fld_remainingAmount` float DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -145,7 +161,8 @@ CREATE TABLE IF NOT EXISTS `tbl_stocks` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_suppliers` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_companyName` varchar(255) NOT NULL,
   `fld_representativeName` varchar(50) DEFAULT NULL,
   `fld_representativeID` int(11) DEFAULT NULL,
   `fld_address` varchar(255) DEFAULT NULL,
@@ -154,7 +171,15 @@ CREATE TABLE IF NOT EXISTS `tbl_suppliers` (
   `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_suppliers`
+--
+
+INSERT INTO `tbl_suppliers` (`id`, `fld_companyName`, `fld_representativeName`, `fld_representativeID`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
+(1, 'Pure Foods', 'Jethro', 2147483647, 'Alabang', '098645613164', '8954-5464', 'jethro@yahoo.com', '0000-00-00'),
+(2, 'Pure Foods', 'Donald', 59464678, 'Santa Rosa', '09326646548', '481-98979', 'donaldbenas@gmail.com', '0000-00-00');
 
 -- --------------------------------------------------------
 

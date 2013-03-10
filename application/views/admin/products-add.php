@@ -4,8 +4,9 @@
     <label class="control-label" for="inputEmail">Supplier</label>
     <div class="controls">
 		<select name="supplierID">
-			<option></option>
-			<option></option>
+		<?php foreach($suppliers as $rows){ ?>
+			<option value="<?php echo $rows->id ?>"><?php echo $rows->fld_companyName ?></option>
+		<?php } ?>
 		</select>
     </div>
   </div>
@@ -18,7 +19,7 @@
   <div class="control-group">
     <label class="control-label" for="inputEmail">Description</label>
     <div class="controls">
-      <textarea type="text" name="description" placeholder="Product Description"></textarea>
+      <textarea type="text" name="description" row="3" style="height:80px" placeholder="Product Description"></textarea>
     </div>
   </div>
   <div class="control-group">

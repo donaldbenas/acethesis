@@ -3,9 +3,16 @@
   <div class="control-group">
     <label class="control-label" for="inputEmail">Supplier</label>
     <div class="controls">
-		<select name="supplietID">
-			<option></option>
-			<option></option>
+		<select name="supplierID">
+		<?php 
+		foreach($suppliers as $rows){
+			if($products[0]->fld_supplierID == $rows->id){
+		 ?>
+			<option selected value="<?php echo $rows->id ?>"><?php echo $rows->fld_companyName ?></option>
+		<?php }else{ ?>
+			<option value="<?php echo $rows->id ?>"><?php echo $rows->fld_companyName ?></option>
+		<?php } 
+		}?>
 		</select>
     </div>
   </div>
@@ -18,7 +25,7 @@
   <div class="control-group">
     <label class="control-label" for="inputEmail">Description</label>
     <div class="controls">
-      <textarea type="text" name="description" placeholder="Product Description"><?php echo $products[0]->fld_description ?></textarea>
+      <textarea type="text" name="description" row="3" style="height:80px" placeholder="Product Description"><?php echo $products[0]->fld_description ?></textarea>
     </div>
   </div>
   <div class="control-group">

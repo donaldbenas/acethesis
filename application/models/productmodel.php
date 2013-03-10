@@ -41,7 +41,7 @@ class productModel extends CI_Model
 			   'fld_name' => $this->input->post('name') ,
 			   'fld_description' => $this->input->post('description'),
 			   'fld_code' => $this->input->post('code'),
-			   'fld_dateCreated' => $this->input->post('dateCreated'),
+			   'fld_dateCreated' => 'now()',
 			   'fld_price' => $this->input->post('price'),
 			   'fld_amount' => $this->input->post('amount')
 			);
@@ -52,7 +52,6 @@ class productModel extends CI_Model
 			   'fld_name' => $this->input->post('name') ,
 			   'fld_description' => $this->input->post('description'),
 			   'fld_code' => $this->input->post('code'),
-			   'fld_dateCreated' => $this->input->post('dateCreated'),
 			   'fld_price' => $this->input->post('price'),
 			   'fld_amount' => $this->input->post('amount')
 			);

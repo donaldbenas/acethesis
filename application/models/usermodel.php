@@ -79,23 +79,66 @@ class userModel extends CI_Model
 		}
 	}
 	
-	function save()
+	function load()
 	{
 		if($this->id==""){
-			$sql = "INSERT INTO tbl_users( ";
-			$sql.= "       fld_type, ";
-			$sql.= "       fld_password, ";
-			$sql.= "       fld_username, ";
-			$sql.= "       fld_dateCreated, ";
-			$sql.= "       fld_active) ";
-			$sql.= "  VALUES (";
-			$sql.= "       '".str_replace("'","",stripslashes($this->input->post('type')))."',";
-			$sql.= "       '".substr($this->encrypt->sha1($this->input->post('newpassword')),0,-10)."',";
-			$sql.= "       '".str_replace("'","",stripslashes($this->input->post('username')))."',";
-			$sql.= "       now(),";
-			$sql.= "       '1')";
-			$this->db->query($sql);
+			$this->db->select('*');
+			$this->db->from('tbl_users');
+			$this->db->order_by('fld_firstname', 'asc');
+			$query = $this->db->get();
+			return $query->result();
+		}else{
+			$this->db->select('*');
+			$this->db->from('tbl_users');
+			$this->db->where('fld_userID',$this->id);
+			$this->db->order_by('fld_firstname', 'asc');
+			$this->db->limit(1);
+			$query = $this->db->get();
+			return $query->result();
 		}
+	}
+	
+	function save()
+	{	
+		if($this->id==""){
+			$data = array(
+			   'fld_type' => $this->input->post('type') ,
+			   'fld_username' => $this->input->post('username') ,
+			   'fld_password' => $this->input->post('password') ,
+			   'fld_firstname' => $this->input->post('firstname') ,
+			   'fld_middlename' => $this->input->post('middlename'),
+			   'fld_lastname' => $this->input->post('lastname'),
+			   'fld_address' => $this->input->post('address'),
+			   'fld_mobile' => $this->input->post('mobile'),
+			   'fld_telephone' => $this->input->post('telephone'),
+			   'fld_email' => $this->input->post('email'),
+			   'fld_dateCreated' => 'now()',
+			   'fld_active' => '1'
+			);
+			$this->db->insert('tbl_users', $data); 
+		}else{
+			$data = array(
+			   'fld_type' => $this->input->post('type') ,
+			   'fld_username' => $this->input->post('username') ,
+			   'fld_password' => $this->input->post('password') ,
+			   'fld_firstname' => $this->input->post('firstname') ,
+			   'fld_middlename' => $this->input->post('middlename'),
+			   'fld_lastname' => $this->input->post('lastname'),
+			   'fld_address' => $this->input->post('address'),
+			   'fld_mobile' => $this->input->post('mobile'),
+			   'fld_telephone' => $this->input->post('telephone'),
+			   'fld_email' => $this->input->post('email')
+			);
+			$this->db->where('fld_userID', $this->id);
+			$this->db->update('tbl_users', $data); 
+		}
+		
+	}
+	
+	function delete()
+	{
+		$this->db->where('fld_userID', $this->id);
+		$this->db->delete('tbl_users'); 
 	}
 }
 

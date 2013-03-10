@@ -22,6 +22,8 @@ class Product extends CI_Controller
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->model('productmodel');
 		$data['products'] = $this->productmodel->load();
+		$this->load->model('suppliermodel');
+		$data['suppliers'] = $this->suppliermodel->load();
 		$this->load->view('admin/products',$data);
 		$this->load->view('admin/footer');
 
@@ -31,7 +33,9 @@ class Product extends CI_Controller
 	{		
 		$this->load->view('admin/header');
 		$this->load->view('admin/navbar',$this->nav);
-		$this->load->view('admin/products-add');
+		$this->load->model('suppliermodel');
+		$data['suppliers'] = $this->suppliermodel->load();
+		$this->load->view('admin/products-add',$data);
 		$this->load->view('admin/footer');
 
 	}
@@ -41,8 +45,11 @@ class Product extends CI_Controller
 		$this->load->view('admin/header');
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->model('productmodel');
+		
 		$this->productmodel->id = $id;
 		$data['products'] = $this->productmodel->load();
+		$this->load->model('suppliermodel');
+		$data['suppliers'] = $this->suppliermodel->load();
 		$this->load->view('admin/products-edit',$data);
 		$this->load->view('admin/footer');
 
