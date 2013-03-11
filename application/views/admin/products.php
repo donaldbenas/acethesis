@@ -6,7 +6,7 @@
 		<th>DESCRIPTION</th>
 		<th>CODE</th>
 		<th>PRICE</th>
-		<th>AMOUNT</th>
+		<th>QUANTITY</th>
 		<th width="200px"><a class="btn" href="<?php echo base_url()."product/add" ?>"><i class="icon-plus"></i> Add New</a></th>
     </tr>
     <?php foreach($products as $rows){ ?>

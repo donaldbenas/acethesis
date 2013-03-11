@@ -1,4 +1,8 @@
 <form class="form-horizontal">
+  <legend>Stock Inventory</legend>
+  <fieldset>
+
+<form class="form-horizontal">
   <div class="control-group">
     <label class="control-label" for="inventory">Date</label>
     <div class="controls">
