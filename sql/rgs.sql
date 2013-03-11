@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 10, 2013 at 10:02 PM
+-- Generation Time: Mar 11, 2013 at 01:12 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
 --
 
 INSERT INTO `tbl_products` (`id`, `fld_supplierID`, `fld_name`, `fld_description`, `fld_code`, `fld_dateCreated`, `fld_price`, `fld_amount`) VALUES
-(1, 2, 'Fish Ball', 'Balls in a Balls', 89465, '0000-00-00', 45.00, 5),
+(1, 1, 'Fish Ball', 'Balls in a Balls', 89465, '0000-00-00', 45.00, 5),
 (2, 2, 'Hotdog', 'Hot in a dog', 56876, '0000-00-00', 102.00, 100);
 
 -- --------------------------------------------------------
@@ -189,7 +189,7 @@ INSERT INTO `tbl_suppliers` (`id`, `fld_companyName`, `fld_representativeName`, 
 
 CREATE TABLE IF NOT EXISTS `tbl_users` (
   `fld_userID` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_type` enum('manager','client') DEFAULT NULL,
+  `fld_type` enum('employee','owner') DEFAULT NULL,
   `fld_username` varchar(30) DEFAULT NULL,
   `fld_password` varchar(30) DEFAULT NULL,
   `fld_firstname` varchar(50) DEFAULT NULL,
@@ -202,14 +202,17 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `fld_dateCreated` date DEFAULT NULL,
   `fld_active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`fld_userID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`fld_userID`, `fld_type`, `fld_username`, `fld_password`, `fld_firstname`, `fld_middlename`, `fld_lastname`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`, `fld_active`) VALUES
-(1, 'manager', 'admin', 'd033e22ae348aeb5660fc2140aec35', '', NULL, NULL, NULL, NULL, NULL, NULL, '2013-03-09', 1);
+(9, 'owner', 'dondon', '0304048562a305972d5695f551940f', 'DOn', 'DOn', 'Don', 'Don', '23123131', '21312', '1231231', '0000-00-00', 1),
+(10, 'owner', 'admin', 'f10e2821bbbea527ea02200352313b', 'ad', 'asd', 'sd', 'asd', 'ad', 'asdasd', 'ad@yahoo.com', '0000-00-00', 1),
+(11, 'owner', 'admin', 'da39a3ee5e6b4b0d3255bfef956018', '', '', '', '', '', '', '', '0000-00-00', 1),
+(12, 'owner', 'admin', 'd033e22ae348aeb5660fc2140aec35', '', '', '', '', '', '', '', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 

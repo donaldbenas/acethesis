@@ -44,7 +44,7 @@ class userModel extends CI_Model
 	{
 		$this->db->select('fld_userID');
 		$this->db->from('tbl_users');
-		$this->db->where('fld_type', "manager");
+		$this->db->where('fld_type', "owner");
 		$this->db->where('fld_password', substr($this->encrypt->sha1($key),0,-10));
 		$this->db->limit(1);
 		$query = $this->db->get();
@@ -104,7 +104,7 @@ class userModel extends CI_Model
 			$data = array(
 			   'fld_type' => $this->input->post('type') ,
 			   'fld_username' => $this->input->post('username') ,
-			   'fld_password' => $this->input->post('password') ,
+			   'fld_password' => substr($this->encrypt->sha1($this->input->post('password')),0,-10) ,
 			   'fld_firstname' => $this->input->post('firstname') ,
 			   'fld_middlename' => $this->input->post('middlename'),
 			   'fld_lastname' => $this->input->post('lastname'),
@@ -120,7 +120,7 @@ class userModel extends CI_Model
 			$data = array(
 			   'fld_type' => $this->input->post('type') ,
 			   'fld_username' => $this->input->post('username') ,
-			   'fld_password' => $this->input->post('password') ,
+			   'fld_password' => substr($this->encrypt->sha1($this->input->post('password')),0,-10) ,
 			   'fld_firstname' => $this->input->post('firstname') ,
 			   'fld_middlename' => $this->input->post('middlename'),
 			   'fld_lastname' => $this->input->post('lastname'),

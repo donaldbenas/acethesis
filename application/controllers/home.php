@@ -10,14 +10,14 @@ class Home extends CI_Controller{
 		$this->load->database();
 		if($this->session->userdata('user_login_key')=="")
 			redirect(base_url()."login");
-		$this->nav['active'] = "product";
+		$this->nav['active'] = "home";
 	}
 	
 	function index(){
 		$this->history->exclude();
 		
 		$this->load->view('admin/header');
-		$this->load->view('admin/navbar');
+		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/home');
 		$this->load->view('admin/footer');
 		
