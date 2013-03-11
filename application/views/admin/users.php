@@ -3,11 +3,11 @@
   <table class="table table-hover table-striped table-bordered">
   <thead>
 	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Username</th>
-		<th>Type</th>
-		<th>Email</th>
+		<th>FIRST NAME</th>
+		<th>LAST NAME</th>
+		<th>USERNAME</th>
+		<th>TYPE</th>
+		<th>EMAIL</th>
 		<th width="200px"><a class="btn" href="<?php echo base_url()."manage/users/add" ?>"><i class="icon-plus"></i> Add New</a></th>
     </tr>
     <?php  foreach($users as $rows){ ?>
