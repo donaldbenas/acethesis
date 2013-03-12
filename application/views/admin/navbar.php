@@ -48,9 +48,16 @@
 	</div>
   </div>
 </div>
+<?php  if(!empty($breadcrumbs)){ ?>
 <ul class="breadcrumb container">
-  <li><a href="#"><i class="icon-home"></i></a> <span class="divider"><i class="icon-play"></i></span></li>
-  <li><a href="#">Products</a> <span class="divider"><i class="icon-play"></i></span></li>
-  <li class="active">Add Product Item</a> </li>
+  <?php foreach($breadcrumbs as $rows){ 
+	if($rows['href']!=""){
+  ?>
+  <li><a href="<?php echo $rows['href'] ?>"><?php echo $rows['label'] ?></a> <span class="divider"><i class="icon-play"></i></span></li>
+  <?php }else{ ?>
+  <li class="active"><?php echo $rows['label'] ?> </li>
+  <?php }
+  } ?>
 </ul>
+<?php } ?>
 <div class="container-fluid">

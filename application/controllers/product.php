@@ -14,11 +14,15 @@ class Product extends CI_Controller
 		if($this->session->userdata('user_login_key')=="")
 			redirect(base_url()."login");
 		$this->nav['active'] = "product";
+		//bredcrumbs home
+		$this->nav['breadcrumbs'] = array(array("href" => base_url()."home", "label"=> "<i class=\"icon-home\"></i>"));
 	}
 	
 	function index()
 	{		
-		$this->load->view('admin/header');
+		$this->load->view('admin/header');		
+		//bredcrumbs home -> products
+		array_push($this->nav['breadcrumbs'],array("href" =>"", "label"=> "Products"));
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->model('productmodel');
 		$data['products'] = $this->productmodel->load();
@@ -32,6 +36,11 @@ class Product extends CI_Controller
 	function add()
 	{		
 		$this->load->view('admin/header');
+		//bredcrumbs home -> products -> add product items
+		array_push($this->nav['breadcrumbs'],
+				array("href" => base_url()."product", "label"=> "Products"),
+				array("href" => "", "label"=> "Add Product Item")
+		);
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->model('suppliermodel');
 		$data['suppliers'] = $this->suppliermodel->load();
@@ -43,9 +52,13 @@ class Product extends CI_Controller
 	function edit($id="")
 	{	
 		$this->load->view('admin/header');
+		//bredcrumbs home -> products -> edit product items
+		array_push($this->nav['breadcrumbs'],
+				array("href" => base_url()."product", "label"=> "Products"),
+				array("href" => "", "label"=> "Edit Product Item")
+		);
 		$this->load->view('admin/navbar',$this->nav);
-		$this->load->model('productmodel');
-		
+		$this->load->model('productmodel');		
 		$this->productmodel->id = $id;
 		$data['products'] = $this->productmodel->load();
 		$this->load->model('suppliermodel');
@@ -58,6 +71,11 @@ class Product extends CI_Controller
 	function delete()
 	{		
 		$this->load->view('admin/header');
+		//bredcrumbs home -> products -> delete product items
+		array_push($this->nav['breadcrumbs'],
+				array("href" => base_url()."product", "label"=> "Products"),
+				array("href" => "", "label"=> "Delete Product Item")
+		);
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/products-delete');
 		$this->load->view('admin/footer');
