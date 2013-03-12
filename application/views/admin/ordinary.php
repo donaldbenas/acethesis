@@ -7,10 +7,13 @@
 		  <input type="text" id="id" placeholder="invoice number">
 		</div>
 	  </div>
-	  <div class="control-group">
+	  <div class="control-group" style="display:none">
 		<label class="control-label" for="status">Status</label>
 		<div class="controls">
-		  <select><option>Paid</option> <option>Unpaid</option></select>
+		  <select>
+			  <option selected>Paid</option>
+			  <option>Unpaid</option>
+		  </select>
 		</div>
 	  </div>
 	  <div class="control-group">

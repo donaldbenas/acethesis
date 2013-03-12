@@ -1,17 +1,15 @@
-<form class="form-horizontal">
-  <legend>Stock Inventory</legend>
-  <fieldset>
-
-<form class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="inventory">Date</label>
-    <div class="controls">
-      <input type="text" id="date" placeholder="">
-    </div>
-  </div>
-<table class="table table-hover">
+<form class="form-inline">
+  <label>Sort By Supplier Name:  </label>
+  <select>
+	<option>Pure Foods</option>
+  </select>
+  <input type="text" name="date" placeholder="Sort Date">
+  <button type="submit" class="btn">Search</button>
+</form>
+<table class="table table-hover table-striped table-bordered">
   <thead>
-	<tr bgcolor="#778899">
+	<tr>
+   <th>SUPPLIER NAME</th>
    <th>PRODUCT NAME</th>
     <th>DESCRIPTION</th>
 	<th>PRICE</th>

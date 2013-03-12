@@ -14,7 +14,6 @@
 			<ul class="dropdown-menu">
 			  <li><a href="<?php echo base_url()."transact/ordinary" ?>">Ordinary Customer</a></li>
 			  <li><a href="<?php echo base_url()."transact/regular" ?>">Regular Customer</a></li>
-			  <li><a href="<?php echo base_url()."transact/supplier" ?>">Supplier Purchase</a></li>
 			  
 			</ul>
 		  </li>

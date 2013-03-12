@@ -35,15 +35,6 @@ class Transact extends CI_Controller
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/regular');
 		$this->load->view('admin/footer');
-	}
-	
-	function supplier()
-	{		
-		$this->load->view('admin/header');
-		$this->load->view('admin/navbar',$this->nav);
-		$this->load->view('admin/supplier');
-		$this->load->view('admin/footer');
-	}
-	
+	}	
 	
 }
