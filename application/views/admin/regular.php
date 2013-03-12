@@ -1,4 +1,5 @@
 <form class="form-horizontal">
+  <legend>Invoice Details</legend>
   <div class="control-group">
     <label class="control-label" for="name">Name</label>
     <div class="controls">
@@ -38,7 +39,7 @@
 	  </div>
   </fieldset>
   <br>
-  <legend>Items</legend>
+  <legend>Invoice Items</legend>
   <table class="table table-hover table-striped table-bordered">
   <thead>
 	<tr>

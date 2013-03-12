@@ -48,4 +48,9 @@
 	</div>
   </div>
 </div>
+<ul class="breadcrumb container">
+  <li><a href="#"><i class="icon-home"></i></a> <span class="divider"><i class="icon-play"></i></span></li>
+  <li><a href="#">Products</a> <span class="divider"><i class="icon-play"></i></span></li>
+  <li class="active">Add Product Item</a> </li>
+</ul>
 <div class="container-fluid">
