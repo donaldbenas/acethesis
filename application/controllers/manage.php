@@ -61,13 +61,9 @@ class Manage extends CI_Controller
 						$this->load->view('admin/users-edit',$data);
 						break;
 			case 'delete'	:
-						array_push($this->nav['breadcrumbs'],
-							array("href" => base_url()."manage", "label"=> "Transaction"),
-							array("href" => base_url()."manage/users", "label"=> "Users"),
-							array("href" => "", "label"=> "Delete User")
-						);	
-						$this->load->view('admin/navbar',$this->nav);
-						$this->load->view('admin/users-add');
+						$this->usermodel->id = $this->uri->segment(4);
+						$this->usermodel->delete();
+						redirect(base_url()."manage/users");
 						break;
 			case 'save'	:
 						array_push($this->nav['breadcrumbs'],
@@ -127,13 +123,9 @@ class Manage extends CI_Controller
 						$this->load->view('admin/customers-edit',$data);
 						break;
 			case 'delete'	:
-						array_push($this->nav['breadcrumbs'],
-							array("href" => base_url()."manage", "label"=> "Management"),
-							array("href" => base_url()."manage/customers", "label"=> "Customers"),
-							array("href" => "", "label"=> "Delete Customer")
-						);
-						$this->load->view('admin/navbar',$this->nav);
-						$this->load->view('admin/customers-add');
+						$this->customermodel->id = $this->uri->segment(4);
+						$this->customermodel->delete();
+						redirect(base_url()."manage/customers");
 						break;
 			case 'save'	:
 						if($this->uri->segment(4)==""){
@@ -193,13 +185,9 @@ class Manage extends CI_Controller
 						$this->load->view('admin/suppliers-edit',$data);
 						break;
 			case 'delete'	:
-						array_push($this->nav['breadcrumbs'],
-							array("href" => base_url()."manage", "label"=> "Management"),
-							array("href" => base_url()."manage/suppliers", "label"=> "Suppliers"),
-							array("href" => "", "label"=> "Delete Supplier")
-						);
-						$this->load->view('admin/navbar',$this->nav);
-						$this->load->view('admin/suppliers-add');
+						$this->suppliermodel->id = $this->uri->segment(4);
+						$this->suppliermodel->delete();
+						redirect(base_url()."manage/suppliers");
 						break;
 			case 'save'	:
 						if($this->uri->segment(4)==""){

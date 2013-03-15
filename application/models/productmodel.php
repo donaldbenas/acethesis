@@ -84,8 +84,10 @@ class productModel extends CI_Model
 	
 	function delete()
 	{
-		$this->db->where('id', $this->id);
-		$this->db->delete('tbl_products'); 
+		if($this->id!=""){
+			$this->db->where('id', $this->id);
+			$this->db->delete('tbl_products'); 
+		}
 	}
 }
 

@@ -71,17 +71,12 @@ class Product extends CI_Controller
 
 	}
 	
-	function delete()
+	function delete($id="")
 	{		
-		$this->load->view('admin/header');
-		//bredcrumbs home -> products -> delete product items
-		array_push($this->nav['breadcrumbs'],
-				array("href" => base_url()."product", "label"=> "Products"),
-				array("href" => "", "label"=> "Delete Product Item")
-		);
-		$this->load->view('admin/navbar',$this->nav);
-		$this->load->view('admin/products-delete');
-		$this->load->view('admin/footer');
+		$this->load->model('productmodel');
+		$this->productmodel->id = $id;
+		$this->productmodel->delete();
+		redirect(base_url()."product");
 
 	}
 	
