@@ -11,10 +11,6 @@ class Manage extends CI_Controller
 		if($this->session->userdata('user_login_key')=="")
 			redirect(base_url()."login");
 		$this->nav['active'] = "manage";
-<<<<<<< HEAD
-=======
-		//bredcrumbs home
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 		$this->nav['breadcrumbs'] = array(array("href" => base_url()."home", "label"=> "<i class=\"icon-home\"></i>"));
 	}
 	
@@ -26,6 +22,7 @@ class Manage extends CI_Controller
 		);
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/footer');
+
 	}
 	
 	function stocks()
@@ -39,29 +36,17 @@ class Manage extends CI_Controller
 	function users()
 	{		
 		$this->load->view('admin/header');
-<<<<<<< HEAD
-=======
-		//
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 		
 		$this->load->model('usermodel');
 		switch($this->uri->segment(3)){
 			
-<<<<<<< HEAD
 			case 'add'	:		
 						array_push($this->nav['breadcrumbs'],
 							array("href" => base_url()."manage", "label"=> "Management"),
-=======
-			case 'add'	:
-						$this->load->view('admin/header');
-						//bredcrumbs home -> user -> add user
-						array_push($this->nav['breadcrumbs'],
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 							array("href" => base_url()."manage/users", "label"=> "Users"),
 							array("href" => "", "label"=> "Add User")
 						);
 						$this->load->view('admin/navbar',$this->nav);
-<<<<<<< HEAD
 						$this->load->view('admin/users-add');
 						break;
 			case 'edit'	:
@@ -71,23 +56,9 @@ class Manage extends CI_Controller
 							array("href" => "", "label"=> "Edit User")
 						);	
 						$this->load->view('admin/navbar',$this->nav);
-=======
-						$this->load->model('usermodel');
-						$data['users'] = $this->usermodel->load();
-						$this->load->view('admin/users-add',$data);
-						break;
-			case 'edit'	:
-						array_push($this->nav['breadcrumbs'],
-							array("href" => base_url()."manage/users", "label"=> "Users"),
-							array("href" => "", "label"=> "Edit User")
-						);
-						$this->load->view('admin/navbar',$this->nav);
-						$this->load->model('usermodel');	
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 						$this->usermodel->id = $this->uri->segment(4);
 						$data['users'] = $this->usermodel->load();
 						$this->load->view('admin/users-edit',$data);
-						$this->load->view('admin/footer');
 						break;
 			case 'delete'	:
 						array_push($this->nav['breadcrumbs'],
@@ -114,23 +85,17 @@ class Manage extends CI_Controller
 						}
 							
 						break;
-<<<<<<< HEAD
 			default		:	
 						array_push($this->nav['breadcrumbs'],
 							array("href" => base_url()."transact", "label"=> "Transaction"),
 							array("href" => "", "label"=> "Ordinary Customer")
 						);	
-=======
-			default		:		
-						array_push($this->nav['breadcrumbs'],array("href" =>"", "label"=> "Users"));
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 						$this->load->view('admin/navbar',$this->nav);
 						$data['users'] = $this->usermodel->load();
 						$this->load->view('admin/users',$data);
 						break;						
 			
 		}
-		
 		$this->load->view('admin/footer');
 	}
 	
@@ -143,7 +108,6 @@ class Manage extends CI_Controller
 			
 			case 'add'	:
 						array_push($this->nav['breadcrumbs'],
-<<<<<<< HEAD
 							array("href" => base_url()."manage", "label"=> "Management"),
 							array("href" => base_url()."manage/customers", "label"=> "Customers"),
 							array("href" => "", "label"=> "Add Cutomer")
@@ -154,32 +118,13 @@ class Manage extends CI_Controller
 			case 'edit'	:
 						array_push($this->nav['breadcrumbs'],
 							array("href" => base_url()."manage", "label"=> "Management"),
-=======
-							array("href" => base_url()."manage/customers", "label"=> "Customers"),
-							array("href" => "", "label"=> "Add Customer")
-						);
-						$this->load->view('admin/navbar',$this->nav);
-						$data['customers'] = $this->customermodel->load();
-						$this->load->model('customermodel');
-			
-						$this->load->view('admin/customers-add',$data);
-						break;
-			case 'edit'	:
-						array_push($this->nav['breadcrumbs'],
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 							array("href" => base_url()."manage/customers", "label"=> "Customers"),
 							array("href" => "", "label"=> "Edit Customer")
 						);
 						$this->load->view('admin/navbar',$this->nav);
-<<<<<<< HEAD
-=======
-						$this->load->model('customermodel');	
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 						$this->customermodel->id = $this->uri->segment(4);
 						$data['customers'] = $this->customermodel->load();
 						$this->load->view('admin/customers-edit',$data);
-						$this->load->view('admin/footer');
-						
 						break;
 			case 'delete'	:
 						array_push($this->nav['breadcrumbs'],
@@ -203,7 +148,6 @@ class Manage extends CI_Controller
 						}
 							
 						break;
-<<<<<<< HEAD
 			default		:	
 						array_push($this->nav['breadcrumbs'],
 							array("href" => base_url()."manage", "label"=> "Management"),
@@ -211,11 +155,6 @@ class Manage extends CI_Controller
 						);
 						$this->load->view('admin/navbar',$this->nav);
 						$this->customermodel->status = "regular";
-=======
-			default		:		
-						array_push($this->nav['breadcrumbs'],array("href" =>"", "label"=> "Customers"));
-						$this->load->view('admin/navbar',$this->nav);
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 						$data['customers'] = $this->customermodel->load();
 						$this->load->view('admin/customers',$data);
 						break;						
@@ -227,56 +166,31 @@ class Manage extends CI_Controller
 	function suppliers()
 	{		
 		$this->load->view('admin/header');
-<<<<<<< HEAD
-=======
-	
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 		
 		$this->load->model('suppliermodel');
 		switch($this->uri->segment(3)){
 			
 			case 'add'	:
 						array_push($this->nav['breadcrumbs'],
-<<<<<<< HEAD
 							array("href" => base_url()."manage", "label"=> "Management"),
 							array("href" => base_url()."manage/suppliers", "label"=> "Suppliers"),
 							array("href" => "", "label"=> "Add Supplier")
 						);
 						$data['company'] = $this->suppliermodel->loadCompanyName();
 						$this->load->view('admin/navbar',$this->nav);
-=======
-							array("href" => base_url()."manage/suppliers", "label"=> "Suppliers"),
-							array("href" => "", "label"=> "Add Supplier")
-						);
-						
-						$this->load->view('admin/navbar',$this->nav);
-						$data['customers'] = $this->suppliermodel->load();
-						$this->load->model('suppliermodel');
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 						$this->load->view('admin/suppliers-add',$data);
 						break;
 			case 'edit'	:
 						array_push($this->nav['breadcrumbs'],
-<<<<<<< HEAD
 							array("href" => base_url()."manage", "label"=> "Management"),
-=======
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 							array("href" => base_url()."manage/suppliers", "label"=> "Suppliers"),
 							array("href" => "", "label"=> "Edit Supplier")
 						);
 						$this->load->view('admin/navbar',$this->nav);
-<<<<<<< HEAD
-=======
-						$this->load->model('suppliermodel');		
-						//$this->suppliermodel->id = $id;	
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 						$this->suppliermodel->id = $this->uri->segment(4);
 						$data['suppliers'] = $this->suppliermodel->load();
 						$data['company'] = $this->suppliermodel->loadCompanyName();
 						$this->load->view('admin/suppliers-edit',$data);
-						$this->load->view('admin/footer');
-						
-						
 						break;
 			case 'delete'	:
 						array_push($this->nav['breadcrumbs'],
@@ -299,16 +213,11 @@ class Manage extends CI_Controller
 							
 						break;
 			default		:		
-<<<<<<< HEAD
 						array_push($this->nav['breadcrumbs'],
 							array("href" => base_url()."manage", "label"=> "Management"),
 							array("href" => "", "label"=> "Suppliers")
 						);
 						$this->load->view('admin/navbar',$this->nav);	
-=======
-						array_push($this->nav['breadcrumbs'],array("href" =>"", "label"=> "Suppliers"));
-						$this->load->view('admin/navbar',$this->nav);
->>>>>>> cf5fa74431909026d957dfa9e4ea586e09d6681c
 						$data['suppliers'] = $this->suppliermodel->load();
 						$data['company'] = $this->suppliermodel->loadCompanyName();
 						$this->load->view('admin/suppliers',$data);
