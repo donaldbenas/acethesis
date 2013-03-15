@@ -13,9 +13,9 @@
     <tr>
 		<td>
 			<?php 
-			foreach($suppliers as $sup){ 
-				if($rows->fld_supplierID == $sup->id)
-					echo $sup->fld_companyName;
+			foreach($company as $row){
+				if($row->id == $rows->fld_productCompanyID)
+					echo $row->fld_name ;
 			}
 			?>
 		</td>

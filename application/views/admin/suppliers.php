@@ -13,7 +13,7 @@
     </tr>
     <?php foreach($suppliers as $rows){ ?>
     <tr>
-		<td><?php echo $rows->fld_companyName ?></td>
+		<td><?php foreach($company as $row) if($row->id==$rows->fld_productCompanyID) echo $row->fld_name; ?></td>
 		<td><?php echo $rows->fld_representativeID ?></td>
 		<td><?php echo $rows->fld_representativeName ?></td>
 		<td><?php echo $rows->fld_mobile ?></td>

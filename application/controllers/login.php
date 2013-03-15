@@ -43,25 +43,5 @@ class Login extends CI_Controller
 
 	}
 	
-	function signup()
-	{
-		$this->load->model('usermodel');
-		$valid = $this->usermodel->signup($this->input->post('key'));
-		if($valid['validate']){
-			$data['successMessage'] = "Successfully username <b>".$this->input->post('username')."</b> added!";
-			$data['errorMessage'] = "";
-			$data['username'] = "";
-			$data['password'] = "";
-		}else{
-			$data['successMessage'] = "";
-			$data['errorMessage'] = $valid['errorMessage'];
-			$data['username'] = $valid['username'];
-			$data['password'] = $valid['password'];
-		}
-		$this->load->view('admin/header');
-		$this->load->view('admin/login',$data);
-		$this->load->view('admin/footer');	
-	}
-	
 }
 

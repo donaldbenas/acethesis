@@ -5,14 +5,17 @@
     <div class="controls">
 		<select name="supplierID">
 		<?php 
-		foreach($suppliers as $rows){
-			if($products[0]->fld_supplierID == $rows->id){
-		 ?>
-			<option selected value="<?php echo $rows->id ?>"><?php echo $rows->fld_companyName ?></option>
-		<?php }else{ ?>
-			<option value="<?php echo $rows->id ?>"><?php echo $rows->fld_companyName ?></option>
-		<?php } 
-		}?>
+		foreach($company as $rows){ 
+			if($rows->id == $products[0]->fld_productCompanyID){
+		?>
+			<option value="<?php echo $rows->id ?>" selected><?php echo $rows->fld_name ?></option>
+		<?php }else{
+		?>
+			<option value="<?php echo $rows->id ?>"><?php echo $rows->fld_name ?></option>
+		<?php 
+			}
+		} 
+		?>
 		</select>
     </div>
   </div>

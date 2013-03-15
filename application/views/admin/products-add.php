@@ -4,9 +4,13 @@
     <label class="control-label" for="inputEmail">Supplier</label>
     <div class="controls">
 		<select name="supplierID">
-		<?php foreach($suppliers as $rows){ ?>
-			<option value="<?php echo $rows->id ?>"><?php echo $rows->fld_companyName ?></option>
-		<?php } ?>
+		<?php 
+		foreach($company as $rows){ 
+		?>
+					<option value="<?php echo $rows->id ?>"><?php echo $rows->fld_name ?></option>
+		<?php 
+		} 
+		?>
 		</select>
     </div>
   </div>

@@ -19,14 +19,14 @@ class supplierModel extends CI_Model
 		if($this->id==""){
 			$this->db->select('*');
 			$this->db->from('tbl_suppliers');
-			$this->db->order_by('fld_companyName', 'asc');
+			$this->db->order_by('fld_productCompanyID', 'asc');
 			$query = $this->db->get();
 			return $query->result();
 		}else{
 			$this->db->select('*');
 			$this->db->from('tbl_suppliers');
 			$this->db->where('id',$this->id);
-			$this->db->order_by('fld_companyName', 'asc');
+			$this->db->order_by('fld_productCompanyID', 'asc');
 			$this->db->limit(1);
 			$query = $this->db->get();
 			return $query->result();
@@ -37,7 +37,7 @@ class supplierModel extends CI_Model
 	{
 		if($this->id==""){
 			$data = array(
-			   'fld_companyName' => $this->input->post('name') ,
+			   'fld_productCompanyID' => $this->input->post('name') ,
 			   'fld_representativeName' => $this->input->post('representative') ,
 			   'fld_representativeID' => $this->input->post('repID'),
 			   'fld_address' => $this->input->post('address'),
@@ -49,7 +49,7 @@ class supplierModel extends CI_Model
 			$this->db->insert('tbl_suppliers', $data); 
 		}else{
 			$data = array(
-			   'fld_companyName' => $this->input->post('name') ,
+			   'fld_productCompanyID' => $this->input->post('name') ,
 			   'fld_representativeName' => $this->input->post('representative') ,
 			   'fld_representativeID' => $this->input->post('repID'),
 			   'fld_address' => $this->input->post('address'),
@@ -68,6 +68,23 @@ class supplierModel extends CI_Model
 	{
 		$this->db->where('id', $this->id);
 		$this->db->delete('tbl_suppliers'); 
+	}
+	
+	function loadCompanyName($id=""){
+		if($id==""){
+			$this->db->select('*');
+			$this->db->from('tbl_productCompany');
+			$this->db->order_by('fld_name', 'asc');
+			$query = $this->db->get();
+			return $query->result();
+		}else{
+			$this->db->select('*');
+			$this->db->from('tbl_productCompany');
+			$this->db->where('id',$id);
+			$this->db->order_by('fld_name', 'asc');
+			$query = $this->db->get();
+			return $query->result();
+		}
 	}
 }
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2013 at 01:12 AM
+-- Generation Time: Mar 15, 2013 at 02:06 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
   `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `tbl_customers`
@@ -46,7 +46,38 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
 
 INSERT INTO `tbl_customers` (`id`, `fld_status`, `fld_firstname`, `fld_middlename`, `fld_lastname`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
 (1, 'regular', 'Donald', 'Platino', 'Benas', 'Dasmarinas, Cavite', '0923646597', '4524978', 'donaldbenas@gmail.com', '0000-00-00'),
-(2, 'regular', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00');
+(2, 'regular', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00'),
+(3, 'ordinary', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00'),
+(4, 'regular', 'dasda', '', '', '', '', '', '', '0000-00-00'),
+(5, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(6, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(7, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(8, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(9, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(10, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(11, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(12, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(13, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(14, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(15, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(16, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(17, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(18, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(19, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(20, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(21, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(22, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(23, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(24, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(25, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(26, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(27, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(28, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(29, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(30, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(31, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(32, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(33, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -107,12 +138,67 @@ CREATE TABLE IF NOT EXISTS `tbl_invoicereceipts` (
 CREATE TABLE IF NOT EXISTS `tbl_invoices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_customerID` int(11) DEFAULT NULL,
-  `fld_status` varchar(10) DEFAULT NULL,
   `fld_code` int(11) NOT NULL DEFAULT '0',
   `fld_dateCreated` date DEFAULT NULL,
   `fld_dueDate` date DEFAULT NULL,
+  `fld_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+
+--
+-- Dumping data for table `tbl_invoices`
+--
+
+INSERT INTO `tbl_invoices` (`id`, `fld_customerID`, `fld_code`, `fld_dateCreated`, `fld_dueDate`, `fld_active`) VALUES
+(1, 0, 0, '0000-00-00', '0000-00-00', 0),
+(2, NULL, 0, '0000-00-00', '0000-00-00', 0),
+(3, 7, 0, '0000-00-00', '0000-00-00', 0),
+(4, 8, 0, '0000-00-00', '0000-00-00', 0),
+(5, 9, 0, '0000-00-00', '0000-00-00', 0),
+(6, 10, 0, '0000-00-00', '0000-00-00', 0),
+(7, 11, 0, '0000-00-00', '0000-00-00', 0),
+(8, 12, 0, '0000-00-00', '0000-00-00', 0),
+(9, 13, 0, '0000-00-00', '0000-00-00', 0),
+(10, 14, 0, '0000-00-00', '0000-00-00', 0),
+(11, 15, 0, '0000-00-00', '0000-00-00', 0),
+(12, 16, 0, '0000-00-00', '0000-00-00', 0),
+(13, 17, 0, '0000-00-00', '0000-00-00', 0),
+(14, 18, 0, '0000-00-00', '0000-00-00', 0),
+(15, 19, 0, '0000-00-00', '0000-00-00', 0),
+(16, 20, 0, '0000-00-00', '0000-00-00', 0),
+(17, 21, 0, '0000-00-00', '0000-00-00', 0),
+(18, 22, 0, '0000-00-00', '0000-00-00', 0),
+(19, 23, 0, '0000-00-00', '0000-00-00', 0),
+(20, 24, 0, '0000-00-00', '0000-00-00', 0),
+(21, 25, 0, '0000-00-00', '0000-00-00', 0),
+(22, 26, 0, '0000-00-00', '0000-00-00', 0),
+(23, 27, 0, '0000-00-00', '0000-00-00', 0),
+(24, 28, 0, '0000-00-00', '0000-00-00', 0),
+(25, 29, 0, '0000-00-00', '0000-00-00', 0),
+(26, 30, 0, '0000-00-00', '0000-00-00', 0),
+(27, 31, 0, '0000-00-00', '0000-00-00', 0),
+(28, 32, 0, '0000-00-00', '0000-00-00', 0),
+(29, 33, 0, '0000-00-00', '0000-00-00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_productcompany`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_productcompany` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `fld_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_productcompany`
+--
+
+INSERT INTO `tbl_productcompany` (`id`, `fld_name`) VALUES
+(1, 'Pure Foods'),
+(2, 'Magnolia');
 
 -- --------------------------------------------------------
 
@@ -122,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `tbl_invoices` (
 
 CREATE TABLE IF NOT EXISTS `tbl_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_supplierID` int(11) NOT NULL DEFAULT '0',
+  `fld_productCompanyID` int(8) NOT NULL,
   `fld_name` varchar(50) DEFAULT NULL,
   `fld_description` varchar(50) DEFAULT NULL,
   `fld_code` int(11) NOT NULL DEFAULT '0',
@@ -130,15 +216,17 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
   `fld_price` float(7,2) DEFAULT NULL,
   `fld_amount` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_products`
 --
 
-INSERT INTO `tbl_products` (`id`, `fld_supplierID`, `fld_name`, `fld_description`, `fld_code`, `fld_dateCreated`, `fld_price`, `fld_amount`) VALUES
+INSERT INTO `tbl_products` (`id`, `fld_productCompanyID`, `fld_name`, `fld_description`, `fld_code`, `fld_dateCreated`, `fld_price`, `fld_amount`) VALUES
 (1, 1, 'Fish Ball', 'Balls in a Balls', 89465, '0000-00-00', 45.00, 5),
-(2, 2, 'Hotdog', 'Hot in a dog', 56876, '0000-00-00', 102.00, 100);
+(2, 1, 'Hotdog', 'Hot in a dog', 56876, '0000-00-00', 102.00, 100),
+(3, 1, 'asda', 'asda', 0, '0000-00-00', 0.00, 0),
+(4, 2, 'ad', 'dsa', 0, '0000-00-00', 0.00, 0);
 
 -- --------------------------------------------------------
 
@@ -162,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `tbl_stocks` (
 
 CREATE TABLE IF NOT EXISTS `tbl_suppliers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_companyName` varchar(255) NOT NULL,
+  `fld_productCompanyID` int(8) NOT NULL,
   `fld_representativeName` varchar(50) DEFAULT NULL,
   `fld_representativeID` int(11) DEFAULT NULL,
   `fld_address` varchar(255) DEFAULT NULL,
@@ -177,9 +265,9 @@ CREATE TABLE IF NOT EXISTS `tbl_suppliers` (
 -- Dumping data for table `tbl_suppliers`
 --
 
-INSERT INTO `tbl_suppliers` (`id`, `fld_companyName`, `fld_representativeName`, `fld_representativeID`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
-(1, 'Pure Foods', 'Jethro', 2147483647, 'Alabang', '098645613164', '8954-5464', 'jethro@yahoo.com', '0000-00-00'),
-(2, 'Pure Foods', 'Donald', 59464678, 'Santa Rosa', '09326646548', '481-98979', 'donaldbenas@gmail.com', '0000-00-00');
+INSERT INTO `tbl_suppliers` (`id`, `fld_productCompanyID`, `fld_representativeName`, `fld_representativeID`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
+(1, 2, 'Jethro', 2147483647, 'Alabang', '098645613164', '8954-5464', 'jethro@yahoo.com', '0000-00-00'),
+(2, 1, 'Donald', 59464678, 'Santa Rosa', '09326646548', '481-98979', 'donaldbenas@gmail.com', '0000-00-00');
 
 -- --------------------------------------------------------
 

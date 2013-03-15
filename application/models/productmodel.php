@@ -3,6 +3,7 @@
 class productModel extends CI_Model
 {
 	var $id;
+	var $company;
 	
 	function __construct()
 	{
@@ -16,20 +17,40 @@ class productModel extends CI_Model
 
 	function load()
 	{
-		if($this->id==""){
-			$this->db->select('*');
-			$this->db->from('tbl_products');
-			$this->db->order_by('fld_supplierID', 'asc');
-			$query = $this->db->get();
-			return $query->result();
+		if($this->company==""){
+			if($this->id==""){
+				$this->db->select('*');
+				$this->db->from('tbl_products');
+				$this->db->order_by('fld_productCompanyID,fld_name', 'asc');
+				$query = $this->db->get();
+				return $query->result();
+			}else{
+				$this->db->select('*');
+				$this->db->from('tbl_products');
+				$this->db->where('id',$this->id);
+				$this->db->order_by('fld_productCompanyID', 'asc');
+				$this->db->limit(1);
+				$query = $this->db->get();
+				return $query->result();
+			}
 		}else{
-			$this->db->select('*');
-			$this->db->from('tbl_products');
-			$this->db->where('id',$this->id);
-			$this->db->order_by('fld_supplierID', 'asc');
-			$this->db->limit(1);
-			$query = $this->db->get();
-			return $query->result();
+			if($this->id==""){
+				$this->db->select('*');
+				$this->db->from('tbl_products');
+				$this->db->where('fld_productCompanyID',$this->company);
+				$this->db->order_by('fld_productCompanyID,fld_name', 'asc');
+				$query = $this->db->get();
+				return $query->result();
+			}else{
+				$this->db->select('*');
+				$this->db->from('tbl_products');
+				$this->db->where('id',$this->id);
+				$this->db->where('fld_productCompanyID',$this->company);
+				$this->db->order_by('fld_productCompanyID', 'asc');
+				$this->db->limit(1);
+				$query = $this->db->get();
+				return $query->result();
+			}
 		}
 	}
 	
@@ -37,7 +58,7 @@ class productModel extends CI_Model
 	{
 		if($this->id==""){
 			$data = array(
-			   'fld_supplierID' => $this->input->post('supplierID') ,
+			   'fld_productCompanyID' => $this->input->post('supplierID') ,
 			   'fld_name' => $this->input->post('name') ,
 			   'fld_description' => $this->input->post('description'),
 			   'fld_code' => $this->input->post('code'),
@@ -48,7 +69,7 @@ class productModel extends CI_Model
 			$this->db->insert('tbl_products', $data); 
 		}else{
 			$data = array(
-			   'fld_supplierID' => $this->input->post('supplierID') ,
+			   'fld_productCompanyID' => $this->input->post('supplierID') ,
 			   'fld_name' => $this->input->post('name') ,
 			   'fld_description' => $this->input->post('description'),
 			   'fld_code' => $this->input->post('code'),

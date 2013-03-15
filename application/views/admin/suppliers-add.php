@@ -3,7 +3,11 @@
   <div class="control-group">
     <label class="control-label" for="inputEmail">Company</label>
     <div class="controls">
-      <input type="text" name="name" placeholder="Supplier Company Name">
+		<select name="name">
+			<?php foreach($company as $rows){ ?>
+				<option value="<?php echo $rows->id; ?>"><?php echo $rows->fld_name; ?></option>
+			<?php } ?>
+		</select>
     </div>
   </div>
   <div class="control-group">

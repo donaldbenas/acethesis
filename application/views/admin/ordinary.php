@@ -4,12 +4,12 @@
 	  <div class="control-group">
 		<label class="control-label" for="invoiceID">Invoice ID:</label>
 		<div class="controls">
-		  <input type="text" id="id" placeholder="invoice number">
+		  <input type="text" id="id" name="invoiceID" placeholder="invoice number" value="<?php echo date("Y")."-".date("m")."-".sprintf('%06d',$invoices['0']->id); ?>">
 		</div>
 	  </div>
 	  <div class="control-group" style="display:none">
 		<label class="control-label" for="status">Status</label>
-		<div class="controls">
+		<div name="status" class="controls">
 		  <select>
 			  <option selected>Paid</option>
 			  <option>Unpaid</option>
@@ -19,7 +19,7 @@
 	  <div class="control-group">
 		<label class="control-label" for="invoiceID">OR Num:</label>
 		<div class="controls">
-		  <input type="text" id="ornum" placeholder="orNum">
+		  <input type="text" name="ornumber" id="ornum" placeholder="orNum">
 		</div>
 	  </div>
 	  <div class="control-group">
@@ -40,7 +40,7 @@
 		<th>DESCRIPTION</th>
 		<th>PRICE</th>
 		<th>TOTAL</th>
-		<th width="200px"><a class="btn" href="#"><i class="icon-plus"></i> Add New Items</a></th>
+		<th width="200px"><a class="btn" href="<?php echo base_url()."transact/ordinary/invoice/".$this->uri->segment(4) ?>"><i class="icon-plus"></i> Add Item</a></th>
     </tr>
     <tr>
 		<td></td>
