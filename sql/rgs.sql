@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2013 at 02:06 AM
+-- Generation Time: Mar 17, 2013 at 03:07 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
   `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
 
 --
 -- Dumping data for table `tbl_customers`
@@ -48,7 +48,6 @@ INSERT INTO `tbl_customers` (`id`, `fld_status`, `fld_firstname`, `fld_middlenam
 (1, 'regular', 'Donald', 'Platino', 'Benas', 'Dasmarinas, Cavite', '0923646597', '4524978', 'donaldbenas@gmail.com', '0000-00-00'),
 (2, 'regular', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00'),
 (3, 'ordinary', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00'),
-(4, 'regular', 'dasda', '', '', '', '', '', '', '0000-00-00'),
 (5, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
 (6, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
 (7, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
@@ -77,7 +76,57 @@ INSERT INTO `tbl_customers` (`id`, `fld_status`, `fld_firstname`, `fld_middlenam
 (30, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
 (31, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
 (32, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(33, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
+(33, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(34, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(35, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(36, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(37, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(38, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(39, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(40, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(41, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(42, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(43, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(44, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(45, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(46, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(47, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(48, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(49, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(50, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(51, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(52, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(53, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(54, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(55, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(56, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(57, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(58, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(59, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(60, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(61, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(62, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(63, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(64, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(65, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(66, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(67, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(68, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(69, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(70, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(71, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(72, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(73, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(74, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(75, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(76, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(77, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(78, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(79, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(80, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(81, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(82, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(83, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -102,15 +151,32 @@ CREATE TABLE IF NOT EXISTS `tbl_invoiceattachments` (
 
 CREATE TABLE IF NOT EXISTS `tbl_invoiceitems` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_invoiceItemsID` int(11) NOT NULL DEFAULT '0',
+  `fld_invoiceID` int(11) NOT NULL DEFAULT '0',
+  `fld_productCompanyID` int(8) NOT NULL,
   `fld_productID` int(16) DEFAULT NULL,
   `fld_productQuantity` int(12) DEFAULT NULL,
   `fld_productName` varchar(50) DEFAULT NULL,
   `fld_productDescription` varchar(50) DEFAULT NULL,
   `fld_productCode` int(11) NOT NULL DEFAULT '0',
-  `fld_productPrice` float DEFAULT NULL,
+  `fld_productPrice` float(8,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `tbl_invoiceitems`
+--
+
+INSERT INTO `tbl_invoiceitems` (`id`, `fld_invoiceID`, `fld_productCompanyID`, `fld_productID`, `fld_productQuantity`, `fld_productName`, `fld_productDescription`, `fld_productCode`, `fld_productPrice`) VALUES
+(6, 45, 1, 1, 10, 'Fish Ball', 'Balls in a Balls', 89465, 45.00),
+(7, 45, 2, 5, 3, 'Chesee', 'Chese whiz', 45879, 45.00),
+(8, 45, 1, 1, 2, 'Fish Ball', 'Balls in a Balls', 89465, 45.00),
+(9, 45, 2, 5, 4, 'Chesee', 'Chese whiz', 45879, 45.00),
+(10, 45, 2, 5, 2, 'Chesee', 'Chese whiz', 45879, 45.00),
+(11, 64, 1, 1, 4, 'Fish Ball', 'Balls in a Balls', 89465, 45.00),
+(12, 64, 1, 2, 7, 'Hotdog', 'Hot in a dog', 56876, 102.00),
+(13, 98, 2, 5, 4, 'Chesee', 'Chese whiz', 45879, 45.00),
+(14, 98, 2, 5, 4, 'Chesee', 'Chese whiz', 45879, 45.00),
+(15, 98, 1, 1, 6, 'Fish Ball', 'Balls in a Balls', 89465, 45.00);
 
 -- --------------------------------------------------------
 
@@ -122,12 +188,44 @@ CREATE TABLE IF NOT EXISTS `tbl_invoicereceipts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_invoiceID` int(11) DEFAULT NULL,
   `fld_orNumber` varchar(20) DEFAULT NULL,
-  `fld_paid` double DEFAULT NULL,
-  `fld_price` double DEFAULT NULL,
+  `fld_paid` float(8,2) DEFAULT NULL,
+  `fld_price` float(8,2) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   `fld_dateCanceled` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+--
+-- Dumping data for table `tbl_invoicereceipts`
+--
+
+INSERT INTO `tbl_invoicereceipts` (`id`, `fld_invoiceID`, `fld_orNumber`, `fld_paid`, `fld_price`, `fld_dateCreated`, `fld_dateCanceled`) VALUES
+(1, 45, '33333', 0.00, 945.00, '2013-03-16', NULL),
+(2, 64, '31241431-23', NULL, 800.00, '2013-03-16', NULL),
+(3, 75, NULL, NULL, NULL, '0000-00-00', NULL),
+(4, 76, NULL, NULL, NULL, '2013-03-16', NULL),
+(5, 77, NULL, NULL, NULL, '2013-03-16', NULL),
+(6, 78, NULL, NULL, NULL, '2013-03-16', NULL),
+(7, 79, NULL, NULL, NULL, '2013-03-16', NULL),
+(8, 80, NULL, NULL, NULL, '2013-03-16', NULL),
+(9, 81, NULL, NULL, NULL, '2013-03-16', NULL),
+(10, 82, NULL, NULL, NULL, '2013-03-16', NULL),
+(11, 83, NULL, NULL, NULL, '2013-03-16', NULL),
+(12, 84, NULL, NULL, NULL, '2013-03-16', NULL),
+(13, 85, NULL, NULL, NULL, '2013-03-16', NULL),
+(14, 86, NULL, NULL, NULL, '2013-03-16', NULL),
+(15, 87, NULL, NULL, NULL, '2013-03-16', NULL),
+(16, 88, NULL, NULL, NULL, '2013-03-16', NULL),
+(17, 89, NULL, NULL, NULL, '2013-03-16', NULL),
+(18, 90, NULL, NULL, NULL, '2013-03-16', NULL),
+(19, 91, NULL, NULL, NULL, '2013-03-16', NULL),
+(20, 92, NULL, NULL, NULL, '2013-03-16', NULL),
+(21, 93, NULL, NULL, NULL, '2013-03-16', NULL),
+(22, 94, NULL, NULL, NULL, '2013-03-16', NULL),
+(23, 95, NULL, NULL, NULL, '2013-03-17', NULL),
+(24, 96, NULL, NULL, NULL, '2013-03-17', NULL),
+(25, 97, NULL, NULL, NULL, '2013-03-17', NULL),
+(26, 98, '41241241', 0.00, 630.00, '2013-03-17', NULL);
 
 -- --------------------------------------------------------
 
@@ -138,47 +236,72 @@ CREATE TABLE IF NOT EXISTS `tbl_invoicereceipts` (
 CREATE TABLE IF NOT EXISTS `tbl_invoices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_customerID` int(11) DEFAULT NULL,
-  `fld_code` int(11) NOT NULL DEFAULT '0',
+  `fld_code` varchar(20) NOT NULL DEFAULT '0',
   `fld_dateCreated` date DEFAULT NULL,
   `fld_dueDate` date DEFAULT NULL,
   `fld_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
 
 --
 -- Dumping data for table `tbl_invoices`
 --
 
 INSERT INTO `tbl_invoices` (`id`, `fld_customerID`, `fld_code`, `fld_dateCreated`, `fld_dueDate`, `fld_active`) VALUES
-(1, 0, 0, '0000-00-00', '0000-00-00', 0),
-(2, NULL, 0, '0000-00-00', '0000-00-00', 0),
-(3, 7, 0, '0000-00-00', '0000-00-00', 0),
-(4, 8, 0, '0000-00-00', '0000-00-00', 0),
-(5, 9, 0, '0000-00-00', '0000-00-00', 0),
-(6, 10, 0, '0000-00-00', '0000-00-00', 0),
-(7, 11, 0, '0000-00-00', '0000-00-00', 0),
-(8, 12, 0, '0000-00-00', '0000-00-00', 0),
-(9, 13, 0, '0000-00-00', '0000-00-00', 0),
-(10, 14, 0, '0000-00-00', '0000-00-00', 0),
-(11, 15, 0, '0000-00-00', '0000-00-00', 0),
-(12, 16, 0, '0000-00-00', '0000-00-00', 0),
-(13, 17, 0, '0000-00-00', '0000-00-00', 0),
-(14, 18, 0, '0000-00-00', '0000-00-00', 0),
-(15, 19, 0, '0000-00-00', '0000-00-00', 0),
-(16, 20, 0, '0000-00-00', '0000-00-00', 0),
-(17, 21, 0, '0000-00-00', '0000-00-00', 0),
-(18, 22, 0, '0000-00-00', '0000-00-00', 0),
-(19, 23, 0, '0000-00-00', '0000-00-00', 0),
-(20, 24, 0, '0000-00-00', '0000-00-00', 0),
-(21, 25, 0, '0000-00-00', '0000-00-00', 0),
-(22, 26, 0, '0000-00-00', '0000-00-00', 0),
-(23, 27, 0, '0000-00-00', '0000-00-00', 0),
-(24, 28, 0, '0000-00-00', '0000-00-00', 0),
-(25, 29, 0, '0000-00-00', '0000-00-00', 0),
-(26, 30, 0, '0000-00-00', '0000-00-00', 0),
-(27, 31, 0, '0000-00-00', '0000-00-00', 0),
-(28, 32, 0, '0000-00-00', '0000-00-00', 0),
-(29, 33, 0, '0000-00-00', '0000-00-00', 0);
+(45, 49, '2013-03-000045', '2013-03-16', '2013-03-17', 1),
+(46, 50, '0', '0000-00-00', '0000-00-00', 0),
+(47, 51, '0', '0000-00-00', '0000-00-00', 0),
+(48, 52, '0', '0000-00-00', '0000-00-00', 0),
+(49, 53, '0', '0000-00-00', '0000-00-00', 0),
+(50, 54, '0', '0000-00-00', '0000-00-00', 0),
+(51, 55, '0', '0000-00-00', '0000-00-00', 0),
+(52, 56, '0', '0000-00-00', '0000-00-00', 0),
+(53, 57, '0', '0000-00-00', '0000-00-00', 0),
+(54, 58, '0', '0000-00-00', '0000-00-00', 0),
+(55, 59, '0', '0000-00-00', '0000-00-00', 0),
+(56, 60, '0', '0000-00-00', '0000-00-00', 0),
+(57, 61, '0', '0000-00-00', '0000-00-00', 0),
+(58, 62, '0', '0000-00-00', '0000-00-00', 0),
+(59, 63, '0', '0000-00-00', '0000-00-00', 0),
+(60, 64, '0', '0000-00-00', '0000-00-00', 0),
+(61, 65, '0', '0000-00-00', '0000-00-00', 0),
+(62, 66, '0', '0000-00-00', '0000-00-00', 0),
+(63, 67, '0', '0000-00-00', '0000-00-00', 0),
+(64, 68, '2013-03-000064', '2013-03-16', '0000-00-00', 1),
+(65, 69, '', '0000-00-00', '0000-00-00', 0),
+(66, 70, '', '0000-00-00', '0000-00-00', 0),
+(67, 71, '', '0000-00-00', '0000-00-00', 0),
+(68, 72, '', '0000-00-00', '0000-00-00', 0),
+(69, 73, '', '0000-00-00', '0000-00-00', 0),
+(70, 74, '', '0000-00-00', '0000-00-00', 0),
+(71, 75, '', '0000-00-00', '0000-00-00', 0),
+(72, 76, '', '0000-00-00', '0000-00-00', 0),
+(73, 77, '', '0000-00-00', '0000-00-00', 0),
+(74, 78, '', '0000-00-00', '0000-00-00', 0),
+(75, 79, '', '0000-00-00', '0000-00-00', 0),
+(76, 80, '', '0000-00-00', '0000-00-00', 0),
+(77, NULL, '', '2013-03-16', '0000-00-00', 0),
+(78, NULL, '', '2013-03-16', '0000-00-00', 0),
+(79, NULL, '', '2013-03-16', '0000-00-00', 0),
+(80, NULL, '', '2013-03-16', '0000-00-00', 0),
+(81, NULL, '', '2013-03-16', '0000-00-00', 0),
+(82, 81, '', '2013-03-16', '0000-00-00', 0),
+(83, NULL, '', '2013-03-16', '0000-00-00', 0),
+(84, NULL, '', '2013-03-16', '0000-00-00', 0),
+(85, NULL, '', '2013-03-16', '0000-00-00', 0),
+(86, 82, '', '2013-03-16', '0000-00-00', 0),
+(87, NULL, '', '2013-03-16', '0000-00-00', 0),
+(88, NULL, '', '2013-03-16', '0000-00-00', 0),
+(89, NULL, '', '2013-03-16', '0000-00-00', 0),
+(90, NULL, '', '2013-03-16', '0000-00-00', 0),
+(91, NULL, '', '2013-03-16', '0000-00-00', 0),
+(92, NULL, '', '2013-03-16', '0000-00-00', 0),
+(93, NULL, '', '2013-03-16', '0000-00-00', 0),
+(94, NULL, '', '2013-03-16', '0000-00-00', 0),
+(95, NULL, '', '2013-03-17', '0000-00-00', 0),
+(96, NULL, '', '2013-03-17', '0000-00-00', 0),
+(97, NULL, '', '2013-03-17', '0000-00-00', 0),
+(98, 83, '2013-03-000098', '2013-03-17', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -216,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
   `fld_price` float(7,2) DEFAULT NULL,
   `fld_amount` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `tbl_products`
@@ -225,8 +348,7 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
 INSERT INTO `tbl_products` (`id`, `fld_productCompanyID`, `fld_name`, `fld_description`, `fld_code`, `fld_dateCreated`, `fld_price`, `fld_amount`) VALUES
 (1, 1, 'Fish Ball', 'Balls in a Balls', 89465, '0000-00-00', 45.00, 5),
 (2, 1, 'Hotdog', 'Hot in a dog', 56876, '0000-00-00', 102.00, 100),
-(3, 1, 'asda', 'asda', 0, '0000-00-00', 0.00, 0),
-(4, 2, 'ad', 'dsa', 0, '0000-00-00', 0.00, 0);
+(5, 2, 'Chesee', 'Chese whiz', 45879, '0000-00-00', 45.00, 8);
 
 -- --------------------------------------------------------
 
@@ -259,15 +381,14 @@ CREATE TABLE IF NOT EXISTS `tbl_suppliers` (
   `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_suppliers`
 --
 
 INSERT INTO `tbl_suppliers` (`id`, `fld_productCompanyID`, `fld_representativeName`, `fld_representativeID`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
-(1, 2, 'Jethro', 2147483647, 'Alabang', '098645613164', '8954-5464', 'jethro@yahoo.com', '0000-00-00'),
-(2, 1, 'Donald', 59464678, 'Santa Rosa', '09326646548', '481-98979', 'donaldbenas@gmail.com', '0000-00-00');
+(1, 2, 'Jethro', 2147483647, 'Alabang', '098645613164', '8954-5464', 'jethro@yahoo.com', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -290,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `fld_dateCreated` date DEFAULT NULL,
   `fld_active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`fld_userID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `tbl_users`
@@ -298,9 +419,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 
 INSERT INTO `tbl_users` (`fld_userID`, `fld_type`, `fld_username`, `fld_password`, `fld_firstname`, `fld_middlename`, `fld_lastname`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`, `fld_active`) VALUES
 (9, 'owner', 'dondon', '0304048562a305972d5695f551940f', 'DOn', 'DOn', 'Don', 'Don', '23123131', '21312', '1231231', '0000-00-00', 1),
-(10, 'owner', 'admin', 'f10e2821bbbea527ea02200352313b', 'ad', 'asd', 'sd', 'asd', 'ad', 'asdasd', 'ad@yahoo.com', '0000-00-00', 1),
-(11, 'owner', 'admin', 'da39a3ee5e6b4b0d3255bfef956018', '', '', '', '', '', '', '', '0000-00-00', 1),
-(12, 'owner', 'admin', 'd033e22ae348aeb5660fc2140aec35', '', '', '', '', '', '', '', '0000-00-00', 1);
+(10, 'owner', 'admin', 'd033e22ae348aeb5660fc2140aec35', 'ad', 'asd', 'sd', 'asd', 'ad', 'asdasd', 'ad@yahoo.com', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
