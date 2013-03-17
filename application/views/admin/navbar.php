@@ -12,7 +12,7 @@
 		  <li class="dropdown <?php echo ($active == "transact" ? "active" : "") ?>">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Transaction <b class="caret"></b></a>
 			<ul class="dropdown-menu">
-			  <li><a href="<?php echo base_url()."transact/ordinary" ?>">Ordinary Customer</a></li>
+			  <li><a href="<?php echo base_url()."transact/ordinary/list" ?>">Ordinary Customer</a></li>
 			  <li><a href="<?php echo base_url()."transact/regular" ?>">Regular Customer</a></li>
 			  
 			</ul>
@@ -39,9 +39,14 @@
 			<a href="<?php echo base_url()."about" ?>">About</a>
 		  </li>
 		</ul>
-		<ul class="nav pull-right">
+		<ul class="nav">
 		  <li>
 			<a href="<?php echo base_url()."logout" ?>" id="logout">Logout</a>
+		  </li>
+		</ul>
+		<ul class="nav pull-right">
+		  <li>
+			<a href="<?php echo base_url()."logout" ?>" id="logout"><?php echo date("Y-d-m"); ?></a>
 		  </li>
 		</ul>
 	  </div>
@@ -49,7 +54,7 @@
   </div>
 </div>
 <?php  if(!empty($breadcrumbs)){ ?>
-<ul class="breadcrumb container">
+<ul class="breadcrumb container-fluid">
   <?php foreach($breadcrumbs as $rows){ 
 	if($rows['href']!=""){
   ?>

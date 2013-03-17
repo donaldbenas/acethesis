@@ -31,6 +31,7 @@ class Transact extends CI_Controller
 		
 		$this->load->model('customermodel');
 		$this->load->model('invoicemodel');
+		$this->load->model('invoiceitemmodel');
 		$this->load->model('suppliermodel');
 		$this->load->model('productmodel');
 		switch($page){
@@ -38,30 +39,68 @@ class Transact extends CI_Controller
 			case "edit"	:
 						array_push($this->nav['breadcrumbs'],
 								array("href" => base_url()."transact", "label"=> "Transaction"),
-								array("href" => "", "label"=> "Ordinary Customer")
+								array("href" =>  base_url()."transact/ordinary/list", "label"=> "Ordinary Customer"),
+								array("href" => "", "label"=> "Add Ordinary Customer")
 						);
 						$this->load->view('admin/navbar',$this->nav);
 						$this->invoicemodel->id = $this->uri->segment(4);
 						$data['invoices'] = $this->invoicemodel->load();
+						$this->invoiceitemmodel->invoiceID = $this->invoicemodel->id;
+						$data['invoiceItems'] = $this->invoiceitemmodel->load();
+						$data['invoiceReceipts'] = $this->invoiceitemmodel->invoicereceiptload();
 						$this->load->view('admin/ordinary',$data);
 						break;
 			case "save"	:
+						$this->invoicemodel->id = $this->input->post('id');
+						$this->invoicemodel->save();
+						redirect(base_url()."transact/ordinary/list");
+						break;
+			case "list"	:
+						array_push($this->nav['breadcrumbs'],
+								array("href" => base_url()."transact", "label"=> "Transaction"),
+								array("href" => "", "label"=> "Ordinary Customer")
+						);
+						$this->load->view('admin/navbar',$this->nav);
+						$data['invoices'] = $this->invoicemodel->ordinaryload();
+						$this->load->view('admin/invoice-list',$data);
 						break;
 			case "invoice"	:
 						array_push($this->nav['breadcrumbs'],
 								array("href" => base_url()."transact", "label"=> "Transaction"),
-								array("href" => base_url()."transact/ordinary/edit".$this->uri->segment(4), "label"=> "Ordinary Customer"),
-								array("href" => "", "label"=> "Add New Invoice Item")
+								array("href" => base_url()."transact/ordinary/list", "label"=> "Ordinary Customer"),
+								array("href" => base_url()."transact/ordinary/edit/".$this->uri->segment(5), "label"=> "Add Ordinary Customer")
 						);
-						$this->load->view('admin/navbar',$this->nav);
 						$data['company'] = $this->suppliermodel->loadCompanyName();
-						if($this->uri->segment(5)!="")
-							$this->productmodel->company = $this->uri->segment(5);
-						$data['product'] = $this->productmodel->load();						
-						if($this->uri->segment(6)!="")
-							$this->productmodel->id = $this->uri->segment(6);
-						$data['details'] = $this->productmodel->load();
-						$this->load->view('admin/invoice-add',$data);
+						if($this->uri->segment(4)=='add'){
+						array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Add Invoice Item"));
+							$this->load->view('admin/navbar',$this->nav);
+							if($this->uri->segment(6)!="")
+								$this->productmodel->company = $this->uri->segment(6);
+							$data['product'] = $this->productmodel->load();						
+							if($this->uri->segment(7)!="")
+								$this->productmodel->id = $this->uri->segment(7);
+							$data['details'] = $this->productmodel->load();
+							$this->load->view('admin/invoice-add',$data);
+						}elseif($this->uri->segment(4)=='edit'){
+						array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Edit Invoice Item"));
+							$this->load->view('admin/navbar',$this->nav);
+							if($this->uri->segment(6)!="")
+								$this->productmodel->company = $this->uri->segment(6);
+							$data['product'] = $this->productmodel->load();						
+							if($this->uri->segment(7)!="")
+								$this->productmodel->id = $this->uri->segment(7);
+							$data['details'] = $this->productmodel->load();
+							$this->load->view('admin/invoice-edit',$data);
+						}elseif($this->uri->segment(4)=='save'){
+							if($this->uri->segment(5)==''){
+								$this->invoiceitemmodel->save();
+								redirect(base_url()."transact/ordinary/edit/".$this->input->post('invoice'));
+							}else{
+								$this->invoiceitemmodel->id = $this->uri->segment(5);
+								$this->invoiceitemmodel->save();
+								redirect(base_url()."transact/ordinary/edit/".$this->input->post('invoice'));
+							}
+						}
 						break;						
 			default		:
 						$this->customermodel->status = "ordinary";
