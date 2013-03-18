@@ -46,7 +46,7 @@
 		</ul>
 		<ul class="nav pull-right">
 		  <li>
-			<a href="<?php echo base_url()."logout" ?>" id="logout"><?php echo date("Y-d-m"); ?></a>
+			<a href="<?php echo base_url()."logout" ?>" id="logout"><?php echo date("Y-m-d"); ?></a>
 		  </li>
 		</ul>
 	  </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2013 at 03:07 AM
+-- Generation Time: Mar 18, 2013 at 04:44 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -38,95 +38,20 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
   `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
 
 --
 -- Dumping data for table `tbl_customers`
 --
 
 INSERT INTO `tbl_customers` (`id`, `fld_status`, `fld_firstname`, `fld_middlename`, `fld_lastname`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
-(1, 'regular', 'Donald', 'Platino', 'Benas', 'Dasmarinas, Cavite', '0923646597', '4524978', 'donaldbenas@gmail.com', '0000-00-00'),
-(2, 'regular', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00'),
-(3, 'ordinary', 'Jethro', 'Acse', 'Brillion', 'Lucban, Quezon', '0965461324', '4584697', 'jethro@yahoo.com', '0000-00-00'),
-(5, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(6, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(7, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(8, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(9, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(10, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(11, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(12, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(13, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(14, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(15, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(16, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(17, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(18, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(19, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(20, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(21, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(22, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(23, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(24, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(25, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(26, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(27, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(28, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(29, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(30, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(31, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(32, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(33, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(34, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(35, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(36, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(37, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(38, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(39, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(40, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(41, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(42, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(43, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(44, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(45, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(46, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(47, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(48, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(49, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(50, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(51, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(52, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(53, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(54, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(55, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(56, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(57, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(58, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(59, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(60, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(61, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(62, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(63, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(64, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(65, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(66, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(67, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(68, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(69, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(70, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(71, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(72, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(73, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(74, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(75, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(76, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(77, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(78, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(79, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(80, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(81, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(82, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(83, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
+(91, 'regular', 'Don', NULL, 'Benas', NULL, NULL, NULL, NULL, '0000-00-00'),
+(92, 'regular', 'Froi', NULL, 'Benas', NULL, NULL, NULL, NULL, '0000-00-00'),
+(93, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(94, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(95, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(96, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(97, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -160,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `tbl_invoiceitems` (
   `fld_productCode` int(11) NOT NULL DEFAULT '0',
   `fld_productPrice` float(8,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `tbl_invoiceitems`
@@ -176,7 +101,17 @@ INSERT INTO `tbl_invoiceitems` (`id`, `fld_invoiceID`, `fld_productCompanyID`, `
 (12, 64, 1, 2, 7, 'Hotdog', 'Hot in a dog', 56876, 102.00),
 (13, 98, 2, 5, 4, 'Chesee', 'Chese whiz', 45879, 45.00),
 (14, 98, 2, 5, 4, 'Chesee', 'Chese whiz', 45879, 45.00),
-(15, 98, 1, 1, 6, 'Fish Ball', 'Balls in a Balls', 89465, 45.00);
+(15, 98, 1, 1, 6, 'Fish Ball', 'Balls in a Balls', 89465, 45.00),
+(16, 99, 2, 5, 4, 'Chesee', 'Chese whiz', 45879, 45.00),
+(17, 111, 2, 5, 4, 'Chesee', 'Chese whiz', 45879, 45.00),
+(18, 112, 1, 1, 32, 'Fish Ball', 'Balls in a Balls', 89465, 45.00),
+(19, 113, 2, 5, 6, 'Chesee', 'Chese whiz', 45879, 45.00),
+(20, 113, 1, 2, 7, 'Hotdog', 'Hot in a dog', 56876, 102.00),
+(21, 114, 1, 1, 5, 'Fish Ball', 'Balls in a Balls', 89465, 45.00),
+(22, 115, 1, 1, 5, 'Fish Ball', 'Balls in a Balls', 89465, 45.00),
+(23, 117, 2, 5, 56, 'Chesee', 'Chese whiz', 45879, 45.00),
+(24, 107, 2, 5, 42, 'Chesee', 'Chese whiz', 45879, 45.00),
+(25, 124, 2, 5, 10, 'Chesee', 'Chese whiz', 45879, 45.00);
 
 -- --------------------------------------------------------
 
@@ -188,44 +123,41 @@ CREATE TABLE IF NOT EXISTS `tbl_invoicereceipts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_invoiceID` int(11) DEFAULT NULL,
   `fld_orNumber` varchar(20) DEFAULT NULL,
+  `fld_status` enum('paid','unpaid') NOT NULL,
   `fld_paid` float(8,2) DEFAULT NULL,
   `fld_price` float(8,2) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   `fld_dateCanceled` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `tbl_invoicereceipts`
 --
 
-INSERT INTO `tbl_invoicereceipts` (`id`, `fld_invoiceID`, `fld_orNumber`, `fld_paid`, `fld_price`, `fld_dateCreated`, `fld_dateCanceled`) VALUES
-(1, 45, '33333', 0.00, 945.00, '2013-03-16', NULL),
-(2, 64, '31241431-23', NULL, 800.00, '2013-03-16', NULL),
-(3, 75, NULL, NULL, NULL, '0000-00-00', NULL),
-(4, 76, NULL, NULL, NULL, '2013-03-16', NULL),
-(5, 77, NULL, NULL, NULL, '2013-03-16', NULL),
-(6, 78, NULL, NULL, NULL, '2013-03-16', NULL),
-(7, 79, NULL, NULL, NULL, '2013-03-16', NULL),
-(8, 80, NULL, NULL, NULL, '2013-03-16', NULL),
-(9, 81, NULL, NULL, NULL, '2013-03-16', NULL),
-(10, 82, NULL, NULL, NULL, '2013-03-16', NULL),
-(11, 83, NULL, NULL, NULL, '2013-03-16', NULL),
-(12, 84, NULL, NULL, NULL, '2013-03-16', NULL),
-(13, 85, NULL, NULL, NULL, '2013-03-16', NULL),
-(14, 86, NULL, NULL, NULL, '2013-03-16', NULL),
-(15, 87, NULL, NULL, NULL, '2013-03-16', NULL),
-(16, 88, NULL, NULL, NULL, '2013-03-16', NULL),
-(17, 89, NULL, NULL, NULL, '2013-03-16', NULL),
-(18, 90, NULL, NULL, NULL, '2013-03-16', NULL),
-(19, 91, NULL, NULL, NULL, '2013-03-16', NULL),
-(20, 92, NULL, NULL, NULL, '2013-03-16', NULL),
-(21, 93, NULL, NULL, NULL, '2013-03-16', NULL),
-(22, 94, NULL, NULL, NULL, '2013-03-16', NULL),
-(23, 95, NULL, NULL, NULL, '2013-03-17', NULL),
-(24, 96, NULL, NULL, NULL, '2013-03-17', NULL),
-(25, 97, NULL, NULL, NULL, '2013-03-17', NULL),
-(26, 98, '41241241', 0.00, 630.00, '2013-03-17', NULL);
+INSERT INTO `tbl_invoicereceipts` (`id`, `fld_invoiceID`, `fld_orNumber`, `fld_status`, `fld_paid`, `fld_price`, `fld_dateCreated`, `fld_dateCanceled`) VALUES
+(34, 106, '12411231', 'paid', 500.00, 800.00, '2013-03-18', NULL),
+(35, 107, '2131415-124121', 'paid', 300.00, 1000.00, '2013-03-18', NULL),
+(36, 108, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(37, 109, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(38, 110, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(39, 111, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(40, 112, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(41, 113, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(42, 114, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(43, 115, '254123124-2312', 'paid', 225.00, 225.00, '2013-03-18', NULL),
+(44, 116, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(45, 117, '41234-4123123', 'paid', 2520.00, 2520.00, '2013-03-18', NULL),
+(46, 118, '23141231', 'paid', 423.00, 0.00, '2013-03-18', NULL),
+(47, 119, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(48, 120, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(49, 121, '5123125412', 'paid', 0.00, 0.00, '2013-03-18', NULL),
+(50, 122, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(51, 123, '41231', 'paid', 0.00, 0.00, '2013-03-18', NULL),
+(52, 124, '412312', 'paid', 90.00, 450.00, '2013-03-18', NULL),
+(53, 125, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(54, 126, NULL, 'paid', NULL, NULL, '2013-03-18', NULL),
+(55, 127, NULL, 'paid', NULL, NULL, '2013-03-18', NULL);
 
 -- --------------------------------------------------------
 
@@ -241,67 +173,17 @@ CREATE TABLE IF NOT EXISTS `tbl_invoices` (
   `fld_dueDate` date DEFAULT NULL,
   `fld_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=128 ;
 
 --
 -- Dumping data for table `tbl_invoices`
 --
 
 INSERT INTO `tbl_invoices` (`id`, `fld_customerID`, `fld_code`, `fld_dateCreated`, `fld_dueDate`, `fld_active`) VALUES
-(45, 49, '2013-03-000045', '2013-03-16', '2013-03-17', 1),
-(46, 50, '0', '0000-00-00', '0000-00-00', 0),
-(47, 51, '0', '0000-00-00', '0000-00-00', 0),
-(48, 52, '0', '0000-00-00', '0000-00-00', 0),
-(49, 53, '0', '0000-00-00', '0000-00-00', 0),
-(50, 54, '0', '0000-00-00', '0000-00-00', 0),
-(51, 55, '0', '0000-00-00', '0000-00-00', 0),
-(52, 56, '0', '0000-00-00', '0000-00-00', 0),
-(53, 57, '0', '0000-00-00', '0000-00-00', 0),
-(54, 58, '0', '0000-00-00', '0000-00-00', 0),
-(55, 59, '0', '0000-00-00', '0000-00-00', 0),
-(56, 60, '0', '0000-00-00', '0000-00-00', 0),
-(57, 61, '0', '0000-00-00', '0000-00-00', 0),
-(58, 62, '0', '0000-00-00', '0000-00-00', 0),
-(59, 63, '0', '0000-00-00', '0000-00-00', 0),
-(60, 64, '0', '0000-00-00', '0000-00-00', 0),
-(61, 65, '0', '0000-00-00', '0000-00-00', 0),
-(62, 66, '0', '0000-00-00', '0000-00-00', 0),
-(63, 67, '0', '0000-00-00', '0000-00-00', 0),
-(64, 68, '2013-03-000064', '2013-03-16', '0000-00-00', 1),
-(65, 69, '', '0000-00-00', '0000-00-00', 0),
-(66, 70, '', '0000-00-00', '0000-00-00', 0),
-(67, 71, '', '0000-00-00', '0000-00-00', 0),
-(68, 72, '', '0000-00-00', '0000-00-00', 0),
-(69, 73, '', '0000-00-00', '0000-00-00', 0),
-(70, 74, '', '0000-00-00', '0000-00-00', 0),
-(71, 75, '', '0000-00-00', '0000-00-00', 0),
-(72, 76, '', '0000-00-00', '0000-00-00', 0),
-(73, 77, '', '0000-00-00', '0000-00-00', 0),
-(74, 78, '', '0000-00-00', '0000-00-00', 0),
-(75, 79, '', '0000-00-00', '0000-00-00', 0),
-(76, 80, '', '0000-00-00', '0000-00-00', 0),
-(77, NULL, '', '2013-03-16', '0000-00-00', 0),
-(78, NULL, '', '2013-03-16', '0000-00-00', 0),
-(79, NULL, '', '2013-03-16', '0000-00-00', 0),
-(80, NULL, '', '2013-03-16', '0000-00-00', 0),
-(81, NULL, '', '2013-03-16', '0000-00-00', 0),
-(82, 81, '', '2013-03-16', '0000-00-00', 0),
-(83, NULL, '', '2013-03-16', '0000-00-00', 0),
-(84, NULL, '', '2013-03-16', '0000-00-00', 0),
-(85, NULL, '', '2013-03-16', '0000-00-00', 0),
-(86, 82, '', '2013-03-16', '0000-00-00', 0),
-(87, NULL, '', '2013-03-16', '0000-00-00', 0),
-(88, NULL, '', '2013-03-16', '0000-00-00', 0),
-(89, NULL, '', '2013-03-16', '0000-00-00', 0),
-(90, NULL, '', '2013-03-16', '0000-00-00', 0),
-(91, NULL, '', '2013-03-16', '0000-00-00', 0),
-(92, NULL, '', '2013-03-16', '0000-00-00', 0),
-(93, NULL, '', '2013-03-16', '0000-00-00', 0),
-(94, NULL, '', '2013-03-16', '0000-00-00', 0),
-(95, NULL, '', '2013-03-17', '0000-00-00', 0),
-(96, NULL, '', '2013-03-17', '0000-00-00', 0),
-(97, NULL, '', '2013-03-17', '0000-00-00', 0),
-(98, 83, '2013-03-000098', '2013-03-17', '0000-00-00', 1);
+(124, 91, '2013-03-000124', '2013-03-18', '2013-03-28', 1),
+(125, NULL, '', '2013-03-18', '0000-00-00', 0),
+(126, NULL, '', '2013-03-18', '0000-00-00', 0),
+(127, 97, '', '2013-03-18', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 

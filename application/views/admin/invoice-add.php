@@ -1,5 +1,5 @@
 <legend>Add Product Item</legend>
-<form class="form-horizontal" method="post" action="<?php echo base_url()."transact/ordinary/invoice/save"?>">
+<form class="form-horizontal" method="post" action="<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/save"?>">
   <input type="text" name="invoice" value="<?php echo $this->uri->segment(5)?>" style="display:none">
   <input type="text" name="name" value="<?php echo urldecode($this->uri->segment(8))?>" style="display:none" id="productName">
   <div class="control-group">
@@ -72,7 +72,7 @@
 	  <?php if($this->uri->segment(6)!="" && $this->uri->segment(7)!=""){ ?>
       <button type="submit" class="btn btn-success"><i class="icon-download-alt icon-white"></i> Submit</button>
 	  <?php  } ?>
-      <a class="btn" href="<?php echo base_url()."transact/ordinary/edit/".$this->uri->segment(5) ?>"><i class="icon-backward"></i> Back</a>
+      <a class="btn" href="<?php echo base_url()."transact/".$this->uri->segment(2)."/edit/".$this->uri->segment(5) ?>"><i class="icon-backward"></i> Back</a>
    </div>
   </div>
 </form>
@@ -85,11 +85,11 @@
 	});
 	$('select[name=company]').change(function(){
 		var compID = $(this).val();
-		window.open('<?php echo base_url()."transact/ordinary/invoice/add/".$this->uri->segment(5)."/" ?>'+compID,'_self');
+		window.open('<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/add/".$this->uri->segment(5)."/" ?>'+compID,'_self');
 	});
 	$('select[name=productID]').change(function(){
 		var prodID = $(this).val();
 		var prodName = $('select[name=productID] option:selected').text();
-		window.open('<?php echo base_url()."transact/ordinary/invoice/add/".$this->uri->segment(5)."/".$this->uri->segment(6)."/" ?>'+prodID+'/'+prodName,'_self');
+		window.open('<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/add/".$this->uri->segment(5)."/".$this->uri->segment(6)."/" ?>'+prodID+'/'+prodName,'_self');
 	});
 </script>

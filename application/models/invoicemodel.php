@@ -53,16 +53,25 @@ class invoiceModel extends CI_Model
 			);
 			$this->db->insert('tbl_invoiceReceipts', $data); 
 			return $myid;
-		}else{
-			$data = array(
-			   'fld_code' => $this->input->post('invoiceID'),
-			   'fld_active' => '1'
-			);
+		}else{			
+			if($this->input->post('type')=='regular'){
+				$data = array(
+				   'fld_customerID' => $this->input->post('customer'),
+				   'fld_code' => $this->input->post('invoiceID'),
+				   'fld_dueDate' => date("Y-m-d",strtotime(date("Y-m-d")." + ".$this->input->post('dueDate')." days")),
+				   'fld_active' => '1'
+				);
+			}else{
+				$data = array(
+				   'fld_code' => $this->input->post('invoiceID'),
+				   'fld_active' => '1'
+				);
+			}
 			$this->db->where('id', $this->id);
 			$this->db->update('tbl_invoices', $data); 
-			
 			$data = array(
 			   'fld_orNumber' => $this->input->post('ornumber'),
+			   'fld_status' => $this->input->post('status'),
 			   'fld_paid' => $this->input->post('paid'),
 			   'fld_price' => $this->input->post('price'),
 			);
@@ -86,6 +95,20 @@ class invoiceModel extends CI_Model
 		$this->db->where('tbl_invoices.fld_active','1');
 		$this->db->where('tbl_invoices.fld_dateCreated',date("Y-m-d"));
 		$this->db->where('tbl_customers.fld_status','ordinary');
+		$this->db->order_by('tbl_invoices.id','asc');
+		$query = $this->db->get();
+		return $query->result();
+		
+	}
+	
+	function regularload(){
+		$this->db->select('tbl_customers.*,tbl_invoices.*,tbl_invoicereceipts.*');
+		$this->db->from('tbl_customers');
+		$this->db->join('tbl_invoices', 'tbl_invoices.fld_customerID = tbl_customers.id', 'left');
+		$this->db->join('tbl_invoicereceipts', 'tbl_invoicereceipts.fld_invoiceID = tbl_invoices.id', 'left');
+		$this->db->where('tbl_invoices.fld_active','1');
+		$this->db->where('tbl_invoices.fld_dateCreated',date("Y-m-d"));
+		$this->db->where('tbl_customers.fld_status','regular');
 		$this->db->order_by('tbl_invoices.id','asc');
 		$query = $this->db->get();
 		return $query->result();

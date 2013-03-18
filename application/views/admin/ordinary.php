@@ -5,22 +5,19 @@
 		  <div class="control-group">
 			<label class="control-label" for="invoiceID">Invoice ID:</label>
 			<div class="controls">
-			  <input type="text" id="id" name="invoiceID" placeholder="invoice number" value="<?php echo date("Y")."-".date("m")."-".sprintf('%06d',$invoices['0']->id); ?>">
-			</div>
-		  </div>
-		  <div class="control-group" style="display:none">
-			<label class="control-label" for="status">Status</label>
-			<div name="status" class="controls">
-			  <select>
-				  <option selected>Paid</option>
-				  <option>Unpaid</option>
-			  </select>
+			  <input type="text" id="id" readonly name="invoiceID" placeholder="invoice number" value="<?php echo date("Y")."-".date("m")."-".sprintf('%06d',$invoices['0']->id); ?>">
 			</div>
 		  </div>
 		  <div class="control-group">
-			<label class="control-label" for="invoiceID">OR Num:</label>
+			<label class="control-label" for="invoiceID">Amount Paid</label>
 			<div class="controls">
-			  <input type="text" name="ornumber" id="ornum" placeholder="orNum" value="<?php echo $invoiceReceipts[0]->fld_orNumber ?>">
+			  <input type="text" name="paid" placeholder="Amount Paid" value="<?php echo $invoiceReceipts[0]->fld_paid ?>">
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="invoiceID">OR Number</label>
+			<div class="controls">
+			  <input type="text" name="ornumber" id="ornum" placeholder="OR Number" value="<?php echo $invoiceReceipts[0]->fld_orNumber ?>">
 			</div>
 		  </div>
 		  <div class="control-group">
@@ -71,7 +68,8 @@
 	</table>
 	</div>
 	<input type="hidden" value="<?php echo number_format($subtotal, 2, '.', ''); ?>" name="price">
-	<input type="hidden" value="<?php echo number_format($subtotal, 2, '.', ''); ?>" name="price">
+	<input type="hidden" value="paid" name="status">
+	<input type="hidden" value="ordinary" name="type">
 	<input type="hidden" value="<?php echo $this->uri->segment(4); ?>" name="id">
   </fieldset> 
 </form>
