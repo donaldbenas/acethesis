@@ -34,7 +34,20 @@ class report extends CI_Controller
 				array("href" => "", "label"=> "Daily Sales")
 		);
 		$this->load->view('admin/navbar',$this->nav);
-		$this->load->view('admin/daily');
+		$this->load->model('reportmodel');
+		if($this->input->post('date')!=""){
+			$mydate = explode(" ~ ",$this->input->post('date'));
+			$this->reportmodel->before = $mydate[0];
+			$this->reportmodel->after = $mydate[1];
+			$this->reportmodel->type = $this->input->post('type');
+			$this->reportmodel->status = $this->input->post('status');
+			$data['before'] = $mydate[0];
+			$data['after'] = $mydate[1];
+			$data['type'] = $this->input->post('type');
+			$data['status'] = $this->input->post('status');
+		}
+		$data['customers'] = $this->reportmodel->customerload();
+		$this->load->view('admin/daily', $data);
 		$this->load->view('admin/footer');
 	}
 	

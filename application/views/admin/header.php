@@ -9,10 +9,13 @@
 	<link href="<?php echo base_url()."css/bootstrap.min.css"; ?>" rel="stylesheet">
 	<link href="<?php echo base_url()."css/bootstrap-responsive.min.css"; ?>" rel="stylesheet">
 	<link href="<?php echo base_url()."css/jquery-ui-1.10.0.custom.min.css"; ?>" rel="stylesheet">
+	<link href="<?php echo base_url()."css/datepicker.css"; ?>" rel="stylesheet">
 	<link href="<?php echo base_url()."css/admin.css"; ?>" rel="stylesheet">
 	<script src="<?php echo base_url()."js/jquery-1.9.0.js"; ?>"></script>
 	<script src="<?php echo base_url()."js/jquery-ui-1.10.0.custom.min.js"; ?>"></script>
 	<script src="<?php echo base_url()."js/bootstrap.min.js"; ?>"></script>
+	<script src="<?php echo base_url()."js/datepicker.jquery.js"; ?>"></script>
+	<script src="<?php echo base_url()."js/datepicker.js"; ?>"></script>
 	<style>
 	@media screen and (min-width: 980px) {
 		body { padding-top: 60px; }
