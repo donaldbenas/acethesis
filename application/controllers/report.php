@@ -8,6 +8,7 @@ class report extends CI_Controller
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->library('history');
+		$this->load->library('dompdf_gen');
 		$this->load->database();
 		if($this->session->userdata('user_login_key')=="")
 			redirect(base_url()."login");
@@ -61,6 +62,33 @@ class report extends CI_Controller
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->view('admin/stock');
 		$this->load->view('admin/footer');
+	}
+	
+	function dompdf() {	
+		// Load all views as normal
+		//$this->load->view('admin/header');
+		//$this->load->view('welcome_message');
+		// Get output html
+		$this->load->model('reportmodel');
+		if($this->input->post('date')!=""){
+			$mydate = explode(" ~ ",$this->input->post('date'));
+			$this->reportmodel->before = $mydate[0];
+			$this->reportmodel->after = $mydate[1];
+			$this->reportmodel->type = $this->input->post('type');
+			$this->reportmodel->status = $this->input->post('status');
+			$data['before'] = $mydate[0];
+			$data['after'] = $mydate[1];
+			$data['type'] = $this->input->post('type');
+			$data['status'] = $this->input->post('status');
+		}
+		$data['customers'] = $this->reportmodel->customerload();
+		$this->load->view('admin/daily-pdf', $data);
+		$html = $this->output->get_output();
+		
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("welcome.pdf");
+
 	}
 }
 	
