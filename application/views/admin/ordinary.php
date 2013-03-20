@@ -68,9 +68,26 @@
 	</table>
 	</div>
 	<input type="hidden" value="<?php echo number_format($subtotal, 2, '.', ''); ?>" name="price">
-	<input type="hidden" value="paid" name="status">
 	<input type="hidden" value="ordinary" name="type">
 	<input type="hidden" value="<?php echo $this->uri->segment(4); ?>" name="id">
   </fieldset> 
 </form>
-
+ <script>
+	$('form').submit(function(){
+		if($('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
+			return true;	
+		}else{
+			$('#error-paid').remove();
+			if($('input[name=paid]').val()==""){
+				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"error-paid\" class=\"help-inline red\"style=\"display:none\">Required amount paid!</span>");
+				$('#error-paid').fadeIn();
+			}
+			$('#isnan').remove();
+			if(isNaN($('input[name=paid]').val())){
+				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"isnan\" class=\"help-inline red\"style=\"display:none\">Required numeric input!</span>");
+				$('#isnan').fadeIn();
+			}
+			return false;
+		}
+	});
+ </script>

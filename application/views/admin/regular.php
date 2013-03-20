@@ -5,7 +5,7 @@
 		  <div class="control-group">
 			<label class="control-label" for="name">Customer Name</label>
 			<div class="controls">
-				<select name="customer" data-toggle="tooltip" data-title="Required Customer Name" data-placement="right" data-trigger="manual">
+				<select name="customer" required data-toggle="tooltip" data-title="Required Customer Name" data-placement="right" data-trigger="manual">
 					<option value='0'>Choose</option>
 					<?php 
 						if(!empty($customers)){
@@ -28,7 +28,7 @@
 			<label class="control-label" for="due">Due In</label>
 			<div class="controls">
 				<?php 
-				   if(!empty($invoices[0]->fld_dueDate)){
+				   if($invoices[0]->fld_dueDate!="0000-00-00"){
 					   $dEnd = new DateTime(date($invoices[0]->fld_dueDate));
 					   $dStart  = new DateTime(date("Y-m-d"));
 					   $dDiff = $dStart->diff($dEnd);
@@ -40,15 +40,6 @@
 					   $cDate = 15;
 				?>
 			  <input class="span1" id="small-3" type="number" name="dueDate" value="<?php echo $cDate  ?>"><span class="help-inline">Days</span>
-			</div>
-		  </div>
-		  <div class="control-group">
-			<label class="control-label" for="status">Status</label>
-			<div class="controls">
-			<select name="status">
-				<option value="paid" <?php if($invoiceReceipts[0]->fld_status=="paid") echo "selected" ?>>Paid</option> 
-				<option value="unpaid" <?php if($invoiceReceipts[0]->fld_status=="unpaid") echo "selected" ?>>Unpaid</option>
-			</select>
 			</div>
 		  </div>
 		   <div class="control-group">
@@ -117,10 +108,25 @@
 </form>
  <script>
 	$('form').submit(function(){
-		if($('select[name=customer]').val()=='0'){
-			$('select[name=customer]').tooltip('show');
+		if($('select[name=customer]').val()!='0' && $('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
+			return true;	
+		}else{
+			$('#error-name').remove();
+			if($('select[name=customer]').val()=='0'){
+				$('select[name=customer]').after("&nbsp;&nbsp;&nbsp;<span id=\"error-name\" class=\"help-inline red\"style=\"display:none\">Required customer name!</span>");
+				$('#error-name').fadeIn();
+			}
+			$('#error-paid').remove();
+			if($('input[name=paid]').val()==""){
+				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"error-paid\" class=\"help-inline red\"style=\"display:none\">Required amount paid!</span>");
+				$('#error-paid').fadeIn();
+			}
+			$('#isnan').remove();
+			if(isNaN($('input[name=paid]').val())){
+				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"isnan\" class=\"help-inline red\"style=\"display:none\">Required numeric input!</span>");
+				$('#isnan').fadeIn();
+			}
 			return false;
-		}else
-			return true;
+		}
 	});
  </script>

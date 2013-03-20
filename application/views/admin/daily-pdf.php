@@ -295,19 +295,19 @@
 </head>
 <body>
 <label><h2>Customer Daily Reports</h2></label>
-<label>Type: <?php if($type=='0') echo "All customer cype"; else echo $type; ?></label><br>
-<label>Status: <?php if($type=='0') echo "All customer status"; else echo $type; ?></label><br>
+<label>Type: <?php if($type=='0') echo "All customer type"; else echo ucwords($type)." Customers"; ?></label><br>
+<label>Status: <?php if($status=='0') echo "All customer status"; else echo ucwords($status)." Customers"; ?></label><br>
 <label>Date Range: <?php if(!empty($before)&&!empty($after) ) echo $before." ~ ".$after; else echo date('Y-m-d')." ~ ".date("Y-m-d"); ?></label><br><br>
 <table class="table table-hover table-condensed table-bordered">
-  <thead style="border-bottom:1px solid #ddd;background-color:#ddd">
+  <thead style="border-bottom:1px solid #ddd;background-color:#ddd">	
 	<tr>
 		<th>INVOICE ID</th>
 		<th>CUSTOMER TYPE</th>
 		<th>DATE CREATED</th>
 		<th>DUE DATE</th>
-		<th>A-PAID</th>
-		<th>T-PRICE</th>
-		<th>R-BALANCE</th>
+		<th>STATUS</th>
+		<th>PRICE</th>
+		<th>BALANCE</th>
     </tr>
   </thead>
   <tbody>
@@ -322,9 +322,9 @@
 		<td><?php echo ucwords($rows->fld_stat)." Customer" ?></td>
 		<td><?php echo $rows->fld_dateCreated ?></td>
 		<td><?php echo $rows->fld_dueDate ?></td>
-		<td>PHP <?php if(!empty($rows->fld_paid)){ $paid = $rows->fld_paid; echo $paid;} ?></td>
+		<td><?php if(!empty($rows->fld_price)&&!empty($rows->fld_paid)){ if(($rows->fld_price-$rows->fld_paid)>0) echo "Unpaid"; else echo "Paid"; } ?></td>
 		<td>PHP <?php if(!empty($rows->fld_price)){ $price = $rows->fld_price; echo $price;} ?></td>
-		<td>PHP <?php if(!empty($rows->fld_price)&&!empty($rows->fld_paid)){ $balance = number_format(($rows->fld_price-$rows->fld_paid),2,'.',''); echo $balance;} ?></td>
+		<td>PHP <?php if(!empty($rows->fld_price)&&!empty($rows->fld_paid)){ if(($rows->fld_price-$rows->fld_paid)>0){ $balance = number_format(ABS($rows->fld_price-$rows->fld_paid),2,'.',''); echo $balance;}else echo "0.00"; } ?></td>
 	</tr>
 	<?php 
 		$apaid = $paid + $apaid;
@@ -334,8 +334,7 @@
 	}
 	?>
 	<tr class="info">
-		<td colspan="4"><b><span class="pull-right">Subtotal</span></b></td>
-		<td><b>PHP <?php if(!empty($apaid)) echo number_format($apaid,2,'.',''); else echo "0.00"; ?></b></td>
+		<td colspan="5"><b><span class="pull-right">Subtotal</span></b></td>
 		<td><b>PHP <?php if(!empty($tprice)) echo number_format($tprice,2,'.',''); else echo "0.00"; ?></b></td>
 		<td><b>PHP <?php if(!empty($rbal)) echo number_format($rbal,2,'.',''); else echo "0.00"; ?></b></td>
 	</tr>

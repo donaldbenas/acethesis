@@ -4,6 +4,7 @@ class invoiceModel extends CI_Model
 {
 	var $id;
 	var $customerID;
+	var $status;
 	
 	function __construct()
 	{
@@ -64,14 +65,28 @@ class invoiceModel extends CI_Model
 			}else{
 				$data = array(
 				   'fld_code' => $this->input->post('invoiceID'),
+				   'fld_dueDate' => date("Y-m-d"),
 				   'fld_active' => '1'
 				);
 			}
 			$this->db->where('id', $this->id);
 			$this->db->update('tbl_invoices', $data); 
+			
+			if($this->input->post('type')=='regular'){
+				if($this->input->post('paid')!=""&&$this->input->post('price')!=""){ 
+					if(($this->input->post('price') - $this->input->post('paid'))>0) 
+						$this->status = "unpaid"; 
+					else 
+						$this->status = "paid"; 
+				}else
+					$this->status = "unpaid"; 
+			}else{
+				$this->status = 'paid';
+			}
+				
 			$data = array(
 			   'fld_orNumber' => $this->input->post('ornumber'),
-			   'fld_status' => $this->input->post('status'),
+			   'fld_status' => $this->status,
 			   'fld_paid' => $this->input->post('paid'),
 			   'fld_price' => $this->input->post('price'),
 			);

@@ -12,8 +12,10 @@
    <th>SUPPLIER NAME</th>
    <th>PRODUCT NAME</th>
     <th>DESCRIPTION</th>
+    <th>QUANTITY</th>
 	<th>PRICE</th>
-    <th>REMAINING AMOUNT</th>
+    <th>AMOUNT</th>
+    <th>STOCK REMAINING</th>
     </tr>
   </thead>
 </table>
