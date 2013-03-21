@@ -96,8 +96,7 @@ class invoiceModel extends CI_Model
 		
 	}
 	
-	function delete()
-	{
+	function delete(){
 		$this->db->where('id', $this->id);
 		$this->db->delete('tbl_invoices'); 
 	}
@@ -113,7 +112,6 @@ class invoiceModel extends CI_Model
 		$this->db->order_by('tbl_invoices.id','asc');
 		$query = $this->db->get();
 		return $query->result();
-		
 	}
 	
 	function regularload(){
@@ -126,8 +124,27 @@ class invoiceModel extends CI_Model
 		$this->db->where('tbl_customers.fld_status','regular');
 		$this->db->order_by('tbl_invoices.id','asc');
 		$query = $this->db->get();
-		return $query->result();
+		return $query->result();		
+	}
+	
+	function stock(){
 		
+		$this->db->delete('tbl_stocks', array('fld_invoiceID' => $this->id)); 
+		
+		$this->db->select("*");
+		$this->db->from("tbl_invoiceItems");
+		$this->db->where("fld_invoiceID",$this->id);
+		$query = $this->db->get();
+		foreach($query->result() as $rows){
+			$data = array();
+			$data = array(
+				"fld_productID" => $rows->fld_productID,
+				"fld_invoiceID" => $this-id,
+				"fld_amount" => $rows->fld_productQuantity,
+				"fld_dateCreated" => date("Y-m-d H:i:s")
+			);
+			$this->db->insert("tbl_stocks",$data);
+		}
 	}
 }
 

@@ -37,13 +37,10 @@ class report extends CI_Controller
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->model('reportmodel');
 		if($this->input->post('date')!=""){
-			$mydate = explode(" ~ ",$this->input->post('date'));
-			$this->reportmodel->before = $mydate[0];
-			$this->reportmodel->after = $mydate[1];
+			$this->reportmodel->date = $this->input->post('date');
 			$this->reportmodel->type = $this->input->post('type');
 			$this->reportmodel->status = $this->input->post('status');
-			$data['before'] = $mydate[0];
-			$data['after'] = $mydate[1];
+			$data['date'] = $this->input->post('date');
 			$data['type'] = $this->input->post('type');
 			$data['status'] = $this->input->post('status');
 		}
@@ -52,7 +49,7 @@ class report extends CI_Controller
 		$this->load->view('admin/footer');
 	}
 	
-	function stock()
+	function stock($page="")
 	{		
 		$this->load->view('admin/header');
 		array_push($this->nav['breadcrumbs'],
@@ -60,24 +57,77 @@ class report extends CI_Controller
 				array("href" => "", "label"=> "Stock Invetory")
 		);
 		$this->load->view('admin/navbar',$this->nav);
-		$this->load->view('admin/stock');
+		$this->load->model('reportmodel');
+		$this->load->model('productmodel');	
+		$update = $this->reportmodel->stockupdateload();
+		if($update['count'] == '0'){
+			
+			if($this->input->post('update')!=""){
+				if($this->input->post('update')=='true'){
+					$this->reportmodel->stockupdate();		
+					redirect(base_url()."report/stock");
+				}	
+			}	
+			if($this->input->post("date")==date("Y-m-d")){
+				$data['update'] = FALSE;	
+				$this->reportmodel->date = $this->input->post('date');
+				$this->reportmodel->product = $this->input->post('productID');
+				$this->reportmodel->supplier = $this->input->post('supplierID');
+				$data['stocks'] = $this->reportmodel->stockload();
+				$data['date'] = $this->input->post('date');
+				$data['products'] = $this->productmodel->load();			
+				$data['supplierID'] = $this->input->post('supplierID');
+				$data['productID'] = $this->input->post('productID');
+				$data['suppliers'] = $this->productmodel->supplier();
+				$data['products'] = $this->productmodel->load();		
+				$this->load->view('admin/stock',$data);	
+			}else{
+				$data['update'] = TRUE;			
+				$this->reportmodel->date = $this->input->post('date');
+				$this->reportmodel->sold = "true";
+				$this->productmodel->date = $this->input->post('date');	
+				$this->productmodel->product = $this->input->post('productID');
+				$this->productmodel->supplier = $this->input->post('supplierID');
+				$data['date'] = $this->input->post('date');
+				$data['supplierID'] = $this->input->post('supplierID');
+				$data['productID'] = $this->input->post('productID');
+				$data['stocks'] = $this->productmodel->stockproductload();	
+				$data['suppliers'] = $this->productmodel->supplier();
+				$data['products'] = $this->productmodel->load();			
+				$this->load->view('admin/stock-list',$data);
+			}
+		}else{					
+			$this->reportmodel->date = $this->input->post('date');
+			$this->reportmodel->sold = "true";
+			if( $update['sold'] != $this->reportmodel->stockload())
+				$data['update'] = TRUE;
+			else
+				$data['update'] = FALSE;
+			$this->productmodel->date = $this->input->post('date');	
+			$this->productmodel->product = $this->input->post('productID');
+			$this->productmodel->supplier = $this->input->post('supplierID');
+			$data['date'] = $this->input->post('date');
+			$data['supplierID'] = $this->input->post('supplierID');
+			$data['productID'] = $this->input->post('productID');
+			$data['stocks'] = $this->productmodel->stockproductload();	
+			$data['suppliers'] = $this->productmodel->supplier();
+			$data['products'] = $this->productmodel->load();			
+			$this->load->view('admin/stock-list',$data);	
+		}		
+		if($page=="save"){
+			
+		}
+		
 		$this->load->view('admin/footer');
 	}
 	
-	function dompdf() {	
-		// Load all views as normal
-		//$this->load->view('admin/header');
-		//$this->load->view('welcome_message');
-		// Get output html
+	function dompdf(){	
 		$this->load->model('reportmodel');
 		if($this->input->post('date')!=""){
-			$mydate = explode(" ~ ",$this->input->post('date'));
-			$this->reportmodel->before = $mydate[0];
-			$this->reportmodel->after = $mydate[1];
+			$this->reportmodel->date = $this->input->post('date');
 			$this->reportmodel->type = $this->input->post('type');
 			$this->reportmodel->status = $this->input->post('status');
-			$data['before'] = $mydate[0];
-			$data['after'] = $mydate[1];
+			$data['date'] = $this->input->post('date');
 			$data['type'] = $this->input->post('type');
 			$data['status'] = $this->input->post('status');
 		}
@@ -87,7 +137,7 @@ class report extends CI_Controller
 		
 		$this->dompdf->load_html($html);
 		$this->dompdf->render();
-		$this->dompdf->stream("welcome.pdf");
+		$this->dompdf->stream("daily-reports.pdf");
 
 	}
 }

@@ -1,4 +1,4 @@
-<form class="form-inline" method="post">
+<form class="form-inline" method="post"  action="<?php base_url()."report/daily" ?>">
   <label>Sort By:  </label>
   <select name="type">
 	<option value="0" <?php if(!empty($type)) if($type=='0') echo "selected" ?>>Customer Types</option>
@@ -10,11 +10,10 @@
 	<option value="paid" <?php if(!empty($status)) if($status=='paid') echo "selected" ?>>Paid Customer</option>
 	<option value="unpaid" <?php if(!empty($status)) if($status=='unpaid') echo "selected" ?>>Unpaid Customer</option>
   </select>
-	<input type="text" name="date" style="width:170px;text-align:center;cursor:pointer" readonly class="inputDate" id="prependedInput" value="<?php if(!empty($before)&&!empty($after) ) echo $before." ~ ".$after; else echo date('Y-m-d')." ~ ".date("Y-m-d"); ?>" placeholder="Date Range">
+	<input type="text" name="date" style="width:170px;text-align:center;cursor:pointer" readonly class="inputDate" id="prependedInput" value="<?php if(!empty($date)) echo $date; else echo date('Y-m-d'); ?>" placeholder="Date Range">
   <button type="submit" class="btn"><i class="icon-filter"></i> Filter</button>
-  <div class="input-prepend  pull-right">
-    <span class="add-on">Download</span>
-    <button type="button" id="prependedInput"  onclick="javascript: $('#pdf').submit();" class="btn btn-primary"><i class="icon-file icon-white"></i> PDF</button>
+  <div class="pull-right">
+    <button type="button" id="prependedInput"  onclick="javascript: $('#pdf').submit();" class="btn btn-primary"><i class="icon-download-alt icon-white"></i> Download</button>
   </div>
   
 </form>
@@ -30,7 +29,7 @@
 	<option value="paid" <?php if(!empty($status)) if($status=='paid') echo "selected" ?>>Paid Customer</option>
 	<option value="unpaid" <?php if(!empty($status)) if($status=='unpaid') echo "selected" ?>>Unpaid Customer</option>
   </select>
-	<input type="text" name="date" style="width:170px;text-align:center" readonly class="inputDate" id="prependedInput" value="<?php if(!empty($before)&&!empty($after) ) echo $before." ~ ".$after; else echo date('Y-m-d')." ~ ".date("Y-m-d"); ?>" placeholder="Date Range">
+	<input type="text" name="date" style="width:170px;text-align:center" readonly class="inputDate" id="prependedInput" value="<?php if(!empty($date)) echo $date; else echo date('Y-m-d') ?>" placeholder="Date Range">
   <button type="submit" class="btn"><i class="icon-filter"></i> Filter</button>
   <a href="<?php echo base_url()."report/dompdf" ?>" class="btn pull-right">Download PDF</a>
 </form>
@@ -81,16 +80,16 @@ $('.inputDate').DatePicker({
 	format:'Y-m-d',
 	date: $('.inputDate').val(),
 	current: $('.inputDate').val(),
-	calendars: 2,
 	starts: 1,
-	mode: 'range',
 	position: 'bottom',
 	onBeforeShow: function(){
 		$('.inputDate').DatePickerSetDate($('.inputDate').val(), true);
 	},
 	onChange: function(formated, dates){
-		var datval= formated.join(' ~ ')
-		$('.inputDate').val(datval);
+		$('.inputDate').val(formated);
+		if ($('#closeOnSelect input').attr('checked')) {
+			$('.inputDate').DatePickerHide();
+		}
 	}
 });
 $('input[name=date]').css('cursor','pointer');

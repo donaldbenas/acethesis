@@ -53,6 +53,7 @@ class Transact extends CI_Controller
 			case "save"	:
 						$this->invoicemodel->id = $this->input->post('id');
 						$this->invoicemodel->save();
+						$this->invoicemodel->stock();
 						redirect(base_url()."transact/ordinary/list");
 						break;
 			case "list"	:
@@ -72,7 +73,7 @@ class Transact extends CI_Controller
 						);
 						$data['company'] = $this->suppliermodel->loadCompanyName();
 						if($this->uri->segment(4)=='add'){
-						array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Add Invoice Item"));
+							array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Add Invoice Item"));
 							$this->load->view('admin/navbar',$this->nav);
 							if($this->uri->segment(6)!="")
 								$this->productmodel->company = $this->uri->segment(6);
@@ -82,7 +83,7 @@ class Transact extends CI_Controller
 							$data['details'] = $this->productmodel->load();
 							$this->load->view('admin/invoice-add',$data);
 						}elseif($this->uri->segment(4)=='edit'){
-						array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Edit Invoice Item"));
+							array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Edit Invoice Item"));
 							$this->load->view('admin/navbar',$this->nav);
 							if($this->uri->segment(6)!="")
 								$this->productmodel->company = $this->uri->segment(6);
@@ -149,6 +150,7 @@ class Transact extends CI_Controller
 			case "save"	:
 						$this->invoicemodel->id = $this->input->post('id');
 						$this->invoicemodel->save();
+						$this->invoicemodel->stock();
 						redirect(base_url()."transact/regular");
 						break;
 			case "invoice"	:

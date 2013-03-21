@@ -297,7 +297,7 @@
 <label><h2>Customer Daily Reports</h2></label>
 <label>Type: <?php if($type=='0') echo "All customer type"; else echo ucwords($type)." Customers"; ?></label><br>
 <label>Status: <?php if($status=='0') echo "All customer status"; else echo ucwords($status)." Customers"; ?></label><br>
-<label>Date Range: <?php if(!empty($before)&&!empty($after) ) echo $before." ~ ".$after; else echo date('Y-m-d')." ~ ".date("Y-m-d"); ?></label><br><br>
+<label>Date Range: <?php if(!empty($date)) echo $date; else echo date('Y-m-d'); ?></label><br><br>
 <table class="table table-hover table-condensed table-bordered">
   <thead style="border-bottom:1px solid #ddd;background-color:#ddd">	
 	<tr>

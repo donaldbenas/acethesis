@@ -4,6 +4,9 @@ class productModel extends CI_Model
 {
 	var $id;
 	var $company;
+	var $date;
+	var $product;
+	var $supplier;
 	
 	function __construct()
 	{
@@ -88,6 +91,31 @@ class productModel extends CI_Model
 			$this->db->where('id', $this->id);
 			$this->db->delete('tbl_products'); 
 		}
+	}
+	
+	function supplier()
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_productCompany');
+		$this->db->order_by('fld_name');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function stockproductload()
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_stockProductLogs');
+		$this->db->where('fld_dateCreated',$this->date);
+		if($this->date!="")
+			$this->db->where("fld_dateCreated",$this->date);
+		if($this->supplier!="0")
+			$this->db->like("fld_supplier",$this->supplier);
+		if($this->product!="0")
+			$this->db->like("fld_dateCreated",$this->product);
+		$this->db->order_by('fld_supplier,fld_product', 'asc');
+		$query = $this->db->get();
+		return $query->result();
 	}
 }
 
