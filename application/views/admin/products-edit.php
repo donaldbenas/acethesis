@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="inputPassword">Amount</label>
+    <label class="control-label" for="inputPassword">Quantity</label>
     <div class="controls">
       <input type="text" name="amount" placeholder="Product Amount" value="<?php echo $products[0]->fld_amount ?>">
     </div>
