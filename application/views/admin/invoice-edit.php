@@ -1,5 +1,4 @@
-<legend>Add Product Item</legend>
-<form class="form-horizontal" method="post" action="<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/save/".$this->uri->segment(9) ?>">
+<form id="myform" class="form-horizontal" method="post" action="<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/save/".$this->uri->segment(9) ?>">
   <input type="text" name="invoice" value="<?php echo $this->uri->segment(5)?>" style="display:none">
   <input type="text" name="name" value="<?php echo urldecode($this->uri->segment(8))?>" style="display:none" id="productName">
   <div class="control-group">

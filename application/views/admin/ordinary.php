@@ -39,7 +39,7 @@
 			<th>DESCRIPTION</th>
 			<th>PRICE</th>
 			<th>TOTAL</th>
-			<th width="200px"><a class="btn" href="<?php echo base_url()."transact/ordinary/invoice/add/".$this->uri->segment(4) ?>"><i class="icon-plus"></i> Add Item</a></th>
+			<th width="200px"><a  href="#mymodal" role="button" class="btn" data-toggle="modal" onclick="javascript: submitpage('<?php echo base_url()."transact/ordinary/invoice/add/".$this->uri->segment(4) ?>')"><i class="icon-plus"></i> Add Item</a></th>
 		</tr>
 	  </thead>
 		<?php 
@@ -53,7 +53,7 @@
 			<td>PHP <?php echo $rows->fld_productPrice ?></td>
 			<td>PHP <?php $total = $rows->fld_productQuantity*$rows->fld_productPrice; echo number_format(($total), 2, '.', ''); ?></td>
 			<td>		
-			 <a class="btn btn-primary" href="<?php echo base_url()."transact/ordinary/invoice/edit/".$this->uri->segment(4)."/".$rows->fld_productCompanyID."/".$rows->fld_productID."/".$rows->fld_productName."/".$rows->id ?>"><i class="icon-pencil icon-white"></i> Edit</a>
+			 <a class="btn btn-primary" href="#mymodal" role="button" data-toggle="modal" onclick="javascript: submitpage('<?php echo base_url()."transact/ordinary/invoice/edit/".$this->uri->segment(4)."/".$rows->fld_productCompanyID."/".$rows->fld_productID."/".$rows->fld_productName."/".$rows->id ?>')"><i class="icon-pencil icon-white"></i> Edit</a>
 			 <a class="btn btn-danger" href="#"><i class="icon-trash icon-white"></i> Delete</a>
 			</td>
 		</tr>
@@ -72,22 +72,46 @@
 	<input type="hidden" value="<?php echo $this->uri->segment(4); ?>" name="id">
   </fieldset> 
 </form>
+<div id="mymodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Item Product</h3>
+  </div>
+  <div class="modal-body">
+    <p><iframe id="frame" width="100%" height="100%" scrolling="no" frameborder=0 ALLOWTRANSPARENCY="true" src=""></iframe></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true" id="close-product">Close</button>
+    <button class="btn btn-primary" id="submit-product">Save changes</button>
+  </div>
+</div>
  <script>
-	$('form').submit(function(){
-		if($('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
-			return true;	
-		}else{
-			$('#error-paid').remove();
-			if($('input[name=paid]').val()==""){
-				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"error-paid\" class=\"help-inline red\"style=\"display:none\">Required amount paid!</span>");
-				$('#error-paid').fadeIn();
+	$(this).ready(function(){
+		$('form').submit(function(){
+			if($('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
+				return true;	
+			}else{
+				$('#error-paid').remove();
+				if($('input[name=paid]').val()==""){
+					$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"error-paid\" class=\"help-inline red\"style=\"display:none\">Required amount paid!</span>");
+					$('#error-paid').fadeIn();
+				}
+				$('#isnan').remove();
+				if(isNaN($('input[name=paid]').val())){
+					$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"isnan\" class=\"help-inline red\"style=\"display:none\">Required numeric input!</span>");
+					$('#isnan').fadeIn();
+				}
+				return false;
 			}
-			$('#isnan').remove();
-			if(isNaN($('input[name=paid]').val())){
-				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"isnan\" class=\"help-inline red\"style=\"display:none\">Required numeric input!</span>");
-				$('#isnan').fadeIn();
-			}
-			return false;
-		}
+		});
+		$('#submit-product').click(function(){		
+			$("#frame").contents().find("#myform").submit();
+		});
+		$('#mymodal').bind('hidden', function (event) {
+			location.reload(true);
+		});
 	});
+	function submitpage(html){
+		$('#frame').attr('src',html);
+	}
  </script>

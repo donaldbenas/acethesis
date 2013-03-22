@@ -73,8 +73,6 @@ class Transact extends CI_Controller
 						);
 						$data['company'] = $this->suppliermodel->loadCompanyName();
 						if($this->uri->segment(4)=='add'){
-							array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Add Invoice Item"));
-							$this->load->view('admin/navbar',$this->nav);
 							if($this->uri->segment(6)!="")
 								$this->productmodel->company = $this->uri->segment(6);
 							$data['product'] = $this->productmodel->load();						
@@ -83,8 +81,6 @@ class Transact extends CI_Controller
 							$data['details'] = $this->productmodel->load();
 							$this->load->view('admin/invoice-add',$data);
 						}elseif($this->uri->segment(4)=='edit'){
-							array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Edit Invoice Item"));
-							$this->load->view('admin/navbar',$this->nav);
 							if($this->uri->segment(6)!="")
 								$this->productmodel->company = $this->uri->segment(6);
 							$data['product'] = $this->productmodel->load();						
@@ -95,11 +91,10 @@ class Transact extends CI_Controller
 						}elseif($this->uri->segment(4)=='save'){
 							if($this->uri->segment(5)==''){
 								$this->invoiceitemmodel->save();
-								redirect(base_url()."transact/ordinary/edit/".$this->input->post('invoice'));
+								redirect(base_url()."transact/ordinary/invoice/add/".$this->input->post('invoice'));
 							}else{
 								$this->invoiceitemmodel->id = $this->uri->segment(5);
 								$this->invoiceitemmodel->save();
-								redirect(base_url()."transact/ordinary/edit/".$this->input->post('invoice'));
 							}
 						}
 						break;						

@@ -13,3 +13,7 @@
 .grey{
 	color:#B2B2B2;
 }
+.modal-body {
+    min-height: 480px;
+    height: 450px;
+}

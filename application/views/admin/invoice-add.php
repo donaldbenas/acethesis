@@ -1,5 +1,4 @@
-<legend>Add Product Item</legend>
-<form class="form-horizontal" method="post" action="<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/save"?>">
+<form id="myform" class="form-horizontal" method="post" action="<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/save"?>">
   <input type="text" name="invoice" value="<?php echo $this->uri->segment(5)?>" style="display:none">
   <input type="text" name="name" value="<?php echo urldecode($this->uri->segment(8))?>" style="display:none" id="productName">
   <div class="control-group">
@@ -67,14 +66,6 @@
   </div>
   <?php } ?>
   <?php } ?>  
-  <div class="control-group">
-    <div class="controls">
-	  <?php if($this->uri->segment(6)!="" && $this->uri->segment(7)!=""){ ?>
-      <button type="submit" class="btn btn-success"><i class="icon-download-alt icon-white"></i> Submit</button>
-	  <?php  } ?>
-      <a class="btn" href="<?php echo base_url()."transact/".$this->uri->segment(2)."/edit/".$this->uri->segment(5) ?>"><i class="icon-backward"></i> Back</a>
-   </div>
-  </div>
 </form>
 <script>
 	$('form').submit(function(){
