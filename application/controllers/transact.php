@@ -9,6 +9,8 @@ class Transact extends CI_Controller
 		$this->load->library('session');
 		$this->load->library('history');
 		$this->load->database();
+		$this->load->helper('html');
+		$this->load->helper('form');
 		if($this->session->userdata('user_login_key')=="")
 			redirect(base_url()."login");
 		$this->nav['active'] = "transact";
@@ -73,28 +75,44 @@ class Transact extends CI_Controller
 						);
 						$data['company'] = $this->suppliermodel->loadCompanyName();
 						if($this->uri->segment(4)=='add'){
-							if($this->uri->segment(6)!="")
+							if($this->uri->segment(6)!=""&&$this->uri->segment(6)!="0")
 								$this->productmodel->company = $this->uri->segment(6);
+							elseif($this->uri->segment(6)=="0")
+								$this->productmodel->company = "";
 							$data['product'] = $this->productmodel->load();						
 							if($this->uri->segment(7)!="")
 								$this->productmodel->id = $this->uri->segment(7);
 							$data['details'] = $this->productmodel->load();
 							$this->load->view('admin/invoice-add',$data);
 						}elseif($this->uri->segment(4)=='edit'){
-							if($this->uri->segment(6)!="")
+							if($this->uri->segment(6)!=""&&$this->uri->segment(6)!="0")
 								$this->productmodel->company = $this->uri->segment(6);
+							elseif($this->uri->segment(6)=="0")
+								$this->productmodel->company = "";
 							$data['product'] = $this->productmodel->load();						
 							if($this->uri->segment(7)!="")
 								$this->productmodel->id = $this->uri->segment(7);
 							$data['details'] = $this->productmodel->load();
 							$this->load->view('admin/invoice-edit',$data);
 						}elseif($this->uri->segment(4)=='save'){
-							if($this->uri->segment(5)==''){
+							if($this->input->post('invoiceitemID')==''){
 								$this->invoiceitemmodel->save();
-								redirect(base_url()."transact/ordinary/invoice/add/".$this->input->post('invoice'));
+								echo link_tag('./css/bootstrap.min.css');							
+								echo heading('Successfully saved!', 5, 'class="alert alert-success"');
+								$data = array(
+											  'type'        => 'button',
+											  'class'       => 'btn btn-primary',
+											  'content'       => '<i class="icon-plus icon-white"></i> Add Product',
+											  'onclick'       => 'window.location.href=\''.base_url().'transact/ordinary/invoice/add/'.$this->input->post('invoice').'/0/0\'',
+											);
+
+								echo form_button($data);
+								//redirect(base_url()."transact/ordinary/invoice/add/".$this->input->post('invoice'));
 							}else{
-								$this->invoiceitemmodel->id = $this->uri->segment(5);
-								$this->invoiceitemmodel->save();
+								$this->invoiceitemmodel->id = $this->input->post('invoiceitemID');
+								$this->invoiceitemmodel->save();	
+								echo link_tag('./css/bootstrap.css');							
+								echo heading('Successfully saved!', 5, 'class="alert alert-success"');
 							}
 						}
 						break;						

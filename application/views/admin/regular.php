@@ -73,7 +73,7 @@
 			<th>DESCRIPTION</th>
 			<th>PRICE</th>
 			<th>TOTAL</th>
-			<th width="200px"><a class="btn" href="<?php echo base_url()."transact/regular/invoice/add/".$this->uri->segment(4) ?>"><i class="icon-plus"></i> Add Item</a></th>
+			<th width="200px"><a class="btn" href="<?php echo base_url()."transact/regular/invoice/add/".$this->uri->segment(4)."/0/0" ?>"><i class="icon-plus"></i> Add Item</a></th>
 		</tr>
 	  </thead>
 		<?php 

@@ -43,7 +43,7 @@ class invoiceItemModel extends CI_Model
 		if($this->id==""){
 			$data = array(
 			   'fld_invoiceID' => $this->input->post('invoice'),
-			   'fld_productCompanyID' => $this->input->post('company'),
+			   'fld_productCompanyID' => $this->input->post('companyID'),
 			   'fld_productID' => $this->input->post('productID'),
 			   'fld_productQuantity' => $this->input->post('quantity'),
 			   'fld_productName' => $this->input->post('name'),
@@ -56,7 +56,7 @@ class invoiceItemModel extends CI_Model
 		}else{
 			$data = array(
 			   'fld_invoiceID' => $this->input->post('invoice'),
-			   'fld_productCompanyID' => $this->input->post('company'),
+			   'fld_productCompanyID' => $this->input->post('companyID'),
 			   'fld_productID' => $this->input->post('productID'),
 			   'fld_productQuantity' => $this->input->post('quantity'),
 			   'fld_productName' => $this->input->post('name'),

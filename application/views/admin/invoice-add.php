@@ -1,6 +1,8 @@
 <form id="myform" class="form-horizontal" method="post" action="<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/save"?>">
   <input type="text" name="invoice" value="<?php echo $this->uri->segment(5)?>" style="display:none">
+  <input type="text" name="invoiceitemID" value="" style="display:none">
   <input type="text" name="name" value="<?php echo urldecode($this->uri->segment(8))?>" style="display:none" id="productName">
+  <input type="hidden" name="companyID" value="<?php if(!empty($details[0]->fld_productCompanyID))echo $details[0]->fld_productCompanyID ?>" style="display:none" id="productName">
   <div class="control-group">
     <label class="control-label" for="inputEmail">Supplier</label>
     <div class="controls">
@@ -19,7 +21,6 @@
 		</select>
     </div>
   </div>
-  <?php if($this->uri->segment(6)!=""&&$this->uri->segment(6)!="0"){?>
   <div class="control-group">
     <label class="control-label" for="inputEmail">Products</label>
     <div class="controls">
@@ -65,18 +66,17 @@
     </div>
   </div>
   <?php } ?>
-  <?php } ?>  
 </form>
 <script>
 	$('form').submit(function(){
-		if( $('input[name=quantity]').val() == 0 || $('input[name=quantity]').val() == "" )
+		if($('input[name=quantity]').val() == 0 || $('input[name=quantity]').val() == "" )
 			return false;
 		else
 			return true;
 	});
 	$('select[name=company]').change(function(){
 		var compID = $(this).val();
-		window.open('<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/add/".$this->uri->segment(5)."/" ?>'+compID,'_self');
+		window.open('<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/add/".$this->uri->segment(5)."/" ?>'+compID+'/0','_self');
 	});
 	$('select[name=productID]').change(function(){
 		var prodID = $(this).val();
