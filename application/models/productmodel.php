@@ -106,9 +106,7 @@ class productModel extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('tbl_stockProductLogs');
-		$this->db->where('fld_dateCreated',$this->date);
-		if($this->date!="")
-			$this->db->where("fld_dateCreated",$this->date);
+		$this->db->where("fld_dateCreated",$this->date);
 		if($this->supplier!="0")
 			$this->db->like("fld_supplier",$this->supplier);
 		if($this->product!="0")

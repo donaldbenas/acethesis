@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2013 at 03:28 PM
+-- Generation Time: Mar 24, 2013 at 07:02 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
   `fld_email` varchar(50) DEFAULT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=124 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=357 ;
 
 --
 -- Dumping data for table `tbl_customers`
@@ -46,19 +46,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
 
 INSERT INTO `tbl_customers` (`id`, `fld_status`, `fld_firstname`, `fld_middlename`, `fld_lastname`, `fld_address`, `fld_mobile`, `fld_telephone`, `fld_email`, `fld_dateCreated`) VALUES
 (110, 'regular', 'Erick', '', 'Santos', '', '', '', '', '0000-00-00'),
-(111, 'regular', 'Cammile', '', 'Prats', '', '', '', '', '0000-00-00'),
-(112, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(113, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(114, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(115, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(116, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(117, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(118, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(119, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(120, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(121, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(122, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(123, 'ordinary', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
+(111, 'regular', 'Cammile', '', 'Prats', '', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -92,17 +80,7 @@ CREATE TABLE IF NOT EXISTS `tbl_invoiceitems` (
   `fld_productCode` int(11) NOT NULL DEFAULT '0',
   `fld_productPrice` float(8,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
-
---
--- Dumping data for table `tbl_invoiceitems`
---
-
-INSERT INTO `tbl_invoiceitems` (`id`, `fld_invoiceID`, `fld_productCompanyID`, `fld_productID`, `fld_productQuantity`, `fld_productName`, `fld_productDescription`, `fld_productCode`, `fld_productPrice`) VALUES
-(54, 183, 3, 16, 6, '555 Tuna Mackarel in original flavor', '210g', 5, 48.00),
-(55, 183, 3, 24, 4, 'AngelCondensed', '410ml', 9, 40.00),
-(56, 183, 8, 38, 12, 'Nestle Cofee Mate', 'Sachet ', 35, 84.00),
-(57, 188, 7, 34, 3, 'Happy Napkin', '8pcs', 29, 17.00);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=180 ;
 
 -- --------------------------------------------------------
 
@@ -120,24 +98,14 @@ CREATE TABLE IF NOT EXISTS `tbl_invoicereceipts` (
   `fld_dateCreated` date DEFAULT NULL,
   `fld_dateCanceled` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=117 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=416 ;
 
 --
 -- Dumping data for table `tbl_invoicereceipts`
 --
 
 INSERT INTO `tbl_invoicereceipts` (`id`, `fld_invoiceID`, `fld_orNumber`, `fld_status`, `fld_paid`, `fld_price`, `fld_dateCreated`, `fld_dateCanceled`) VALUES
-(106, 178, '111111111111', 'paid', 3000.00, 2078.00, '2013-03-20', NULL),
-(107, 179, '24444441231', 'unpaid', 2000.00, 2336.00, '2013-03-20', NULL),
-(108, 180, '24444441231', 'paid', 550.00, 540.00, '2013-03-20', NULL),
-(109, 181, NULL, 'paid', NULL, NULL, '2013-03-20', NULL),
-(110, 182, NULL, 'paid', NULL, NULL, '2013-03-21', NULL),
-(111, 183, '', 'paid', 700.00, 1456.00, '2013-03-21', NULL),
-(112, 184, NULL, 'paid', NULL, NULL, '2013-03-21', NULL),
-(113, 185, NULL, 'paid', NULL, NULL, '2013-03-21', NULL),
-(114, 186, NULL, 'paid', NULL, NULL, '2013-03-21', NULL),
-(115, 187, NULL, 'paid', NULL, NULL, '2013-03-21', NULL),
-(116, 188, NULL, 'paid', NULL, NULL, '2013-03-21', NULL);
+(415, 487, NULL, 'paid', NULL, NULL, '2013-03-24', NULL);
 
 -- --------------------------------------------------------
 
@@ -153,24 +121,14 @@ CREATE TABLE IF NOT EXISTS `tbl_invoices` (
   `fld_dueDate` date DEFAULT NULL,
   `fld_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=189 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=488 ;
 
 --
 -- Dumping data for table `tbl_invoices`
 --
 
 INSERT INTO `tbl_invoices` (`id`, `fld_customerID`, `fld_code`, `fld_dateCreated`, `fld_dueDate`, `fld_active`) VALUES
-(178, 116, '2013-03-000178', '2013-03-20', '2013-03-20', 1),
-(179, 111, '2013-03-000179', '2013-03-20', '2013-03-26', 1),
-(180, 111, '2013-03-000180', '2013-03-20', '2013-04-03', 1),
-(181, NULL, '', '2013-03-20', '0000-00-00', 0),
-(182, 117, '', '2013-03-21', '0000-00-00', 0),
-(183, 118, '2013-03-000183', '2013-03-21', '2013-03-21', 1),
-(184, 119, '', '2013-03-21', '0000-00-00', 0),
-(185, 120, '', '2013-03-21', '0000-00-00', 0),
-(186, 121, '', '2013-03-21', '0000-00-00', 0),
-(187, 122, '', '2013-03-21', '0000-00-00', 0),
-(188, 123, '', '2013-03-21', '0000-00-00', 0);
+(487, NULL, '', '2013-03-24', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -224,23 +182,23 @@ CREATE TABLE IF NOT EXISTS `tbl_products` (
 INSERT INTO `tbl_products` (`id`, `fld_productCompanyID`, `fld_name`, `fld_description`, `fld_code`, `fld_dateCreated`, `fld_price`, `fld_amount`, `fld_stockUpdated`) VALUES
 (6, 3, 'Youngs Town Corned beef', '155g', 26, '0000-00-00', 26.00, 80, '2013-03-21'),
 (7, 3, '555 Tuna Adobo Flavor', '155g', 3, '0000-00-00', 22.00, 80, '2013-03-21'),
-(8, 3, '555 Tuna Caldereta Flavor', '155g', 4, '0000-00-00', 22.00, 80, '2013-03-21'),
-(9, 3, '555 Tuna Mechada', '155g', 6, '0000-00-00', 22.00, 80, '2013-03-21'),
+(8, 3, '555 Tuna Caldereta Flavor', '155g', 4, '0000-00-00', 22.00, -24, '2013-03-21'),
+(9, 3, '555 Tuna Mechada', '155g', 6, '0000-00-00', 22.00, -146, '2013-03-21'),
 (10, 3, 'Youngs Town Sardines Spicy', '155g', 27, '0000-00-00', 14.50, 80, '2013-03-21'),
 (11, 3, 'Youngs Town SardinesTomato Sauce', '155g', 28, '0000-00-00', 14.50, 80, '2013-03-21'),
 (12, 3, 'Master Sardines Tomato ', '155g', 22, '0000-00-00', 14.00, 80, '2013-03-21'),
 (13, 3, 'Sardines Tomato ', '155g', 23, '0000-00-00', 14.50, 80, '2013-03-21'),
 (14, 3, 'Fiesta Mechado', '210g', 18, '0000-00-00', 47.00, 80, '2013-03-21'),
 (15, 3, 'Sardines Tomato Sauce', '210g', 24, '0000-00-00', 36.00, 80, '2013-03-21'),
-(16, 3, '555 Tuna Mackarel in original flavor', '210g', 5, '0000-00-00', 48.00, 14, '2013-03-21'),
+(16, 3, '555 Tuna Mackarel in original flavor', '210g', 5, '0000-00-00', 48.00, 80, '2013-03-21'),
 (17, 3, 'Argentina Meat Loaf', '210g', 12, '0000-00-00', 29.00, 80, '2013-03-21'),
 (18, 3, 'Argentina Corned beef', '210g', 11, '0000-00-00', 46.00, 80, '2013-03-21'),
 (19, 3, 'Argentina Meat Loaf', '155g', 13, '0000-00-00', 34.00, 80, '2013-03-21'),
 (20, 3, 'Argentina Beef Loaf', '150g', 10, '0000-00-00', 16.50, 80, '2013-03-21'),
-(21, 3, 'Angel Evaporada', '170g', 8, '0000-00-00', 19.00, 80, '2013-03-21'),
-(22, 3, 'Alpine Evaporated', '410ml', 7, '0000-00-00', 27.00, 80, '2013-03-21'),
+(21, 3, 'Angel Evaporada', '170g', 8, '0000-00-00', 19.00, -88, '2013-03-21'),
+(22, 3, 'Alpine Evaporated', '410ml', 7, '0000-00-00', 27.00, -96, '2013-03-21'),
 (23, 3, 'Liberty Condensed', '410ml', 20, '0000-00-00', 48.00, 80, '2013-03-21'),
-(24, 3, 'AngelCondensed', '410ml', 9, '0000-00-00', 40.00, 36, '2013-03-21'),
+(24, 3, 'AngelCondensed', '410ml', 9, '0000-00-00', 40.00, -112, '2013-03-21'),
 (25, 7, 'Holidays Meat sauce', '380g', 30, '0000-00-00', 39.00, 80, '2013-03-21'),
 (26, 3, 'Autralian Karne Norte Corned beef', '380g', 14, '0000-00-00', 38.00, 80, '2013-03-21'),
 (27, 3, 'Winner Meat Loaf', '110g', 25, '0000-00-00', 14.00, 80, '2013-03-21'),
@@ -254,7 +212,7 @@ INSERT INTO `tbl_products` (`id`, `fld_productCompanyID`, `fld_name`, `fld_descr
 (35, 7, 'Those Days Napkin', '8pcs', 33, '0000-00-00', 20.00, 80, '2013-03-21'),
 (36, 7, 'Surf', 'Blue bar', 32, '0000-00-00', 21.50, 80, '2013-03-21'),
 (37, 7, 'Tide', 'White bar', 34, '0000-00-00', 20.00, 80, '2013-03-21'),
-(38, 8, 'Nestle Cofee Mate ', 'Sachet ', 35, '0000-00-00', 84.00, 56, '2013-03-21');
+(38, 8, 'Nestle Cofee Mate ', 'Sachet ', 35, '0000-00-00', 84.00, 80, '2013-03-21');
 
 -- --------------------------------------------------------
 
@@ -272,46 +230,7 @@ CREATE TABLE IF NOT EXISTS `tbl_stockproductlogs` (
   `fld_sold` int(11) NOT NULL,
   `fld_dateCreated` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=496 ;
-
---
--- Dumping data for table `tbl_stockproductlogs`
---
-
-INSERT INTO `tbl_stockproductlogs` (`id`, `fld_supplier`, `fld_product`, `fld_description`, `fld_price`, `fld_quantity`, `fld_sold`, `fld_dateCreated`) VALUES
-(463, 'Akramont Marketing Corp.', 'Happy Napkin', '8pcs', 17.00, 80, 0, '2013-03-21'),
-(464, 'Akramont Marketing Corp.', 'Holidays Meat sauce', '380g', 39.00, 80, 0, '2013-03-21'),
-(465, 'Akramont Marketing Corp.', 'Huggies Pampers', '4m', 16.00, 80, 0, '2013-03-21'),
-(466, 'Akramont Marketing Corp.', 'Surf', 'Blue bar', 21.50, 80, 0, '2013-03-21'),
-(467, 'Akramont Marketing Corp.', 'Those Days Napkin', '8pcs', 20.00, 80, 0, '2013-03-21'),
-(468, 'Akramont Marketing Corp.', 'Tide', 'White bar', 20.00, 80, 0, '2013-03-21'),
-(469, 'Dranix Distributor Inc.', '555 Tuna Adobo Flavor', '155g', 22.00, 80, 0, '2013-03-21'),
-(470, 'Dranix Distributor Inc.', '555 Tuna Caldereta Flavor', '155g', 22.00, 80, 0, '2013-03-21'),
-(471, 'Dranix Distributor Inc.', '555 Tuna Mackarel in original flavor', '210g', 48.00, 26, 12, '2013-03-21'),
-(472, 'Dranix Distributor Inc.', '555 Tuna Mechada', '155g', 22.00, 80, 0, '2013-03-21'),
-(473, 'Dranix Distributor Inc.', 'Alpine Evaporated', '410ml', 27.00, 80, 0, '2013-03-21'),
-(474, 'Dranix Distributor Inc.', 'Angel Evaporada', '170g', 19.00, 80, 0, '2013-03-21'),
-(475, 'Dranix Distributor Inc.', 'AngelCondensed', '410ml', 40.00, 44, 8, '2013-03-21'),
-(476, 'Dranix Distributor Inc.', 'Argentina Beef Loaf', '150g', 16.50, 80, 0, '2013-03-21'),
-(477, 'Dranix Distributor Inc.', 'Argentina Corned beef', '210g', 46.00, 80, 0, '2013-03-21'),
-(478, 'Dranix Distributor Inc.', 'Argentina Meat Loaf', '155g', 34.00, 80, 0, '2013-03-21'),
-(479, 'Dranix Distributor Inc.', 'Argentina Meat Loaf', '210g', 29.00, 80, 0, '2013-03-21'),
-(480, 'Dranix Distributor Inc.', 'Autralian Karne Norte Corned beef', '380g', 38.00, 80, 0, '2013-03-21'),
-(481, 'Dranix Distributor Inc.', 'El rancho Corned beef', '155g', 26.00, 80, 0, '2013-03-21'),
-(482, 'Dranix Distributor Inc.', 'El rancho Corned beef', '155g', 16.50, 80, 0, '2013-03-21'),
-(483, 'Dranix Distributor Inc.', 'El rancho Corned beef', '155g', 21.00, 80, 0, '2013-03-21'),
-(484, 'Dranix Distributor Inc.', 'Fiesta Mechado', '210g', 47.00, 80, 0, '2013-03-21'),
-(485, 'Dranix Distributor Inc.', 'Jersey Condensed', '155g', 26.50, 80, 0, '2013-03-21'),
-(486, 'Dranix Distributor Inc.', 'Liberty Condensed', '410ml', 48.00, 80, 0, '2013-03-21'),
-(487, 'Dranix Distributor Inc.', 'Ligo Calmares', '390ml', 32.00, 80, 0, '2013-03-21'),
-(488, 'Dranix Distributor Inc.', 'Master Sardines Tomato ', '155g', 14.00, 80, 0, '2013-03-21'),
-(489, 'Dranix Distributor Inc.', 'Sardines Tomato ', '155g', 14.50, 80, 0, '2013-03-21'),
-(490, 'Dranix Distributor Inc.', 'Sardines Tomato Sauce', '210g', 36.00, 80, 0, '2013-03-21'),
-(491, 'Dranix Distributor Inc.', 'Winner Meat Loaf', '110g', 14.00, 80, 0, '2013-03-21'),
-(492, 'Dranix Distributor Inc.', 'Youngs Town Corned beef', '155g', 26.00, 80, 0, '2013-03-21'),
-(493, 'Dranix Distributor Inc.', 'Youngs Town Sardines Spicy', '155g', 14.50, 80, 0, '2013-03-21'),
-(494, 'Dranix Distributor Inc.', 'Youngs Town SardinesTomato Sauce', '155g', 14.50, 80, 0, '2013-03-21'),
-(495, 'Fast Distribution Corporation', 'Nestle Cofee Mate ', 'Sachet ', 84.00, 68, 12, '2013-03-21');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1024 ;
 
 -- --------------------------------------------------------
 
@@ -327,18 +246,7 @@ CREATE TABLE IF NOT EXISTS `tbl_stocks` (
   `fld_amount` int(11) NOT NULL,
   `fld_dateCreated` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
-
---
--- Dumping data for table `tbl_stocks`
---
-
-INSERT INTO `tbl_stocks` (`id`, `fld_productID`, `fld_invoiceID`, `fld_quantity`, `fld_amount`, `fld_dateCreated`) VALUES
-(16, 16, 1, 0, 6, '2013-03-21'),
-(17, 24, 1, 0, 4, '2013-03-21'),
-(18, 16, 1, 0, 6, '2013-03-21'),
-(19, 24, 1, 0, 4, '2013-03-21'),
-(20, 38, 1, 0, 12, '2013-03-21');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=225 ;
 
 -- --------------------------------------------------------
 
@@ -347,17 +255,11 @@ INSERT INTO `tbl_stocks` (`id`, `fld_productID`, `fld_invoiceID`, `fld_quantity`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_stockupdatelogs` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fld_dateCreated` date NOT NULL,
-  `fld_sold` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_stockupdatelogs`
---
-
-INSERT INTO `tbl_stockupdatelogs` (`id`, `fld_dateCreated`, `fld_sold`) VALUES
-(0, '2013-03-21', 32);
+  `fld_sold` int(11) NOT NULL,
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 -- --------------------------------------------------------
 

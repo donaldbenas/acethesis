@@ -99,6 +99,16 @@ class invoiceModel extends CI_Model
 	function delete(){
 		$this->db->where('id', $this->id);
 		$this->db->delete('tbl_invoices'); 
+		
+		$this->db->where('fld_invoiceID', $this->id);
+		$this->db->delete('tbl_invoiceitems'); 
+		
+		$this->db->where('fld_invoiceID', $this->id);
+		$this->db->delete('tbl_stocks'); 
+		
+		$this->db->where('fld_invoiceID', $this->id);
+		$this->db->delete('tbl_invoicereceipts'); 
+		
 	}
 	
 	function ordinaryload(){
@@ -131,15 +141,21 @@ class invoiceModel extends CI_Model
 		
 		$this->db->delete('tbl_stocks', array('fld_invoiceID' => $this->id)); 
 		
-		$this->db->select("*");
+		$this->db->select("tbl_invoiceItems.fld_productID AS fld_productID");
+		$this->db->select("tbl_products.fld_amount AS fld_quantity");
+		$this->db->select("tbl_invoiceItems.fld_invoiceID AS fld_invoiceID");
+		$this->db->select("tbl_invoiceItems.fld_productID AS fld_productQuantity");
 		$this->db->from("tbl_invoiceItems");
-		$this->db->where("fld_invoiceID",$this->id);
+		$this->db->where("tbl_invoiceItems.fld_invoiceID",$this->id);
+		$this->db->join("tbl_products","tbl_products.id=tbl_invoiceItems.fld_productID","left");
 		$query = $this->db->get();
+		echo  print_r($query->result());
 		foreach($query->result() as $rows){
 			$data = array();
 			$data = array(
 				"fld_productID" => $rows->fld_productID,
-				"fld_invoiceID" => $this-id,
+				"fld_invoiceID" => $rows->fld_invoiceID,
+				"fld_quantity" => $rows->fld_quantity,
 				"fld_amount" => $rows->fld_productQuantity,
 				"fld_dateCreated" => date("Y-m-d H:i:s")
 			);

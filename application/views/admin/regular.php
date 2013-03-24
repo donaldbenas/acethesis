@@ -62,6 +62,7 @@
 		  <div class="control-group">
 			<label class="control-label" for="invoiceID"></label>
 			<div class="controls">
+			  <a class="btn" onclick="javascript: parent.location.reload();"><i class="icon-backward"></i> Close</a>
 			  <button type="submit" class="btn btn-success" id="publish" href="<?php echo base_url()."transact/regular/save" ?>"><i class="icon-plus icon-white"></i> Save Transaction</button>
 			  <a class="btn btn-danger" href="<?php echo base_url()."transact/ordinary/" ?>"><i class="icon-remove icon-white"></i> Discard</a>
 			</div>
@@ -132,7 +133,6 @@
  <script>
 	$('form').submit(function(){
 		if($('select[name=customer]').val()!='0' && $('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
-			parent.location.reload();		
 			return true;	
 		}else{
 			$('#error-name').remove();

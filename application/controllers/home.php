@@ -11,6 +11,10 @@ class Home extends CI_Controller{
 		if($this->session->userdata('user_login_key')=="")
 			redirect(base_url()."login");
 		$this->nav['active'] = "home";
+		$this->load->model('usermodel');
+		$this->usermodel->id = $this->session->userdata('user_login_key');
+		$data = $this->usermodel->load();
+		$this->nav['previledge'] = $data[0]->fld_type;
 	}
 	
 	function index(){

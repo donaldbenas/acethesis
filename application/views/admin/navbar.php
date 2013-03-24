@@ -17,6 +17,7 @@
 			  
 			</ul>
 		  </li>
+		  <?php if($previledge=="owner"){ ?>
 		  <li class="dropdown <?php echo ($active == "report" ? "active" : "") ?>">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
 			<ul class="dropdown-menu">
@@ -24,10 +25,13 @@
 			  <li><a href="<?php echo base_url()."report/stock" ?>">Stock Inventory</a></li>
 			</ul>
 		  </li>
+		  <?php } ?>
 		  <li class="dropdown <?php echo ($active == "manage" ? "active" : "") ?>">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Management <b class="caret"></b></a>
-			<ul class="dropdown-menu">
+			<ul class="dropdown-menu">				
+			  <?php if($previledge=="owner"){ ?>
 			  <li><a href="<?php echo base_url()."manage/users" ?>">Users</a></li>
+			  <?php } ?>
 			  <li><a href="<?php echo base_url()."manage/customers" ?>">Customers</a></li>
 			  <li><a href="<?php echo base_url()."manage/suppliers" ?>">Suppliers</a></li>
 			</ul>

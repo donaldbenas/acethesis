@@ -15,6 +15,10 @@ class report extends CI_Controller
 		$this->nav['active'] = "report";
 		$this->nav['breadcrumbs'] = array(array("href" => base_url()."home", "label"=> "<i class=\"icon-home\"></i>"));
 		$this->head['datepicker'] = "true";
+		$this->load->model('usermodel');
+		$this->usermodel->id = $this->session->userdata('user_login_key');
+		$data = $this->usermodel->load();
+		$this->nav['previledge'] = $data[0]->fld_type;
 	}
 	
 	function index()
@@ -63,52 +67,47 @@ class report extends CI_Controller
 		$this->load->model('productmodel');	
 		$update = $this->reportmodel->stockupdateload();
 		if($update['count'] == '0'){
-			
+			$data['update'] = FALSE;	
 			if($this->input->post('update')!=""){
 				if($this->input->post('update')=='true'){
 					$this->reportmodel->stockupdate();		
 					redirect(base_url()."report/stock");
 				}	
 			}	
-			if($this->input->post("date")==date("Y-m-d")){
-				$data['update'] = FALSE;	
+			if($this->input->post('date')!="")
 				$this->reportmodel->date = $this->input->post('date');
-				$this->reportmodel->product = $this->input->post('productID');
-				$this->reportmodel->supplier = $this->input->post('supplierID');
-				$data['stocks'] = $this->reportmodel->stockload();
-				$data['date'] = $this->input->post('date');
-				$data['products'] = $this->productmodel->load();			
-				$data['supplierID'] = $this->input->post('supplierID');
-				$data['productID'] = $this->input->post('productID');
-				$data['suppliers'] = $this->productmodel->supplier();
-				$data['products'] = $this->productmodel->load();		
-				$this->load->view('admin/stock',$data);	
-			}else{
-				$data['update'] = TRUE;			
-				$this->reportmodel->date = $this->input->post('date');
-				$this->reportmodel->sold = "true";
-				$this->productmodel->date = $this->input->post('date');	
-				$this->productmodel->product = $this->input->post('productID');
-				$this->productmodel->supplier = $this->input->post('supplierID');
-				$data['date'] = $this->input->post('date');
-				$data['supplierID'] = $this->input->post('supplierID');
-				$data['productID'] = $this->input->post('productID');
-				$data['stocks'] = $this->productmodel->stockproductload();	
-				$data['suppliers'] = $this->productmodel->supplier();
-				$data['products'] = $this->productmodel->load();			
-				$this->load->view('admin/stock-list',$data);
-			}
-		}else{					
-			$this->reportmodel->date = $this->input->post('date');
-			$this->reportmodel->sold = "true";
-			if( $update['sold'] != $this->reportmodel->stockload())
-				$data['update'] = TRUE;
 			else
-				$data['update'] = FALSE;
-			$this->productmodel->date = $this->input->post('date');	
+				$this->reportmodel->date = date("Y-m-d");
+			$this->reportmodel->product = $this->input->post('productID');
+			$this->reportmodel->supplier = $this->input->post('supplierID');
+			$data['stocks'] = $this->reportmodel->stockload();
+			if($this->input->post('date')!="")
+				$data['date'] = $this->input->post('date');
+			else
+				$data['date'] = date("Y-m-d");
+			$data['products'] = $this->productmodel->load();			
+			$data['supplierID'] = $this->input->post('supplierID');
+			$data['productID'] = $this->input->post('productID');
+			$data['suppliers'] = $this->productmodel->supplier();
+			$data['products'] = $this->productmodel->load();		
+			$this->load->view('admin/stock',$data);	
+		}else{		
+			$data['update'] = TRUE;		
+			if($this->input->post('date')!="")
+				$this->reportmodel->date = $this->input->post('date');
+			else
+				$this->reportmodel->date = date("Y-m-d");
+			$this->reportmodel->sold = "true";
+			if($this->input->post('date')!="")
+				$this->productmodel->date = $this->input->post('date');	
+			else
+				$this->productmodel->date = date("Y-m-d");
 			$this->productmodel->product = $this->input->post('productID');
 			$this->productmodel->supplier = $this->input->post('supplierID');
-			$data['date'] = $this->input->post('date');
+			if($this->input->post('date')!="")
+				$data['date'] = $this->input->post('date');
+			else
+				$data['date'] = date("Y-m-d");
 			$data['supplierID'] = $this->input->post('supplierID');
 			$data['productID'] = $this->input->post('productID');
 			$data['stocks'] = $this->productmodel->stockproductload();	
@@ -116,9 +115,6 @@ class report extends CI_Controller
 			$data['products'] = $this->productmodel->load();			
 			$this->load->view('admin/stock-list',$data);	
 		}		
-		if($page=="save"){
-			
-		}
 		
 		$this->load->view('admin/footer');
 	}
@@ -140,6 +136,41 @@ class report extends CI_Controller
 		$this->dompdf->load_html($html);
 		$this->dompdf->render();
 		$this->dompdf->stream("daily-reports.pdf");
+
+	}
+	
+	function sdompdf(){	
+		$this->load->model('reportmodel');
+		$this->load->model('productmodel');
+		if($this->input->post('date')!=""){
+			if($this->input->post('date')!="")
+				$this->reportmodel->date = $this->input->post('date');
+			else
+				$this->reportmodel->date = date("Y-m-d");
+			$this->reportmodel->sold = "true";
+			if($this->input->post('date')!="")
+				$this->productmodel->date = $this->input->post('date');	
+			else
+				$this->productmodel->date = date("Y-m-d");
+			$this->productmodel->product = $this->input->post('productID');
+			$this->productmodel->supplier = $this->input->post('supplierID');
+			if($this->input->post('date')!="")
+				$data['date'] = $this->input->post('date');
+			else
+				$data['date'] = date("Y-m-d");
+			$data['supplierID'] = $this->input->post('supplierID');
+			$data['productID'] = $this->input->post('productID');
+			$data['stocks'] = $this->productmodel->stockproductload();	
+			$data['suppliers'] = $this->productmodel->supplier();
+			$data['products'] = $this->productmodel->load();
+		}
+		$data['customers'] = $this->reportmodel->customerload();
+		$this->load->view('admin/stock-pdf', $data);
+		$html = $this->output->get_output();
+		
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("stock-reports.pdf");
 
 	}
 }

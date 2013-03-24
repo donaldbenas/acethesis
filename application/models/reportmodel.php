@@ -131,7 +131,7 @@ class reportModel extends CI_Model
 		$query = $this->db->get();
 		if($query->num_rows()!='0'){
 			$rr = $query->result();
-			$data = array("count"=>$query->num_rows(),"sold"=> $rr[0]->fld_sold);
+			$data = array("count"=>$query->num_rows(),"sold"=> $rr[0]->fld_sold,"date"=>$rr[0]->fld_dateCreated);
 			return $data;
 		}else{
 			$data = array("count"=>$query->num_rows());

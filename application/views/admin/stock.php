@@ -17,7 +17,7 @@
 	}
 	?>
   </select>
-  <select name="productID">
+  <select name="productID" style="display:none">
 	<option value="0" <?php if(!empty($productID)) echo "selected" ?>>Product Names</option>
 	<?php 
 	if(!empty($products)){
@@ -36,26 +36,10 @@
   <input type="text" name="date" style="width:170px;text-align:center;cursor:pointer" readonly class="inputDate" id="prependedInput" value="<?php if(!empty($date)) echo $date; else echo date('Y-m-d'); ?>" placeholder="Date Range">
   <button type="submit" class="btn"><i class="icon-filter"></i> Filter</button>
   <div class="btn-group pull-right">
-    <button type="button" id="prependedInput"  onclick="javascript: $('#pdf').submit();" class="btn btn-primary"><i class="icon-download-alt icon-white"></i> Download</button>
-    <button type="button" id="prependedInput"  onclick="javascript: $('#updatestock').submit();" class="btn btn-primary"  <?php if($update){ echo "disabled"; }?>><i class="icon-refresh icon-white"></i> Update Stock</button>
+    <button type="button" id="prependedInput"  onclick="javascript: $('#pdf').submit();" class="btn btn-primary" disabled><i class="icon-download-alt icon-white"></i> Download</button>
+    <button type="button" id="prependedInput"  onclick="javascript: $('#updatestock').submit();" class="btn btn-primary"  <?php if($update){ echo "disabled"; }?>><i class="icon-refresh icon-white"></i> Stock Out-of-date</button>
   </div>
   
-</form>
-<form class="form-inline" method="post" id="pdf" style="display:none" action="<?php echo base_url()."report/dompdf" ?>">
-  <label>Sort By:  </label>
-  <select name="type">
-	<option value="0" <?php if(!empty($type)) if($type=='0') echo "selected" ?>>Customer Types</option>
-	<option value="ordinary" <?php if(!empty($type)) if($type=='ordinary') echo "selected" ?>>Ordinary Customer</option>
-	<option value="regular" <?php if(!empty($type)) if($type=='regular') echo "selected" ?>>Regular Customer</option>
-  </select>
-  <select name="status">
-	<option value="0" <?php if(!empty($status)) if($status=='0') echo "selected" ?>>Customer Status</option>
-	<option value="paid" <?php if(!empty($status)) if($status=='paid') echo "selected" ?>>Paid Customer</option>
-	<option value="unpaid" <?php if(!empty($status)) if($status=='unpaid') echo "selected" ?>>Unpaid Customer</option>
-  </select>
-	<input type="text" name="date" style="width:170px;text-align:center" readonly class="inputDate" id="prependedInput" value="<?php if(!empty($before)&&!empty($after) ) echo $before." ~ ".$after; else echo date('Y-m-d')." ~ ".date("Y-m-d"); ?>" placeholder="Date Range">
-  <button type="submit" class="btn"><i class="icon-filter"></i> Filter</button>
-  <a href="<?php echo base_url()."report/dompdf" ?>" class="btn pull-right">Download PDF</a>
 </form>
 <form method="post" action="<?php echo base_url()."report/stock" ?>" id="updatestock">
 <input type="hidden" name="update" value="true">

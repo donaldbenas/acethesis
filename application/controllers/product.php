@@ -16,6 +16,10 @@ class Product extends CI_Controller
 		$this->nav['active'] = "product";
 		//bredcrumbs home
 		$this->nav['breadcrumbs'] = array(array("href" => base_url()."home", "label"=> "<i class=\"icon-home\"></i>"));
+		$this->load->model('usermodel');
+		$this->usermodel->id = $this->session->userdata('user_login_key');
+		$data = $this->usermodel->load();
+		$this->nav['previledge'] = $data[0]->fld_type;
 	}
 	
 	function index()

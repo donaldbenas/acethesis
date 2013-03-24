@@ -15,6 +15,10 @@ class Transact extends CI_Controller
 			redirect(base_url()."login");
 		$this->nav['active'] = "transact";
 		$this->nav['breadcrumbs'] = array(array("href" => base_url()."home", "label"=> "<i class=\"icon-home\"></i>"));
+		$this->load->model('usermodel');
+		$this->usermodel->id = $this->session->userdata('user_login_key');
+		$data = $this->usermodel->load();
+		$this->nav['previledge'] = $data[0]->fld_type;
 	}
 	
 	function index()
@@ -60,6 +64,11 @@ class Transact extends CI_Controller
 						$this->load->view('admin/navbar',$this->nav);
 						$data['invoices'] = $this->invoicemodel->ordinaryload();
 						$this->load->view('admin/ordinary-list',$data);
+						break;
+			case "delete"	:
+						$this->invoicemodel->id = $this->uri->segment(4);
+						$this->invoicemodel->delete();
+						redirect(base_url()."transact/ordinary/list");
 						break;
 			case "invoice"	:
 						$data['company'] = $this->suppliermodel->loadCompanyName();
@@ -148,6 +157,11 @@ class Transact extends CI_Controller
 						$this->invoicemodel->save();
 						$this->invoicemodel->stock();
 						redirect(base_url()."transact/regular/edit/".$this->input->post('id'));
+						break;
+			case "delete"	:
+						$this->invoicemodel->id = $this->uri->segment(4);
+						$this->invoicemodel->delete();
+						redirect(base_url()."transact/regular");
 						break;
 			case "invoice"	:
 						$data['company'] = $this->suppliermodel->loadCompanyName();

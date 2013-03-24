@@ -17,7 +17,7 @@
 	}
 	?>
   </select>
-  <select name="productID">
+  <select name="productID" style="display:none">
 	<option value="0" <?php if(!empty($productID)) echo "selected" ?>>Product Names</option>
 	<?php 
 	if(!empty($products)){
@@ -37,10 +37,44 @@
   <button type="submit" class="btn"><i class="icon-filter"></i> Filter</button>
   <div class="btn-group pull-right">
     <button type="button" id="prependedInput"  onclick="javascript: $('#pdf').submit();" class="btn btn-primary"><i class="icon-download-alt icon-white"></i> Download</button>
-    <button type="button" id="prependedInput"  onclick="javascript: $('#updatestock').submit();" class="btn btn-primary" <?php if($update){ echo "disabled"; }?>><i class="icon-refresh icon-white"></i> Update Stock</button>
-	
+    <button type="button" id="prependedInput"  onclick="javascript: $('#updatestock').submit();" class="btn btn-primary" <?php if($update){ echo "disabled"; }?>><i class="icon-refresh icon-white"></i>  <?php if($update) echo "Stock Up-to-date"; else echo "Stock Out-of-date"; ?></button>
   </div>
-  
+</form>
+<form class="form-inline" method="post" id="pdf" style="display:none" action="<?php echo base_url()."report/sdompdf" ?>">
+  <label>Sort By:  </label>
+  <select name="supplierID">
+	<option value="0" <?php if(!empty($supplierID)) echo "selected" ?>>Supplier Names</option>
+	<?php 
+	if(!empty($suppliers)){
+		foreach($suppliers as $rows){
+			if($supplierID == $rows->fld_name){
+	?>
+	<option value="<?php echo $rows->fld_name ?>" selected><?php echo $rows->fld_name ?></option>
+	<?php 	}else{?>
+	<option value="<?php echo $rows->fld_name ?>" ><?php echo $rows->fld_name ?></option>
+	<?php 
+			}
+		}
+	}
+	?>
+  </select>
+  <select name="productID">
+	<option value="0" <?php if(!empty($productID)) echo "selected" ?>>Product Names</option>
+	<?php 
+	if(!empty($products)){
+		foreach($products as $rows){
+			if($productID == $rows->fld_name){
+	?>
+	<option value="<?php echo $rows->fld_name ?>" selected><?php echo $rows->fld_name ?></option>
+	<?php 	}else{?>
+	<option value="<?php echo $rows->fld_name ?>" ><?php echo $rows->fld_name ?></option>
+	<?php 
+			}
+		}
+	}
+	?>
+  </select>
+  <input type="text" name="date" style="width:170px;text-align:center;cursor:pointer" readonly class="inputDate" id="prependedInput" value="<?php if(!empty($date)) echo $date; else echo date('Y-m-d'); ?>" placeholder="Date Range">
 </form>
 <form method="post" action="<?php echo base_url()."report/stock" ?>" id="updatestock">
 <input type="hidden" name="update" value="true">
