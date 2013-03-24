@@ -1,3 +1,8 @@
+<style>
+@media screen and (min-width: 980px) {
+	body { padding-top: 0px; }
+}
+</style>
 <form class="form-horizontal" method="post" action="<?php echo base_url()."transact/regular/save" ?>">
 	<fieldset>
 	  <div>
@@ -25,6 +30,12 @@
 			</div>
 		  </div>
 		  <div class="control-group">
+			<label class="control-label" for="invoiceID">OR Number</label>
+			<div class="controls">
+			  <input type="text" name="ornumber" id="ornum" readonly placeholder="OR Number" value="<?php if(!empty($invoiceReceipts[0]->fld_orNumber)) echo $invoiceReceipts[0]->fld_orNumber; else echo sprintf('%08d',$invoices['0']->id); ?>">
+			</div>
+		  </div>
+		  <div class="control-group">
 			<label class="control-label" for="due">Due In</label>
 			<div class="controls">
 				<?php 
@@ -48,16 +59,10 @@
 			  <input type="text" id="paid" name="paid" placeholder="Ammount Paid" value="<?php echo $invoiceReceipts[0]->fld_paid ?>">
 			</div>
 		  </div>
-		   <div class="control-group">
-			<label class="control-label" for="invoiceID">OR Number</label>
-			<div class="controls">
-			  <input type="text" name="ornumber" placeholder="OR Number" value="<?php echo $invoiceReceipts[0]->fld_orNumber ?>">
-			</div>
-		  </div>
 		  <div class="control-group">
 			<label class="control-label" for="invoiceID"></label>
 			<div class="controls">
-			  <button type="submit" class="btn btn-success" id="ornum" href="<?php echo base_url()."transact/regular/save" ?>"><i class="icon-plus icon-white"></i> Save</button>
+			  <button type="submit" class="btn btn-success" id="publish" href="<?php echo base_url()."transact/regular/save" ?>"><i class="icon-plus icon-white"></i> Save</button>
 			  <a class="btn" href="<?php echo base_url()."transact/regular" ?>"><i class="icon-backward"></i> Back</a>
 			</div>
 		  </div>
@@ -109,6 +114,7 @@
  <script>
 	$('form').submit(function(){
 		if($('select[name=customer]').val()!='0' && $('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
+			parent.location.reload();		
 			return true;	
 		}else{
 			$('#error-name').remove();

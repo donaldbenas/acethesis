@@ -14,12 +14,22 @@
 	<script src="<?php echo base_url()."js/jquery-1.9.0.js"; ?>"></script>
 	<script src="<?php echo base_url()."js/jquery-ui-1.10.0.custom.min.js"; ?>"></script>
 	<script src="<?php echo base_url()."js/bootstrap.min.js"; ?>"></script>
+	<?php if(!empty($datepicker)&&$datepicker=="true"){?>
 	<script src="<?php echo base_url()."js/datepicker.jquery.js"; ?>"></script>
 	<script src="<?php echo base_url()."js/datepicker.js"; ?>"></script>
+	<?php } ?>
 	<style>
 	@media screen and (min-width: 980px) {
 		body { padding-top: 60px; }
 	}
+	#frame{
+		min-height: 750px;
+	}
 	</style>
+	<script language="javascript" type="text/javascript">
+	  function resizeIframe(obj) {
+		obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+	  }
+	</script>
 </head>
 <body>

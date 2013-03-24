@@ -1,11 +1,22 @@
+<style>
+@media screen and (min-width: 980px) {
+	body { padding-top: 0px; }
+}
+</style>
 <form class="form-horizontal" method="post" action="<?php echo base_url()."transact/ordinary/save" ?>">
   <fieldset>
 	  <div>
-		  <legend>Invoice Details</legend>
+		  <legend>Transaction Details</legend>
 		  <div class="control-group">
 			<label class="control-label" for="invoiceID">Invoice ID:</label>
 			<div class="controls">
 			  <input type="text" id="id" readonly name="invoiceID" placeholder="invoice number" value="<?php echo date("Y")."-".date("m")."-".sprintf('%06d',$invoices['0']->id); ?>">
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="invoiceID">OR Number</label>
+			<div class="controls">
+			  <input type="text" name="ornumber" id="ornum" readonly placeholder="OR Number" value="<?php if(!empty($invoiceReceipts[0]->fld_orNumber)) echo $invoiceReceipts[0]->fld_orNumber; else echo sprintf('%08d',$invoices['0']->id); ?>">
 			</div>
 		  </div>
 		  <div class="control-group">
@@ -15,22 +26,16 @@
 			</div>
 		  </div>
 		  <div class="control-group">
-			<label class="control-label" for="invoiceID">OR Number</label>
-			<div class="controls">
-			  <input type="text" name="ornumber" id="ornum" placeholder="OR Number" value="<?php echo $invoiceReceipts[0]->fld_orNumber ?>">
-			</div>
-		  </div>
-		  <div class="control-group">
 			<label class="control-label" for="invoiceID"></label>
 			<div class="controls">
-			  <button type="submit" class="btn btn-success" id="ornum" href="<?php echo base_url()."transact/ordinary/save" ?>"><i class="icon-plus icon-white"></i> Save</button>
-			  <a class="btn" href="<?php echo base_url()."transact/ordinary/list" ?>"><i class="icon-backward"></i> Back</a>
+			  <button type="submit" class="btn btn-success" id="publish" href="<?php echo base_url()."transact/ordinary/save" ?>"><i class="icon-plus icon-white"></i> Save Transaction</button>
+			  <a class="btn btn-danger" href="<?php echo base_url()."transact/ordinary/" ?>"><i class="icon-remove icon-white"></i> Discard</a>
 			</div>
 		  </div>
 	  </div>
 	  <br>
 	  <div>
-	  <legend>Invoice Items</legend>
+	  <legend>Transaction Items</legend>
 	  <table class="table table-hover table-striped table-bordered">
 	  <thead>
 		<tr>
@@ -65,11 +70,16 @@
 			<td><b>PHP <?php echo number_format($subtotal, 2, '.', ''); ?></b></td>
 			<td></td>
 		</tr>
+		<tr class="warning">
+			<td colspan="4"><span class="pull-right"><?php if(($invoiceReceipts[0]->fld_paid -$subtotal)>=0) echo "<b>Change</b>"; else echo "<b>Remaining Balance</b>";?></span></td>
+			<td><b>PHP <?php if(!empty($invoiceReceipts[0]->fld_paid)) echo number_format(ABS($invoiceReceipts[0]->fld_paid -$subtotal), 2, '.', ''); else echo "0.00"; ?></b></td>
+			<td></td>
+		</tr>
 	</table>
 	</div>
 	<input type="hidden" value="<?php echo number_format($subtotal, 2, '.', ''); ?>" name="price">
 	<input type="hidden" value="ordinary" name="type">
-	<input type="hidden" value="<?php echo $this->uri->segment(4); ?>" name="id">
+	<input type="hidden" value="<?php echo $this->uri->segment(4); ?>" name="id" id="invoiceID">
   </fieldset> 
 </form>
 <div id="mymodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -86,30 +96,29 @@
   </div>
 </div>
  <script>
-	$(this).ready(function(){
-		$('form').submit(function(){
-			if($('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
-				return true;	
-			}else{
-				$('#error-paid').remove();
-				if($('input[name=paid]').val()==""){
-					$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"error-paid\" class=\"help-inline red\"style=\"display:none\">Required amount paid!</span>");
-					$('#error-paid').fadeIn();
-				}
-				$('#isnan').remove();
-				if(isNaN($('input[name=paid]').val())){
-					$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"isnan\" class=\"help-inline red\"style=\"display:none\">Required numeric input!</span>");
-					$('#isnan').fadeIn();
-				}
-				return false;
+	$('form').submit(function(){
+		if($('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){	
+			parent.location.reload();		
+			return true;
+		}else{
+			$('#error-paid').remove();
+			if($('input[name=paid]').val()==""){
+				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"error-paid\" class=\"help-inline red\"style=\"display:none\">Required amount paid!</span>");
+				$('#error-paid').fadeIn();
 			}
-		});
-		$('#submit-product').click(function(){		
-			$("#frame").contents().find("#myform").submit();
-		});
-		$('#mymodal').bind('hidden', function (event) {
+			$('#isnan').remove();
+			if(isNaN($('input[name=paid]').val())){
+				$('input[name=paid]').after("&nbsp;&nbsp;&nbsp;<span id=\"isnan\" class=\"help-inline red\"style=\"display:none\">Required numeric input!</span>");
+				$('#isnan').fadeIn();
+			}
+			return false;
+		}
+	});
+	$('#submit-product').click(function(){		
+		$("#frame").contents().find("#myform").submit();
+	}); 
+	$('#mymodal').bind('hide', function () {
 			location.reload(true);
-		});
 	});
 	function submitpage(html){
 		$('#frame').attr('src',html);

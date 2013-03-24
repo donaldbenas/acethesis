@@ -39,12 +39,6 @@ class Transact extends CI_Controller
 		switch($page){
 			
 			case "edit"	:
-						array_push($this->nav['breadcrumbs'],
-								array("href" => base_url()."transact", "label"=> "Transaction"),
-								array("href" =>  base_url()."transact/ordinary/list", "label"=> "Ordinary Customer"),
-								array("href" => "", "label"=> "Add Ordinary Customer")
-						);
-						$this->load->view('admin/navbar',$this->nav);
 						$this->invoicemodel->id = $this->uri->segment(4);
 						$data['invoices'] = $this->invoicemodel->load();
 						$this->invoiceitemmodel->invoiceID = $this->invoicemodel->id;
@@ -56,7 +50,7 @@ class Transact extends CI_Controller
 						$this->invoicemodel->id = $this->input->post('id');
 						$this->invoicemodel->save();
 						$this->invoicemodel->stock();
-						redirect(base_url()."transact/ordinary/list");
+						redirect(base_url()."transact/ordinary/edit/".$this->input->post('id'));
 						break;
 			case "list"	:
 						array_push($this->nav['breadcrumbs'],
@@ -145,12 +139,6 @@ class Transact extends CI_Controller
 						redirect(base_url()."transact/regular/edit/".$data['invoices']['0']->id);
 						break;			
 			case "edit"	:
-						array_push($this->nav['breadcrumbs'],
-								array("href" => base_url()."transact", "label"=> "Transaction"),
-								array("href" =>  base_url()."transact/regular", "label"=> "Regular Customer"),
-								array("href" => "", "label"=> "Add Regular Customer")
-						);
-						$this->load->view('admin/navbar',$this->nav);
 						$this->customermodel->status = "regular";
 						$data['customers'] = $this->customermodel->load();
 						$this->invoicemodel->id = $this->uri->segment(4);
@@ -164,18 +152,11 @@ class Transact extends CI_Controller
 						$this->invoicemodel->id = $this->input->post('id');
 						$this->invoicemodel->save();
 						$this->invoicemodel->stock();
-						redirect(base_url()."transact/regular");
+						redirect(base_url()."transact/regular/edit/".$this->input->post('id'));
 						break;
 			case "invoice"	:
-						array_push($this->nav['breadcrumbs'],
-								array("href" => base_url()."transact", "label"=> "Transaction"),
-								array("href" => base_url()."transact/regular", "label"=> "Regular Customer"),
-								array("href" => base_url()."transact/regular/edit/".$this->uri->segment(5), "label"=> "Add Regular Customer")
-						);
 						$data['company'] = $this->suppliermodel->loadCompanyName();
 						if($this->uri->segment(4)=='add'){
-						array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Add Invoice Item"));
-							$this->load->view('admin/navbar',$this->nav);
 							if($this->uri->segment(6)!="")
 								$this->productmodel->company = $this->uri->segment(6);
 							$data['product'] = $this->productmodel->load();						
@@ -184,8 +165,6 @@ class Transact extends CI_Controller
 							$data['details'] = $this->productmodel->load();
 							$this->load->view('admin/invoice-add',$data);
 						}elseif($this->uri->segment(4)=='edit'){
-						array_push($this->nav['breadcrumbs'],array("href" => "", "label"=> "Edit Invoice Item"));
-							$this->load->view('admin/navbar',$this->nav);
 							if($this->uri->segment(6)!="")
 								$this->productmodel->company = $this->uri->segment(6);
 							$data['product'] = $this->productmodel->load();						

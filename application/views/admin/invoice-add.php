@@ -1,3 +1,8 @@
+<style>
+@media screen and (min-width: 980px) {
+	body { padding-top: 0px; }
+}
+</style>
 <form id="myform" class="form-horizontal" method="post" action="<?php echo base_url()."transact/".$this->uri->segment(2)."/invoice/save"?>">
   <input type="text" name="invoice" value="<?php echo $this->uri->segment(5)?>" style="display:none">
   <input type="text" name="invoiceitemID" value="" style="display:none">
@@ -7,7 +12,7 @@
     <label class="control-label" for="inputEmail">Supplier</label>
     <div class="controls">
 		<select name="company" id="comp">
-			<option value="0">Choose</option>
+			<option value="0">All</option>
 		<?php foreach($company as $rows){ 
 			if($rows->id == $this->uri->segment(6)){
 		?>

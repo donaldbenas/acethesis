@@ -70,7 +70,7 @@
 		<th>PRICE</th>
 		<th>QUANTITY</th>
 		<th>SOLD</th>
-		<th>AMOUNT</th>
+		<th>STOCK-ON-HAND</th>
     </tr>
   </thead>
   <tbody>

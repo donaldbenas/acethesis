@@ -14,11 +14,12 @@ class report extends CI_Controller
 			redirect(base_url()."login");
 		$this->nav['active'] = "report";
 		$this->nav['breadcrumbs'] = array(array("href" => base_url()."home", "label"=> "<i class=\"icon-home\"></i>"));
+		$this->head['datepicker'] = "true";
 	}
 	
 	function index()
 	{		
-		$this->load->view('admin/header');
+		$this->load->view('admin/header',$this->head);
 		array_push($this->nav['breadcrumbs'],
 				array("href" => "", "label"=> "Reports")
 		);
@@ -29,7 +30,7 @@ class report extends CI_Controller
 	
 	function daily()
 	{		
-		$this->load->view('admin/header');
+		$this->load->view('admin/header',$this->head);
 		array_push($this->nav['breadcrumbs'],
 				array("href" => base_url()."report", "label"=> "Reports"),
 				array("href" => "", "label"=> "Daily Sales")
@@ -51,7 +52,7 @@ class report extends CI_Controller
 	
 	function stock($page="")
 	{		
-		$this->load->view('admin/header');
+		$this->load->view('admin/header',$this->head);
 		array_push($this->nav['breadcrumbs'],
 				array("href" => base_url()."report", "label"=> "Reports"),
 				array("href" => "", "label"=> "Stock Invetory")
