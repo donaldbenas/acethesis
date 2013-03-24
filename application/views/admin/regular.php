@@ -62,8 +62,8 @@
 		  <div class="control-group">
 			<label class="control-label" for="invoiceID"></label>
 			<div class="controls">
-			  <button type="submit" class="btn btn-success" id="publish" href="<?php echo base_url()."transact/regular/save" ?>"><i class="icon-plus icon-white"></i> Save</button>
-			  <a class="btn" href="<?php echo base_url()."transact/regular" ?>"><i class="icon-backward"></i> Back</a>
+			  <button type="submit" class="btn btn-success" id="publish" href="<?php echo base_url()."transact/regular/save" ?>"><i class="icon-plus icon-white"></i> Save Transaction</button>
+			  <a class="btn btn-danger" href="<?php echo base_url()."transact/ordinary/" ?>"><i class="icon-remove icon-white"></i> Discard</a>
 			</div>
 		  </div>
 	  </div>
@@ -78,7 +78,7 @@
 			<th>DESCRIPTION</th>
 			<th>PRICE</th>
 			<th>TOTAL</th>
-			<th width="200px"><a class="btn" href="<?php echo base_url()."transact/regular/invoice/add/".$this->uri->segment(4)."/0/0" ?>"><i class="icon-plus"></i> Add Item</a></th>
+			<th width="200px"><a  href="#mymodal" role="button" class="btn" data-toggle="modal" onclick="javascript: submitpage('<?php echo base_url()."transact/regular/invoice/add/".$this->uri->segment(4)."/0/0"; ?>')"><i class="icon-plus"></i> Add Item</a></th>
 		</tr>
 	  </thead>
 		<?php 
@@ -92,7 +92,7 @@
 			<td>PHP <?php echo $rows->fld_productPrice ?></td>
 			<td>PHP <?php $total = $rows->fld_productQuantity*$rows->fld_productPrice; echo number_format(($total), 2, '.', ''); ?></td>
 			<td>		
-			 <a class="btn btn-primary" href="<?php echo base_url()."transact/regular/invoice/edit/".$this->uri->segment(4)."/".$rows->fld_productCompanyID."/".$rows->fld_productID."/".$rows->fld_productName."/".$rows->id ?>"><i class="icon-pencil icon-white"></i> Edit</a>
+			 <a class="btn btn-primary" href="#mymodal" role="button" data-toggle="modal" onclick="javascript: submitpage('<?php echo base_url()."transact/regular/invoice/edit/".$this->uri->segment(4)."/".$rows->fld_productCompanyID."/".$rows->fld_productID."/".$rows->fld_productName."/".$rows->id ?>')"><i class="icon-pencil icon-white"></i> Edit</a>
 			 <a class="btn btn-danger" href="#"><i class="icon-trash icon-white"></i> Delete</a>
 			</td>
 		</tr>
@@ -104,6 +104,11 @@
 			<td><b>PHP <?php echo number_format($subtotal, 2, '.', ''); ?></b></td>
 			<td></td>
 		</tr>
+		<tr class="warning">
+			<td colspan="4"><span class="pull-right"><?php if(($invoiceReceipts[0]->fld_paid -$subtotal)>=0) echo "<b>Change</b>"; else echo "<b>Remaining Balance</b>";?></span></td>
+			<td><b>PHP <?php if(!empty($invoiceReceipts[0]->fld_paid)) echo number_format(ABS($invoiceReceipts[0]->fld_paid -$subtotal), 2, '.', ''); else echo "0.00"; ?></b></td>
+			<td></td>
+		</tr>
 	</table>
 	</div>
 	<input type="hidden" value="<?php echo number_format($subtotal, 2, '.', ''); ?>" name="price">
@@ -111,6 +116,19 @@
 	<input type="hidden" value="<?php echo $this->uri->segment(4); ?>" name="id">
   </fieldset>
 </form>
+<div id="mymodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Item Product</h3>
+  </div>
+  <div class="modal-body">
+    <p><iframe id="frame" class="frame-invoice" width="100%" scrolling="no" frameborder=0 ALLOWTRANSPARENCY="true" src=""></iframe></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true" id="close-product">Close</button>
+    <button class="btn btn-primary" id="submit-product">Save changes</button>
+  </div>
+</div>
  <script>
 	$('form').submit(function(){
 		if($('select[name=customer]').val()!='0' && $('input[name=paid]').val()!=""&&!isNaN($('input[name=paid]').val())){		
@@ -135,4 +153,13 @@
 			return false;
 		}
 	});
+	$('#submit-product').click(function(){		
+		$("#frame").contents().find("#myform").submit();
+	}); 
+	$('#mymodal').bind('hide', function () {
+			location.reload(true);
+	});
+	function submitpage(html){
+		$('#frame').attr('src',html);
+	}
  </script>

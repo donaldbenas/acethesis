@@ -22,8 +22,11 @@
 	@media screen and (min-width: 980px) {
 		body { padding-top: 60px; }
 	}
-	#frame{
+	.frame-list{
 		min-height: 750px;
+	}
+	.frame-invoice{
+		min-height: 450px;
 	}
 	</style>
 	<script language="javascript" type="text/javascript">

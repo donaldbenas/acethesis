@@ -37,14 +37,15 @@ class report extends CI_Controller
 		);
 		$this->load->view('admin/navbar',$this->nav);
 		$this->load->model('reportmodel');
-		if($this->input->post('date')!=""){
+		if($this->input->post('date')!="")
 			$this->reportmodel->date = $this->input->post('date');
-			$this->reportmodel->type = $this->input->post('type');
-			$this->reportmodel->status = $this->input->post('status');
-			$data['date'] = $this->input->post('date');
-			$data['type'] = $this->input->post('type');
-			$data['status'] = $this->input->post('status');
-		}
+		else
+			$this->reportmodel->date = date("Y-m-d");
+		$this->reportmodel->type = $this->input->post('type');
+		$this->reportmodel->status = $this->input->post('status');
+		$data['date'] = $this->input->post('date');
+		$data['type'] = $this->input->post('type');
+		$data['status'] = $this->input->post('status');
 		$data['customers'] = $this->reportmodel->customerload();
 		$this->load->view('admin/daily', $data);
 		$this->load->view('admin/footer');

@@ -30,7 +30,7 @@
 		</table>
 	</div>
 	<div class="pull-right span8">
-		<iframe id='frame' src="" width="100%" frameborder=0 allowtransparency="true" onload='javascript:resizeIframe(this);'>
+		<iframe id="frame" class="frame-list" src="" width="100%" frameborder=0 allowtransparency="true" onload='javascript:resizeIframe(this);'>
 		</iframe>
 	</div>
 </div>

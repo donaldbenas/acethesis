@@ -88,7 +88,7 @@
     <h3 id="myModalLabel">Item Product</h3>
   </div>
   <div class="modal-body">
-    <p><iframe id="frame" width="100%" height="100%" scrolling="no" frameborder=0 ALLOWTRANSPARENCY="true" src=""></iframe></p>
+    <p><iframe id="frame" class="frame-invoice" width="100%" scrolling="no" frameborder=0 ALLOWTRANSPARENCY="true" src=""></iframe></p>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true" id="close-product">Close</button>

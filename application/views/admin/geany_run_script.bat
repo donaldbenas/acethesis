@@ -1,4 +1,4 @@
-php "daily-pdf.php"
+php "invoice-edit.php"
 
 pause
 del "%0"
