@@ -13,9 +13,11 @@
 				<select name="customer" required data-toggle="tooltip" data-title="Required Customer Name" data-placement="right" data-trigger="manual">
 					<option value='0'>Choose</option>
 					<?php 
+						$fullName = "";
+						$address = "";
 						if(!empty($customers)){
 							foreach($customers as $rows){
-								if($rows->id==$invoices[0]->fld_customerID ) $select="selected"; else $select="";
+								if($rows->id==$invoices[0]->fld_customerID ) { $select="selected"; $fullName = $rows->fld_lastname.", ".$rows->fld_firstname; $address = $rows->fld_address;  } else $select="";
 									echo "<option value=\"".$rows->id."\" ".$select.">".$rows->fld_lastname.", ".$rows->fld_firstname."</option>";
 							}
 						}
@@ -64,7 +66,7 @@
 			<div class="controls">
 			  <a class="btn" onclick="javascript: parent.location.reload();"><i class="icon-backward"></i> Close</a>
 			  <button type="submit" class="btn btn-success" id="publish" href="<?php echo base_url()."transact/regular/save" ?>"><i class="icon-plus icon-white"></i> Save Transaction</button>
-			  <a class="btn btn-danger" href="<?php echo base_url()."transact/ordinary/" ?>"><i class="icon-remove icon-white"></i> Discard</a>
+			  <button type="button" class="btn btn-primary"  onclick="printDiv('printableArea')" <?php if($invoiceReceipts[0]->fld_paid=="") echo "disabled" ?> ><i class="icon-print icon-white"></i> Print</b>
 			</div>
 		  </div>
 	  </div>
@@ -162,4 +164,101 @@
 	function submitpage(html){
 		$('#frame').attr('src',html);
 	}
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+		document.body.innerHTML = printContents;
+		window.print();
+		document.body.innerHTML = originalContents;
+	}
  </script>
+
+<div id="printableArea" style="display:none">
+	<style>
+		@media print{	
+			body{
+			  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			  -webkit-print-color-adjust:exact;
+			  font-size: 10px;
+			}
+			label{
+			  margin-bottom: 10px;
+			}
+			table {
+				border:solid 1px #C5C5C5 !important;
+			}
+			th, td {
+				border:solid 1px #C5C5C5 !important;
+			}
+			th{
+				background-color: #ACDDFD !important;
+				color:#999;
+			}
+			#subtotal{
+				text-align:	right;
+			}
+			#sales{
+				text-align:right;
+			}
+			h3, p{
+				margin:0px;
+			}
+		}
+	</style>
+	<h3 id="sales">Sales Receipt</h3>
+	<p id="sales"><b>Date:</b> <span><?php echo date("F d, Y")?></span></p>
+	<p id="sales"><b>Receipt No.:</b> <span><?php if(!empty($invoiceReceipts[0]->fld_orNumber)) echo $invoiceReceipts[0]->fld_orNumber; else echo sprintf('%08d',$invoices['0']->id); ?></span></p>
+	<br>
+	<p><b>Name</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $fullName ?></p>
+	<p><b>Address</b>&nbsp;&nbsp;&nbsp;: <?php echo $address ?></p>
+	<br>
+	<table class="table table-hover table-bordered table-condensed" id="print-table">
+		<thead>
+			<tr>
+				<th>Code</th>
+				<th>Description</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php 
+		$subtotal=0;
+		if(!empty($invoiceItems)){ 
+			foreach($invoiceItems as $rows){ ?>
+			<tr>
+				<td><?php echo $rows->fld_productCode ?></td>
+				<td><?php echo $rows->fld_productName ?></td>
+				<td><?php echo $rows->fld_productQuantity ?></td>
+				<td>PHP <?php echo number_format($rows->fld_productPrice,2,'.','') ?></td>
+				<td>PHP <?php echo number_format(($rows->fld_productPrice*$rows->fld_productQuantity),2,'.','') ?></td>
+			</tr>
+		<?php 
+			$subtotal = $subtotal + $total;
+		}
+		} 
+		if(count($invoiceItems)<=15){
+		for($i=0;$i<(15-count($invoiceItems));$i++){
+		?>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		<?php 
+		}
+		}
+		?>
+			<tr>
+				<td colspan="4" id="subtotal"><b>Subtotal</b></td>
+				<td><b>PHP <?php echo number_format($subtotal,2,'.','')?></b></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<p>If you have any questions about us thie invoice # <?php echo date("Y")."-".date("m")."-".sprintf('%06d',$invoices['0']->id); ?>! Please Contaact 451-9864.</p>
+	<p><i>Thank You For Your Business!</i></p>
+</div>

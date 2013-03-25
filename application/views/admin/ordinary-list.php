@@ -1,9 +1,3 @@
-<style>
-.modal-body {
-    min-height: 980px;
-    height: 850px;
-}
-</style>
 <div class="row-fluid">
 	<div class="pull-left span4">
 		<legend>Transaction List</legend>
