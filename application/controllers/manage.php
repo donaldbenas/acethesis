@@ -76,6 +76,7 @@ class Manage extends CI_Controller
 						);	
 						$this->load->view('admin/navbar',$this->nav);
 						if($this->uri->segment(4)==""){
+							$this->usermodel->id = "";
 							$this->usermodel->save();
 							redirect(base_url()."manage/users");
 						}else{
