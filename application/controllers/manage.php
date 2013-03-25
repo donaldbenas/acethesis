@@ -91,6 +91,7 @@ class Manage extends CI_Controller
 							array("href" => "", "label"=> "Ordinary Customer")
 						);	
 						$this->load->view('admin/navbar',$this->nav);
+						$this->usermodel->id="";
 						$data['users'] = $this->usermodel->load();
 						$this->load->view('admin/users',$data);
 						break;						
